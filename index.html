@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Traffico aereo COVID-19</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT e COLORI 
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom_desktop.css">
+
+    <link rel="stylesheet" href="css/stile-svgs.css">
+
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+
+    <!-- scroll magic
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/debug.addIndicators.js"></script>
+
+    <!-- js
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="data/dati_cina.js"></script> <!-- // array-dati cina-->
+    <script src="data/dati_italia.js"></script>
+    <script src="data/dati_malpensa.js"></script>
+    <script src="data/dati_nazioni.js"></script>
+
+    <script src="js/scrollm_cina.js"></script>
+    <!--//scroll magic cina -- da capire come si mette-->
+
+    <!--    ----------------------------------------------------- -->
+    <script>
+        $(document).ready(function() { // wait for document ready
+            var controller = new ScrollMagic.Controller();
+            duration = "600vh";
+            //gestisce il blocco del chart
+            new ScrollMagic.Scene({
+                    triggerElement: "#grafico-cina",
+                    triggerHook: 'onLeave',
+                    duration: "300%"
+                })
+                .setPin("#grafico-cina", {
+                    pushFollowers: true
+                })
+                .on("progress", function(e) {
+                    date = giorni_cina;
+                    valori = perc_cina_solo;
+
+                    //PROGRESSIONE SCROLL  
+                    prog = e.progress.toFixed(3);
+                    //RILIEVO LARGHEZZA SVG
+                    viewBox = ($("#grafico-cina #cina").attr('viewBox')).split(" ");
+                    svgWidth = viewBox[2];
+                    //MUOVE LINEA
+                    $("#cina #cursor").attr("x1", prog * svgWidth);
+                    $("#cina #cursor").attr("x2", prog * svgWidth);
+                    //MOUVE TESTI
+                    $("#cina #main-value").css("transform", "translate(" + prog * svgWidth * 0.79 + "px,185px)");
+                    $("#cina #main-value-caption").css("transform", "translate(" + prog * svgWidth * 0.78 + "px,200px)");
+                    $("#cina #main-value-date").css("transform", "translate(" + prog * svgWidth * 0.90 + "px,14px)");
+                    //AGGIORNA VALORI
+                    $("#cina #main-value").text(valori[Math.floor(prog * valori.length)]);
+                    $("#cina #main-value-date").text(date[Math.floor(prog * valori.length)]);
+                    //AGGIORNA VIDEO - OPACITA' RETTANGOLI
+                    if (prog >= 0) {
+                        $('#grafico-cina video source').attr("src", videoFiles[1]);
+
+                        $("#video-cina h2").text("13.765");
+                        $("#video-cina h4").text("voli giornalieri in media 8 gen - 26 gen");
+
+                        $('#cina #sezione-1').css({
+                            opacity: 0.15
+                        })
+                        $('#cina #sezione-2').css({
+                            opacity: 0
+                        })
+                        $('#cina #sezione-3').css({
+                            opacity: 0
+                        })
+
+                        $("#grafico-cina .video1").removeClass("invisible").addClass("visible");
+                        $("#grafico-cina .video2").removeClass("visible").addClass("invisible");
+                        $("#grafico-cina .video3").removeClass("visible").addClass("invisible");
+                    }
+                    if (prog >= 0.385) {
+
+                        $("#video-cina h2").text("7.145");
+                        $("#video-cina h4").text("voli giornalieri in media 26 gen - 9 feb");
+
+                        $('#cina #sezione-2').css({
+                            opacity: 0.15
+                        })
+                        $('#cina #sezione-1').css({
+                            opacity: 0
+                        })
+                        $('#cina #sezione-3').css({
+                            opacity: 0
+                        })
+
+                        $("#grafico-cina .video2").removeClass("invisible").addClass("visible");
+                        $("#grafico-cina .video1").removeClass("visible").addClass("invisible");
+                        $("#grafico-cina .video3").removeClass("visible").addClass("invisible");
+                    }
+                    if (prog >= 0.671) {
+
+                        $("#video-cina h2").text("2.855");
+                        $("#video-cina h4").text("voli giornalieri in media 9 feb - 25 feb");
+
+                        $('#cina #sezione-3').css({
+                            opacity: 0.15
+                        })
+                        $('#cina #sezione-1').css({
+                            opacity: 0
+                        })
+                        $('#cina #sezione-2').css({
+                            opacity: 0
+                        })
+
+                        $("#grafico-cina .video3").removeClass("invisible").addClass("visible");
+                        $("#grafico-cina .video1").removeClass("visible").addClass("invisible");
+                        $("#grafico-cina .video2").removeClass("visible").addClass("invisible");
+                    }
+
+                    // console.log(prog);
+
+                })
+
+                .addIndicators() // add indicators (requires plugin)
+                .addTo(controller);
+
+            //------grafico italico ------//
+
+            var controller2 = new ScrollMagic.Controller();
+            duration = "600vh";
+
+            new ScrollMagic.Scene({
+                    triggerElement: "#grafico-italia",
+                    triggerHook: 'onLeave',
+                    duration: "300%"
+                })
+                .setPin("#grafico-italia", {
+                    pushFollowers: true
+                })
+                .on("progress", function(e) {
+                    date = giorni_italia;
+                    valori = perc_italia_solo;
+
+                    //PROGRESSIONE SCROLL  
+                    prog = e.progress.toFixed(3);
+                    //RILIEVO LARGHEZZA SVG
+                    viewBox = ($("#grafico-italia #italia").attr('viewBox')).split(" ");
+                    svgWidth = viewBox[2];
+                    //MUOVE LINEA
+                    $("#italia #cursor2").attr("x1", prog * svgWidth);
+                    $("#italia #cursor2").attr("x2", prog * svgWidth);
+                    //MOUVE TESTI
+                    $("#italia #main-value2").css("transform", "translate(" + prog * svgWidth * 0.79 + "px,195px)");
+                    $("#italia #main-value-caption2").css("transform", "translate(" + prog * svgWidth * 0.78 + "px,210px)");
+                    $("#italia #main-value-date2").css("transform", "translate(" + prog * svgWidth * 0.90 + "px,14px)");
+                    //AGGIORNA VALORI
+                    $("#italia #main-value2").text(valori[Math.floor(prog * valori.length)]);
+                    $("#italia #main-value-date2").text(date[Math.floor(prog * valori.length)]);
+                    //AGGIORNA VIDEO - OPACITA' RETTANGOLI
+                    if (prog >= 0) {
+                        $("#video-italia h2").text("2.605");
+                        $("#video-italia h4").text("voli giornalieri in media 1 feb - 1 mar");
+
+                        $('#italia #sezione-1').css({
+                            opacity: 0.15
+                        })
+                        $('#italia #sezione-2').css({
+                            opacity: 0
+                        })
+                        $('#italia #sezione-3').css({
+                            opacity: 0
+                        })
+
+                        $("#grafico-italia .video1").removeClass("invisible").addClass("visible");
+                        $("#grafico-italia .video2").removeClass("visible").addClass("invisible");
+                        $("#grafico-italia .video3").removeClass("visible").addClass("invisible");
+                    }
+                    if (prog >= 0.331) {
+                        $("#video-italia h2").text("1.593");
+                        $("#video-italia h4").text("voli giornalieri in media 1 mar - 14 mar");
+
+                        $('#italia #sezione-2').css({
+                            opacity: 0.15
+                        })
+                        $('#italia #sezione-1').css({
+                            opacity: 0
+                        })
+                        $('#italia #sezione-3').css({
+                            opacity: 0
+                        })
+
+                        $("#grafico-italia .video2").removeClass("invisible").addClass("visible");
+                        $("#grafico-italia .video1").removeClass("visible").addClass("invisible");
+                        $("#grafico-italia .video3").removeClass("visible").addClass("invisible");
+                    }
+                    if (prog >= 0.462) {
+                        $("#video-italia h2").text("184");
+                        $("#video-italia h4").text("voli giornalieri in media 14 mar - 30 apr");
+
+                        $('#italia #sezione-3').css({
+                            opacity: 0.15
+                        })
+                        $('#italia #sezione-1').css({
+                            opacity: 0
+                        })
+                        $('#italia #sezione-2').css({
+                            opacity: 0
+                        })
+
+                        $("#grafico-italia .video3").removeClass("invisible").addClass("visible");
+                        $("#grafico-italia .video1").removeClass("visible").addClass("invisible");
+                        $("#grafico-italia .video2").removeClass("visible").addClass("invisible");
+                    }
+
+                    // console.log(prog);
+
+                })
+
+                //.addIndicators() // add indicators (requires plugin)
+                .addTo(controller2);
+
+            //------grafico malpensa ------//
+
+            var controller3 = new ScrollMagic.Controller();
+            duration = "600vh";
+
+            new ScrollMagic.Scene({
+                    triggerElement: "#aeroporti-italiani",
+                    triggerHook: 'onLeave',
+                    duration: "300%"
+                })
+                .setPin("#aeroporti-italiani", {
+                    pushFollowers: true
+                })
+                .on("progress", function(e) {
+                    date = giorni_malpensa;
+                    valori = perc_malpensa;
+
+                    //PROGRESSIONE SCROLL  
+                    prog = e.progress.toFixed(3);
+                    //RILIEVO LARGHEZZA SVG
+                    viewBox = ($("#aeroporti-italiani #fmc-mpx").attr('viewBox')).split(" ");
+                    svgWidth = viewBox[2];
+                    //MUOVE LINEA
+                    $("#fmc-mpx #cursor3").attr("x1", prog * svgWidth);
+                    $("#fmc-mpx #cursor3").attr("x2", prog * svgWidth);
+                    //MOUVE TESTI
+                    $("#fmc-mpx #main-value3").css("transform", "translate(" + prog * svgWidth * 0.92 + "px,340px)");
+                    $("#fmc-mpx #main-value-caption3").css("transform", "translate(" + prog * svgWidth * 0.81 + "px,353px)");
+                    $("#fmc-mpx #main-value-date3").css("transform", "translate(" + prog * svgWidth * 0.88 + "px,9px)");
+                    //AGGIORNA VALORI
+                    $("#fmc-mpx #main-value3").text(valori[Math.floor(prog * valori.length)]);
+                    $("#fmc-mpx #main-value-date3").text(date[Math.floor(prog * valori.length)]);
+
+
+                    // console.log(prog);
+
+                })
+
+                // .addIndicators() // add indicators (requires plugin)
+                .addTo(controller3);
+
+            //------grafico pandemia ------//
+
+            var controller4 = new ScrollMagic.Controller();
+            duration = "600vh";
+
+            new ScrollMagic.Scene({
+                    triggerElement: "#pandemia",
+                    triggerHook: 'onLeave',
+                    duration: "300%"
+                })
+                .setPin("#pandemia", {
+                    pushFollowers: true
+                })
+                .on("progress", function(e) {
+                    date = giorni_nazioni;
+                    valori = valori_n;
+
+
+                    //PROGRESSIONE SCROLL  
+                    prog = e.progress.toFixed(3);
+                    //RILIEVO LARGHEZZA SVG
+                    viewBox = ($("#pandemia #crollo").attr('viewBox')).split(" ");
+                    svgWidth = viewBox[2];
+                    //MUOVE LINEA
+                    $("#crollo #cursor4").attr("x1", prog * svgWidth);
+                    $("#crollo #cursor4").attr("x2", prog * svgWidth);
+                    //MOUVE TESTI
+                    $("#crollo #main-value4").css("transform", "translate(" + prog * svgWidth * 0.91 + "px,450px)");
+                    $("#crollo #main-value-caption4").css("transform", "translate(" + prog * svgWidth * 0.92 + "px,460px)");
+                    $("#crollo #main-value-date4").css("transform", "translate(" + prog * svgWidth * 0.96 + "px,14px)");
+                    //AGGIORNA VALORI
+                    $("#crollo #main-value-date4").text(date[Math.floor(prog * valori.length)]);
+
+                    //                    var nazione = "Italia";
+                    //                    valori = NAZ[nazione];
+
+                    $("#crollo #main-value4").text(valori[Math.floor(prog * valori.length)]);
+
+
+
+
+
+
+                    //    console.log(prog);
+
+                })
+
+                .addIndicators() // add indicators (requires plugin)
+                .addTo(controller4);
+            //---- dropdown cambia colore grafico nazioni ------//
+
+            $("#pandemia .dropdown-content a").on("click", function(event) {
+
+
+                nazione = $(this).text();
+                // cambia_colore_roma();
+                console.log(nazione);
+
+                valori_n = NAZ[nazione];
+
+                console.log(valori);
+
+                $("#menu-selezionato").text(nazione);
+                $("#TAG_selezionato").text(TAG[nazione]);
+
+                $("#crollo polyline").css("stroke", "#dfdfd7");
+                $("#crollo polyline").css("opacity", "0.15");
+                $("#crollo polyline").css("stroke-width", "1");
+
+
+                $("svg #" + nazione.toLowerCase()).css("stroke", "blue");
+                $("svg #" + nazione.toLowerCase()).css("opacity", "1");
+                $("svg #" + nazione.toLowerCase()).css("stroke-width", "2");
+
+                return valori_n;
+
+
+            });
+
+            var TAG = {
+                Spagna: "ES",
+                Francia: "FR",
+                Italia: "IT",
+                UK: "UK",
+                Germania: "DE",
+                Norvegia: "NO",
+                Cina: "CN",
+                USA: "US"
+
+            }
+
+            var NAZ = {
+                Spagna: perc_spagna,
+                Francia: perc_francia,
+                Italia: perc_italia,
+                UK: perc_uk,
+                Germania: perc_germania,
+                Norvegia: perc_norvegia,
+                Cina: perc_cina,
+                USA: perc_usa
+
+            }
+            var valori_n = perc_italia;
+
+
+            //------grafico stock compagnie ------//
+
+            var controller5 = new ScrollMagic.Controller();
+            duration = "600vh";
+
+            new ScrollMagic.Scene({
+                    triggerElement: "#grafici-stock",
+                    triggerHook: 'onLeave',
+                    duration: "300%"
+                })
+                .setPin("#grafici-stock", {
+                    pushFollowers: true
+                })
+                .on("progress", function(e) {
+                    date = giorni_malpensa;
+                    valori = perc_malpensa;
+
+                    //PROGRESSIONE SCROLL  
+                    prog = e.progress.toFixed(3);
+                    //RILIEVO LARGHEZZA SVG
+                    viewBox = ($("#stock").attr('viewBox')).split(" ");
+                    svgWidth = viewBox[2];
+
+                    //MUOVE LINEA
+                    $("#stock #cursor51").attr("x1", prog * svgWidth);
+                    $("#stock #cursor51").attr("x2", prog * svgWidth);
+                    $("#stock #cursor52").attr("x1", prog * svgWidth);
+                    $("#stock #cursor52").attr("x2", prog * svgWidth);
+                    //MOUVE TESTI
+                    $("#stock #main-value5").css("transform", "translate(" + prog * svgWidth * 0.92 + "px,213px)");
+                    $("#stock #main-value-date5").css("transform", "translate(" + prog * svgWidth * 0.88 + "px,9px)");
+                    //AGGIORNA VALORI
+                    $("#stock #main-value5").text(valori[Math.floor(prog * valori.length)]);
+                    $("#stock #main-value-date5").text(date[Math.floor(prog * valori.length)]);
+
+
+                    // console.log(prog);
+
+                })
+
+                .addIndicators() // add indicators (requires plugin)
+                .addTo(controller5);
+
+            //---- dropdown cambia colore grafico compagniee aeree ------//
+
+            $("#grafici-stock .dropdown-content a").on("click", function(event) {
+
+
+                compagnia = $(this).text();
+
+                console.log(compagnia);
+
+                //valori_c = COM[compagnia];
+
+                //console.log(valori_c);
+
+                $("#menu-selezionato2").text(compagnia);
+
+                $("#stock polyline").css("stroke", "#dfdfd7");
+                $("#stock polyline").css("opacity", "0.15");
+                $("#stock polyline").css("stroke-width", "1");
+
+                // stock //
+                $("svg #" + compagnia.toLowerCase()).css("stroke", "blue");
+                $("svg #" + compagnia.toLowerCase()).css("opacity", "1");
+                $("svg #" + compagnia.toLowerCase()).css("stroke-width", "2");
+                // voli //
+                $("svg #" + compagnia.toLowerCase() + "2").css("stroke", "blue");
+                $("svg #" + compagnia.toLowerCase() + "2").css("opacity", "1");
+                $("svg #" + compagnia.toLowerCase() + "2").css("stroke-width", "2");
+
+                //return valori_n;
+
+
+            });
+
+            //---- grafico carburante ------//
+
+            var controller6 = new ScrollMagic.Controller();
+            duration = "600vh";
+
+            new ScrollMagic.Scene({
+                    triggerElement: "#grafico-carburante",
+                    triggerHook: 'onLeave',
+                    duration: "300%"
+                })
+                .setPin("#grafico-carburante", {
+                    pushFollowers: true
+                })
+                .on("progress", function(e) {
+                    date = giorni_malpensa;
+                    valori = perc_malpensa;
+
+                    //PROGRESSIONE SCROLL  
+                    prog = e.progress.toFixed(3);
+                    //RILIEVO LARGHEZZA SVG
+                    viewBox = ($("#carburante").attr('viewBox')).split(" ");
+                    svgWidth = viewBox[2];
+
+                    //MUOVE LINEA
+                    $("#carburante #cursor6").attr("x1", prog * svgWidth);
+                    $("#carburante #cursor6").attr("x2", prog * svgWidth);
+
+                    //MOUVE TESTI
+                    $("#carburante #main-value6").css("transform", "translate(" + prog * svgWidth * 0.92 + "px,348px)");
+                    $("#carburante #main-value-caption6").css("transform", "translate(" + prog * svgWidth * 0.74 + "px,360px)");
+                    $("#carburante #main-value-date6").css("transform", "translate(" + prog * svgWidth * 0.88 + "px,12px)");
+                    //AGGIORNA VALORI
+                    $("#carburante #main-value6").text(valori[Math.floor(prog * valori.length)]);
+                    $("#carburante #main-value-date6").text(date[Math.floor(prog * valori.length)]);
+
+
+                    // console.log(prog);
+
+                })
+
+                .addIndicators() // add indicators (requires plugin)
+                .addTo(controller6);
+
+
+
+
+        }); // fine script
+
+    </script>
+</head>
+
+<body>
+
+
+
+
+
+    <!--//-----  intro ------//-->
+    <div class="container u-max-full-width sfondo-nero" id="intro">
+        <div class="row">
+            <div class="columns offset-by-three six">
+                <div class="" id="video">
+
+                    <video loop muted autoplay>
+
+                        <source src="images/cina-molti.mp4" type="video/mp4">
+
+                    </video>
+                    <h1 id="titolo-intro">Titolo grande</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns offset-by-three six">
+                <p> Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container u-max-full-width sfondo-bianco telegramma" id="cina">
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h1> Sono il titolo per la Cina
+                </h1>
+                <hr>
+                <h4 class="tag1"> LUOGO</h4>
+                <h2 class="nero padding-luogo"> Cina</h2>
+                <h4 class="tag1"> DATA</h4>
+                <h2 class="nero"> 8 gennaio - 25 febbraio</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container u-max-full-width sfondo-nero" id="grafico-cina">
+
+        <div class="row">
+            <div class="columns five offset-three-half">
+                <h2>Titolo grafico Cina</h2>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.
+                </p>
+            </div>
+        </div>
+        <div class="row camminatori">
+            <div class="columns offset-by-four four" id="video-cina">
+
+
+                <div class="value-container">
+                    <h2 id="no-margin">13765</h2>
+                    <h4>voli giornalieri in media 8 gen - 26 gen</h4>
+                </div>
+                <div class="video-container">
+                    <video class="invisible mostra video1" autoplay muted loop>
+                        <source src="images/cina-molti.mp4" type="video/mp4">
+                    </video>
+                    <video class="invisible mostra video2" autoplay muted loop>
+                        <source src="images/cina-medi.mp4" type="video/mp4">
+                    </video>
+                    <video class="invisible mostra video3" autoplay muted loop>
+                        <source src="images/cina-pochi.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns five offset-three-half">
+                <svg id="cina" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 367.15 250.33" style="enable-background:new 0 0 367.15 250.33;" xml:space="preserve">
+
+                    <g>
+                        <g>
+                            <line class="st13" x1="1.75" y1="62.6" x2="3.25" y2="62.6" />
+                            <line class="st14" x1="6.24" y1="62.6" x2="363.75" y2="62.6" />
+                            <line class="st13" x1="365.25" y1="62.6" x2="366.75" y2="62.6" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st13" x1="1.75" y1="80.8" x2="3.25" y2="80.8" />
+                            <line class="st14" x1="6.24" y1="80.8" x2="363.75" y2="80.8" />
+                            <line class="st13" x1="365.25" y1="80.8" x2="366.75" y2="80.8" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st13" x1="1.75" y1="99" x2="3.25" y2="99" />
+                            <line class="st14" x1="6.24" y1="99" x2="363.75" y2="99" />
+                            <line class="st13" x1="365.25" y1="99" x2="366.75" y2="99" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st13" x1="1.75" y1="117.2" x2="3.25" y2="117.2" />
+                            <line class="st14" x1="6.24" y1="117.2" x2="363.75" y2="117.2" />
+                            <line class="st13" x1="365.25" y1="117.2" x2="366.75" y2="117.2" />
+                        </g>
+                    </g>
+                    <line class="st13" x1="1.75" y1="135.4" x2="366.75" y2="135.4" />
+                    <g>
+                        <text transform="matrix(1 0 0 1 0.888 41.6289)" class="dati">15.000</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 1.7103 133.1484)" class="dati">0</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 338.5814 132.0337)" class="dati_blu">2020</text>
+                    </g>
+                    <text transform="matrix(1 0 0 1 338.5814 72.8501)" class="dati" id="duemiladiciannove">2019</text>
+                    <g>
+                        <text transform="matrix(1 0 0 1 332.1312 149.8232)" class="date">25 feb</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 2 149.8232)" class="date">8 gen</text>
+                    </g>
+                    <g>
+                        <text id="main-value-date" transform="matrix(1 0 0 1 55 14.8232)" class="data">16 gen</text>
+                    </g>
+                    <g>
+                        <text id="main-value" transform="matrix(1 0 0 1 51 185.8232)" class="percentuale">-31,9%</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 -0.1457 235.5039)" class="fonte">Fonte: AirNav</text>
+                    </g>
+                    <g>
+                        <text id="main-value-caption" transform="matrix(1 0 0 1 81.7169 200.4644)" class="date">rispetto al 2019</text>
+                    </g>
+                    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="135.4164" y1="44.5735" x2="135.4164" y2="135.0735">
+                        <stop offset="0" style="stop-color:#0000FF" />
+                        <stop offset="1" style="stop-color:#000000" />
+                    </linearGradient>
+                    <rect id="sezione-1" x="1.75" y="44.57" class="st2" width="139" height="90.5" />
+                    <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="292.0654" y1="44.5735" x2="292.0654" y2="135.5735">
+                        <stop offset="0" style="stop-color:#0000FF" />
+                        <stop offset="1" style="stop-color:#000000" />
+                    </linearGradient>
+                    <rect id="sezione-2" x="139" y="44.57" class="st3" width="106" height="91" />
+                    <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="341.0654" y1="44.5735" x2="341.0654" y2="135.5735">
+                        <stop offset="0" style="stop-color:#0000FF" />
+                        <stop offset="1" style="stop-color:#000000" />
+                    </linearGradient>
+                    <rect id="sezione-3" x="245" y="44.57" class="st4" width="124" height="91" />
+                    <line class="st13" x1="140" y1="31.57" x2="140" y2="149.57" />
+                    <line class="st32" x1="1.75" y1="44.4" x2="366.75" y2="44.4" />
+                    <line class="st13" x1="245" y1="31.57" x2="245" y2="149.57" />
+                    <line id="cursor" class="st33" x1="60" y1="25.07" x2="60" y2="160.07" />
+                    <g>
+                        <polyline class="st34" points="363.81,58.5 356.35,58.02 348.89,57.8 341.43,55.51 333.97,56.52 326.51,55.9 319.05,59.84 
+		311.59,57.84 304.13,56.69 296.67,56.15 289.21,55.07 281.76,58.37 274.3,55.96 266.84,54.65 259.38,59.68 251.92,67.24 
+		244.46,55.24 237,55.6 229.54,58 222.08,58.62 214.62,63.47 207.16,67.44 199.7,56.46 192.25,55.74 184.79,55.55 177.33,56.65 
+		169.87,55.87 162.41,57.17 154.95,56.52 147.49,56.41 140.03,58.01 132.57,74.34 125.11,60.05 117.65,49.23 110.2,50.49 
+		102.74,51.75 95.28,52.78 87.82,53.19 80.36,51.67 72.9,54.66 65.44,69.61 57.98,70.88 50.52,71.31 43.06,74.21 35.6,74.64 
+		28.14,73.77 20.69,73.78 13.23,73.84 5.77,74.02 	" />
+                    </g>
+                    <g>
+                        <polyline class="st35" points="363.81,119.77 356.35,120.91 348.89,119.61 341.43,122.33 333.97,117.6 326.51,119.23 
+		319.05,118.76 311.59,121.14 304.13,120.86 296.67,116.75 289.21,119.36 281.76,119.48 274.3,121.11 266.84,119.27 259.38,118.8 
+		251.92,114.01 244.46,102.74 237,108.04 229.54,109.1 222.08,111.59 214.62,110.2 207.16,109.93 199.7,104.77 192.25,95.22 
+		184.79,93.16 177.33,88.86 169.87,80.52 162.41,75.96 154.95,69.26 147.49,62.41 140.03,60.49 132.57,64.19 125.11,62.9 
+		117.65,51.02 110.2,47.58 102.74,47.68 95.28,47.28 87.82,47.31 80.36,47.89 72.9,47.51 65.44,48.44 57.98,48.45 50.52,49.43 
+		43.06,49.76 35.6,51.73 28.14,52.15 20.69,51.49 13.23,53.61 5.77,54.14 	" />
+                    </g>
+                </svg>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--    //------ ITALIA -------//-->
+
+    <div class="container u-max-full-width sfondo-bianco telegramma" id="italia">
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h1> Sono il titolo per l'Italia
+                </h1>
+                <hr>
+                <h4 class="tag1"> LUOGO</h4>
+                <h2 class="nero padding-luogo"> Italia</h2>
+                <h4 class="tag1"> DATA</h4>
+                <h2 class="nero"> 1 febbraio - 30 aprile</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container u-max-full-width sfondo-nero" id="grafico-italia">
+
+
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h2>Titolo grafico Italia</h2>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.
+                </p>
+            </div>
+        </div>
+        <div class="row camminatori">
+            <div class="columns offset-by-four four" id="video-italia">
+
+
+                <div class="value-container">
+                    <h2 id="no-margin">6260</h2>
+                    <h4>traffico in Italia</h4>
+                </div>
+                <div class="video-container">
+
+                    <video class="invisible mostra video1" autoplay muted loop>
+                        <source src="images/italia-molti.mp4" type="video/mp4">
+                    </video>
+                    <video class="invisible mostra video2" autoplay muted loop>
+                        <source src="images/italia-medi.mp4" type="video/mp4">
+                    </video>
+                    <video class="invisible mostra video3" autoplay muted loop>
+                        <source src="images/italia-pochi.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <svg id="italia" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 367.25 245.33" style="enable-background:new 0 0 367.25 245.33;" xml:space="preserve">
+                    <g>
+                        <g>
+                            <line class="st7" x1="1.51" y1="59.6" x2="3.01" y2="59.6" />
+                            <line class="st8" x1="6" y1="59.6" x2="363.51" y2="59.6" />
+                            <line class="st7" x1="365.01" y1="59.6" x2="366.51" y2="59.6" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st7" x1="1.51" y1="77.8" x2="3.01" y2="77.8" />
+                            <line class="st8" x1="6" y1="77.8" x2="363.51" y2="77.8" />
+                            <line class="st7" x1="365.01" y1="77.8" x2="366.51" y2="77.8" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st7" x1="1.51" y1="96" x2="3.01" y2="96" />
+                            <line class="st8" x1="6" y1="96" x2="363.51" y2="96" />
+                            <line class="st7" x1="365.01" y1="96" x2="366.51" y2="96" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st7" x1="1.51" y1="114.2" x2="3.01" y2="114.2" />
+                            <line class="st8" x1="6" y1="114.2" x2="363.51" y2="114.2" />
+                            <line class="st7" x1="365.01" y1="114.2" x2="366.51" y2="114.2" />
+                        </g>
+                    </g>
+                    <line class="st7" x1="1.51" y1="132.4" x2="366.51" y2="132.4" />
+                    <g>
+                        <text transform="matrix(1 0 0 1 0.888 36.6289)" class="dati">15.000</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 1.7103 130.1484)" class="dati">0</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 338.5814 120.0337)" class="dati_blu">2020</text>
+                    </g>
+                    <text transform="matrix(1 0 0 1 338.5814 65.8501)" class="dati" id="duemiladiciannove">2019</text>
+                    <g>
+                        <text transform="matrix(1 0 0 1 332.1312 145.8232)" class="date">30 apr</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 2 145.8232)" class="date">1 feb</text>
+                    </g>
+                    <g>
+                        <text id="main-value-date2" transform="matrix(1 0 0 1 75.7039 14.8232)" class="data">15 feb</text>
+                    </g>
+                    <g>
+                        <text id="main-value2" transform="matrix(1 0 0 1 70.2093 202.8232)" class="percentuale">-57%</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 -0.1457 240.5039)" class="fonte">Fonte: AirNav</text>
+                    </g>
+                    <g>
+                        <text id="main-value-caption2" transform="matrix(1 0 0 1 60.7169 214.4644)" class="date">rispetto al 2019</text>
+                    </g>
+                    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="54.5883" y1="41.0731" x2="54.5883" y2="132.5731">
+                        <stop offset="0" style="stop-color:#0000FF" />
+                        <stop offset="1" style="stop-color:#000000" />
+                    </linearGradient>
+                    <rect id="sezione-1" x="1.51" y="41.07" class="st9" width="120" height="91.5" />
+                    <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="145.2347" y1="41.0731" x2="145.2347" y2="132.5731">
+                        <stop offset="0" style="stop-color:#0000FF" />
+                        <stop offset="1" style="stop-color:#000000" />
+                    </linearGradient>
+                    <rect id="sezione-2" x="121" y="41.07" class="st10" width="49" height="91.5" />
+                    <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="274.2347" y1="41.0731" x2="274.2347" y2="132.5731">
+                        <stop offset="0" style="stop-color:#0000FF" />
+                        <stop offset="1" style="stop-color:#000000" />
+                    </linearGradient>
+                    <rect id="sezione-3" x="170" y="41.07" class="st11" width="196" height="91.5" />
+                    <line class="st7" x1="121" y1="28.17" x2="121" y2="146.34" />
+                    <line class="st7" x1="1.51" y1="41.4" x2="366.51" y2="41.4" />
+                    <line class="st7" x1="170" y1="28.17" x2="170" y2="146.34" />
+                    <g>
+                        <polyline class="st34" points="365.3,53.57 361.16,49.64 357.03,48.81 352.9,52.34 348.76,47.07 344.63,53.66 340.49,51.21 
+		336.36,53.22 332.23,50.81 328.09,54.16 323.96,51.01 319.82,44.2 315.69,47.64 311.56,48.74 307.42,51.55 303.29,47.55 
+		299.15,46.76 295.02,50.9 290.89,45.23 286.75,49.59 282.62,51.73 278.48,55.46 274.35,52.7 270.22,53.55 266.08,59.04 
+		261.95,51.64 257.81,56.12 253.68,55.6 249.55,58.52 245.41,54.97 241.28,60.75 237.14,77.1 233.01,66.13 228.88,71.75 
+		224.74,73.28 220.61,75.51 216.47,73.05 212.34,69.12 208.21,75.37 204.07,66.24 199.94,71.37 195.8,76.09 191.67,76.99 
+		187.54,70.56 183.4,72.31 179.27,77.35 175.13,69.64 171,75.87 166.87,77.71 162.73,74.74 158.6,68.31 154.46,70.11 150.33,76.16 
+		146.2,67.77 142.06,73.41 137.93,76.47 133.79,76.47 129.66,68.65 125.53,69.82 121.39,74.97 117.26,65.88 113.12,70.94 
+		108.99,75.24 104.86,74.9 100.72,68.17 96.59,69.84 92.45,75.89 88.32,65.9 84.19,72.33 80.05,74.4 75.92,75.1 71.78,68.58 
+		67.65,70.78 63.52,75.84 59.38,68.24 55.25,72.11 51.11,76.02 46.98,76.43 42.85,75.66 38.71,76.9 34.58,76.9 30.44,67.25 
+		26.31,74.79 22.18,77.1 18.04,78.3 13.91,76.23 9.77,73.21 5.64,79.02 1.51,70.58 	" />
+                    </g>
+                    <g>
+                        <polyline class="st15" points="365.3,128.73 361.16,127.89 357.03,128.97 352.9,128.75 348.76,129.33 344.63,129.94 340.49,128.59 
+		336.36,128.52 332.23,129 328.09,128.75 323.96,128.68 319.82,129.85 315.69,130.23 311.56,128.68 307.42,128.82 303.29,128.37 
+		299.15,128.97 295.02,130.37 290.89,130.75 286.75,129.6 282.62,129.11 278.48,128.61 274.35,128.41 270.22,128.7 266.08,128.79 
+		261.95,129.04 257.81,129.27 253.68,128.75 249.55,128.3 245.41,128.12 241.28,128.79 237.14,128.7 233.01,128.7 228.88,128.88 
+		224.74,127.89 220.61,127.98 216.47,127.51 212.34,127.4 208.21,127.74 204.07,128.48 199.94,127.94 195.8,126.37 191.67,126.3 
+		187.54,126.46 183.4,125.71 179.27,125.89 175.13,126.03 171,126.3 166.87,115.03 162.73,114.78 158.6,112.91 154.46,102.81 
+		150.33,90.01 146.2,83.99 142.06,85.88 137.93,78.34 133.79,83 129.66,84.21 125.53,83.65 121.39,75.12 117.26,74.97 113.12,79.35 
+		108.99,69.43 104.86,74.54 100.72,77.67 96.59,83.92 92.45,68.22 88.32,69.93 84.19,75.66 80.05,65.43 75.92,70.76 71.78,75.17 
+		67.65,75.69 63.52,67.3 59.38,70.58 55.25,75.96 51.11,65.63 46.98,72.72 42.85,77.85 38.71,78.77 34.58,72.65 30.44,74.31 
+		26.31,78.5 22.18,68.06 18.04,75.53 13.91,79.76 9.77,81.6 5.64,71.93 1.51,72.24 	" />
+                    </g>
+                    <line id="cursor2" class="st13" x1="100.22" y1="21.57" x2="100.22" y2="171.57" />
+
+                </svg>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container u-max-full-width sfondo-nero" id="aeroporti-italiani">
+
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h2>Crollo traffico Milano Malpensa</h2>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <svg id="fmc-mpx" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 366.7 366.6" style="enable-background:new 0 0 366.7 366.6;" xml:space="preserve">
+
+                    <line class="st0" x1="1.5" y1="39.3" x2="366.2" y2="39.3" />
+                    <line class="st1" x1="1.5" y1="65.7" x2="366.2" y2="65.7" />
+                    <line class="st1" x1="1.5" y1="92.1" x2="366.2" y2="92.1" />
+                    <line class="st1" x1="1.5" y1="118.4" x2="366.2" y2="118.4" />
+                    <line class="st1" x1="1.5" y1="144.8" x2="366.2" y2="144.8" />
+                    <line class="st1" x1="1.5" y1="171.2" x2="366.2" y2="171.2" />
+                    <line class="st1" x1="1.5" y1="197.6" x2="366.2" y2="197.6" />
+                    <line class="st1" x1="1.5" y1="224" x2="366.2" y2="224" />
+                    <line class="st1" x1="1.5" y1="250.3" x2="366.2" y2="250.3" />
+                    <line class="st1" x1="1.5" y1="276.7" x2="366.2" y2="276.7" />
+                    <line class="st1" x1="1.5" y1="303.3" x2="366.2" y2="303.3" />
+                    <g>
+                        <text transform="matrix(1 0 0 1 0.5515 23.8232)" class="date">1 mar</text>
+                    </g>
+                    <g>
+                        <text id="main-value-date3" transform="matrix(1 0 0 1 86.0574 14.8232)" class="data">10 mar</text>
+                    </g>
+                    <g>
+                        <text id="main-value3" transform="matrix(1 0 0 1 94.3181 335.9073)" class="percentuale">-327</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 327.1716 23.8232)" class="date">31 mar</text>
+                    </g>
+                    <text transform="matrix(1 0 0 1 1.7957 35.4819)" class="dati">0%</text>
+                    <text transform="matrix(1 0 0 1 2.5881 168.291)" class="dati">-50%</text>
+                    <text transform="matrix(1 0 0 1 1.4163 298.5566)" class="dati">-100%</text>
+                    <text transform="matrix(1 0 0 1 331.4536 298.877)" class="dati-blu">MXP</text>
+                    <g>
+                        <text transform="matrix(1 0 0 1 -0.3894 365.7878)" class="fonte">Fonte: AirNav</text>
+                    </g>
+                    <g>
+                        <line class="st14" x1="19.1" y1="55.4" x2="7.6" y2="23.4" />
+                        <line class="st14" x1="30.7" y1="132.8" x2="19.1" y2="55.4" />
+                        <line class="st14" x1="42.3" y1="98.1" x2="30.7" y2="132.8" />
+                        <line class="st14" x1="53.9" y1="95.5" x2="42.3" y2="98.1" />
+                        <line class="st14" x1="65.4" y1="95.5" x2="53.9" y2="95.5" />
+                        <line class="st14" x1="77" y1="151.5" x2="65.4" y2="95.5" />
+                        <line class="st14" x1="88.6" y1="90.1" x2="77" y2="151.5" />
+                        <line class="st14" x1="100.2" y1="162.2" x2="88.6" y2="90.1" />
+                        <line class="st14" x1="111.8" y1="228.9" x2="100.2" y2="162.2" />
+                        <line class="st14" x1="123.3" y1="231.5" x2="111.8" y2="228.9" />
+                        <line class="st14" x1="134.9" y1="228.9" x2="123.3" y2="231.5" />
+                        <line class="st14" x1="146.5" y1="239.5" x2="134.9" y2="228.9" />
+                        <line class="st14" x1="158.1" y1="271.5" x2="146.5" y2="239.5" />
+                        <line class="st14" x1="169.7" y1="255.5" x2="158.1" y2="271.5" />
+                        <line class="st14" x1="181.2" y1="266.2" x2="169.7" y2="255.5" />
+                        <line class="st14" x1="192.8" y1="274.2" x2="181.2" y2="266.2" />
+                        <line class="st14" x1="204.4" y1="260.9" x2="192.8" y2="274.2" />
+                        <line class="st14" x1="216" y1="263.5" x2="204.4" y2="260.9" />
+                        <line class="st14" x1="227.6" y1="271.5" x2="216" y2="263.5" />
+                        <line class="st14" x1="239.1" y1="282.2" x2="227.6" y2="271.5" />
+                        <line class="st14" x1="250.7" y1="268.9" x2="239.1" y2="282.2" />
+                        <line class="st14" x1="262.3" y1="276.9" x2="250.7" y2="268.9" />
+                        <line class="st14" x1="273.9" y1="276.9" x2="262.3" y2="276.9" />
+                        <line class="st14" x1="285.5" y1="268.9" x2="273.9" y2="276.9" />
+                        <line class="st14" x1="297" y1="279.5" x2="285.5" y2="268.9" />
+                        <line class="st14" x1="308.6" y1="276.9" x2="297" y2="279.5" />
+                        <line class="st14" x1="320.2" y1="282.2" x2="308.6" y2="276.9" />
+                        <line class="st14" x1="331.8" y1="266.2" x2="320.2" y2="282.2" />
+                        <line class="st14" x1="343.4" y1="279.5" x2="331.8" y2="266.2" />
+                        <line class="st14" x1="354.9" y1="282.2" x2="343.4" y2="279.5" />
+                    </g>
+
+                    <line id="cursor3" class="st16" x1="113.6" y1="14" x2="114.3" y2="313" />
+                    <g>
+                        <text id="main-value-caption3" transform="matrix(1 0 0 1 77.1104 348.5017)" class="st2 st9 st17"> voli rispetto 2019 </text>
+                    </g>
+                </svg>
+
+
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h2>Grafici traffico aereoporti italiani</h2>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                </p>
+            </div>
+        </div>
+        <div class="row grafici-palla">
+            <div class="columns offset-three-half five">
+                <div class="row" id="fiumicino">
+                    <div>
+                        <h2>Roma (FCO)</h2>
+                        <h1>-90,8%</h1>
+                    </div>
+
+                </div>
+                <div class="row" id="malpensa">
+                    <div>
+                        <h2>Milano (MXP)</h2>
+                        <h1>-88,3%</h1>
+                    </div>
+                </div>
+                <div class="row" id="bologna">
+                    <div>
+                        <h2>Bologna (BLQ)</h2>
+                        <h1>-92,7%</h1>
+                    </div>
+                </div>
+
+
+                <div class="row" id="napoli">
+                    <div>
+                        <h2>Napoli (NAP)</h2>
+                        <h1>-97,1%</h1>
+                    </div>
+
+
+                </div>
+                <div class="row" id="catania">
+                    <div>
+                        <h2>Catania (CTA)</h2>
+                        <h1>-96,7%</h1>
+                    </div>
+                </div>
+                <div class="row" id="firenze">
+                    <div>
+                        <h2>Firenze (FLR)</h2>
+                        <h1>-100%</h1>
+                    </div>
+                </div>
+
+            </div>
+            <h6 id="fonte-palle"> Fonte: Assaeroporti</h6>
+        </div>
+
+    </div>
+
+    <!--    //-------- PANDEMIA ---------//-->
+
+    <div class="container u-max-full-width sfondo-bianco telegramma">
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h1> Sono la Pandemia
+                </h1>
+                <hr>
+                <h4 class="tag1"> LUOGO</h4>
+                <h2 class="nero padding-luogo"> Mondo</h2>
+                <h4 class="tag1"> DATA</h4>
+                <h2 class="nero"> 12 marzo - 31 maggio</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container u-max-full-width sfondo-nero" id="pandemia">
+
+        <div class="row" id="nazioni">
+            <div class="columns offset-three-half five">
+                <h2>Crollo voli nazioni</h2>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.
+                </p>
+            </div>
+        </div>
+
+        <div class="row" id="tendina-nazioni">
+            <div class="columns offset-three-half five">
+                <div id="menu">
+                    <div class="dropdown">
+                        <a id="menu-selezionato">Italia</a>
+                        <div class="dropdown-content">
+                            <a id="SP">Spagna</a>
+                            <a id="FR">Francia</a>
+                            <a>Italia</a>
+                            <a>UK</a>
+                            <a>Germania</a>
+                            <a>Norvegia</a>
+                            <a>Cina</a>
+                            <a>USA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns twelve">
+
+                <svg id="crollo" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1074.51 512.82" style="enable-background:new 0 0 1074.51 512.82;" xml:space="preserve">
+
+                    <line class="st13" x1="2.51" y1="50.51" x2="1074.51" y2="50.51" />
+                    <line class="st5" x1="2.51" y1="89.17" x2="1074.51" y2="89.17" />
+                    <line class="st5" x1="2.51" y1="127.84" x2="1074.51" y2="127.84" />
+                    <line class="st5" x1="2.51" y1="166.51" x2="1074.51" y2="166.51" />
+                    <line class="st5" x1="2.51" y1="205.17" x2="1074.51" y2="205.17" />
+                    <line class="st5" x1="2.51" y1="243.84" x2="1074.51" y2="243.84" />
+                    <line class="st5" x1="2.51" y1="282.51" x2="1074.51" y2="282.51" />
+                    <line class="st5" x1="2.51" y1="321.17" x2="1074.51" y2="321.17" />
+                    <line class="st5" x1="2.51" y1="359.84" x2="1074.51" y2="359.84" />
+                    <line class="st5" x1="2.51" y1="398.51" x2="1074.51" y2="398.51" />
+                    <line class="st5" x1="2.51" y1="437.51" x2="1074.51" y2="437.51" />
+                    <g>
+                        <text transform="matrix(1 0 0 1 1028.4949 24.9438)" class="date">30 apr</text>
+                    </g>
+                    <text transform="matrix(1 0 0 1 2.2817 48.6025)" class="dati">0%</text>
+                    <text transform="matrix(1 0 0 1 2.0742 242.2642)" class="dati">-50%</text>
+                    <text transform="matrix(1 0 0 1 1.9023 435.5933)" class="dati">-100%</text>
+                    <text id="TAG_selezionato" transform="matrix(1 0 0 1 1042.6531 434.9136)" class="dati_blu">IT</text>
+                    <g>
+                        <text transform="matrix(1 0 0 1 -0.3896 509.9868)" class="fonte">Fonte: AirNav</text>
+                    </g>
+                    <polyline id="norvegia" class="st12 linea" points="1067.5,259.5 1046,196.3 1024.3,237 1002.5,243.2 981,314.9 959.3,343.2 937.8,277.7 916,297.1 
+	894.2,292.4 872.8,294 851,271.5 829.2,332.4 807.8,342 786,128.4 764.5,217.6 742.8,258.3 721,252.5 699.5,305.6 677.8,343.6 
+	656.3,377.3 634.5,383.1 612.7,337.4 591.3,311 569.5,290.9 548,295.9 526.3,329.3 504.5,324.2 483,312.6 461.3,328.9 439.8,287 
+	418,294.7 396.2,298.6 374.8,337.4 353,356.8 331.5,287 309.8,287 288,271.5 266.5,271.5 244.8,259.9 223.3,310.3 201.5,213.3 
+	179.7,256 158.3,244.3 136.5,244.3 114.7,217.2 93.3,178.4 71.5,62.1 50,58.2 28.3,58.2 6.5,50.5 " />
+
+                    <polyline id="usa" class="st12 linea" points="1067.5,271.5 1046,296.7 1024.3,297.8 1002.5,319.9 981,326.5 959.3,308.7 937.8,301.7 916,303.7 
+		894.2,313 872.8,317.2 851,335.8 829.2,352.1 807.8,326.5 786,313 764.5,325 742.8,332.4 721,334.3 699.5,352.5 677.8,356.8 
+		656.3,342.8 634.5,326.9 612.7,335.8 591.3,333.9 569.5,335.5 548,351 526.3,357.9 504.5,338.6 483,327.3 461.3,330.4 439.8,328.1 
+		418,221.1 396.2,252.1 374.8,279.2 353,275.4 331.5,248.2 309.8,228.8 288,221.1 266.5,193.9 244.8,170.7 223.3,193.9 201.5,170.7 
+		179.7,124.2 158.3,104.8 136.5,85.4 114.7,50.5 93.3,15.6 71.5,97 50,85.4 28.3,19.5 6.5,35 	" />
+
+                    <polyline id="cina" class="st12 linea" points="1067.5,285.4 1046,288.2 1024.3,272.6 1002.5,319.2 981,298.6 959.3,261.8 937.8,284.7 916,273.8 
+	894.2,287 872.8,262.6 851,287.8 829.2,266.4 807.8,269.5 786,278.8 764.5,261 742.8,264.5 721,256 699.5,269.9 677.8,259.5 
+	656.3,265.7 634.5,278.5 612.7,268 591.3,270.7 569.5,261.8 548,266.1 526.3,261 504.5,267.6 483,256.4 461.3,236.6 439.8,209.8 
+	418,290.9 396.2,279.2 374.8,267.6 353,267.6 331.5,271.5 309.8,279.2 288,267.6 266.5,287 244.8,275.4 223.3,263.7 201.5,275.4 
+	179.7,256 158.3,271.5 136.5,259.9 114.7,271.5 93.3,267.6 71.5,256 50,279.2 28.3,275.4 6.5,287 " />
+                    <polyline id="germania" class="st12 linea" points="1067.5,372.3 1046,368.4 1024.3,376.2 1002.5,383.9 981,395.5 959.3,395.5 937.8,376.2 916,376.2 
+	894.2,376.2 872.8,383.9 851,380 829.2,395.5 807.8,399.4 786,380 764.5,383.9 742.8,383.9 721,387.8 699.5,407.2 677.8,411.1 
+	656.3,403.3 634.5,399.4 612.7,383.9 591.3,383.9 569.5,387.8 548,387.8 526.3,395.5 504.5,395.5 483,383.9 461.3,383.9 439.8,380 
+	418,380 396.2,387.8 374.8,387.8 353,376.2 331.5,372.3 309.8,364.5 288,360.7 266.5,360.7 244.8,356.8 223.3,321.9 201.5,306.4 
+	179.7,279.2 158.3,267.6 136.5,244.3 114.7,225 93.3,190.1 71.5,139.7 50,128 28.3,131.9 6.5,124.2 " />
+                    <polyline id="francia" class="st12 linea" points="1067.5,395.5 1046,387.8 1024.3,399.4 1002.5,403.3 981,422.7 959.3,414.9 937.8,403.3 916,399.4 
+	894.2,399.4 872.8,399.4 851,399.4 829.2,418.8 807.8,418.8 786,407.2 764.5,407.2 742.8,403.3 721,403.3 699.5,422.7 677.8,422.7 
+	656.3,418.8 634.5,411.1 612.7,403.3 591.3,399.4 569.5,407.2 548,407.2 526.3,422.7 504.5,411.1 483,411.1 461.3,403.3 
+	439.8,399.4 418,403.3 396.2,407.2 374.8,411.1 353,395.5 331.5,391.7 309.8,387.8 288,380 266.5,368.4 244.8,376.2 223.3,349 
+	201.5,337.4 179.7,302.5 158.3,298.6 136.5,275.4 114.7,225 93.3,166.8 71.5,131.9 50,124.2 28.3,100.9 6.5,97 " />
+                    <polyline id="spagna" class="st12 linea" points="1067.5,414.9 1046,414.9 1024.3,414.9 1002.5,418.8 981,422.7 959.3,426.6 937.8,414.9 916,414.9 
+	894.2,414.9 872.8,414.9 851,418.8 829.2,422.7 807.8,422.7 786,411.1 764.5,414.9 742.8,418.8 721,414.9 699.5,418.8 677.8,422.7 
+	656.3,426.6 634.5,422.7 612.7,414.9 591.3,411.1 569.5,411.1 548,418.8 526.3,418.8 504.5,418.8 483,411.1 461.3,411.1 
+	439.8,407.2 418,403.3 396.2,403.3 374.8,411.1 353,403.3 331.5,387.8 309.8,383.9 288,387.8 266.5,380 244.8,391.7 223.3,376.2 
+	201.5,345.1 179.7,318 158.3,294.7 136.5,271.5 114.7,221.1 93.3,147.4 71.5,108.6 50,93.1 28.3,85.4 6.5,89.3 " />
+                    <polyline id="uk" class="st12 linea" points="1067.5,400.6 1046,402.1 1024.3,401.8 1002.5,412.6 981,411.8 959.3,409.1 937.8,409.1 916,410.3 
+	894.2,408.7 872.8,414.9 851,420.7 829.2,419.6 807.8,417.6 786,414.9 764.5,411.1 742.8,408.7 721,409.1 699.5,418.8 677.8,416.5 
+	656.3,410.3 634.5,412.6 612.7,410.3 591.3,408 569.5,409.9 548,419.6 526.3,416.1 504.5,407.6 483,407.6 461.3,408.7 439.8,406.4 
+	418,399.4 396.2,387.8 374.8,391.7 353,387.8 331.5,364.5 309.8,360.7 288,368.4 266.5,341.3 244.8,306.4 223.3,306.4 201.5,302.5 
+	179.7,182.3 158.3,190.1 136.5,221.1 114.7,186.2 93.3,77.6 71.5,131.9 50,147.4 28.3,35 6.5,50.5 " />
+
+                    <polyline id="italia" class="st14 linea" points="1067.5,407.2 1046,403.3 1024.3,407.2 1002.5,411.1 981,418.8 959.3,418.8 937.8,407.2 916,407.2 
+				894.2,407.2 872.8,407.2 851,407.2 829.2,418.8 807.8,418.8 786,411.1 764.5,411.1 742.8,407.2 721,411.1 699.5,422.7 
+				677.8,426.6 656.3,414.9 634.5,414.9 612.7,407.2 591.3,407.2 569.5,407.2 548,411.1 526.3,414.9 504.5,414.9 483,411.1 
+				461.3,407.2 439.8,407.2 418,418.8 396.2,411.1 374.8,414.9 353,414.9 331.5,407.2 309.8,407.2 288,403.3 266.5,407.2 
+				244.8,407.2 223.3,414.9 201.5,407.2 179.7,395.5 158.3,395.5 136.5,399.4 114.7,395.5 93.3,391.7 71.5,399.4 50,395.5 
+				28.3,314.1 6.5,318" />
+
+                    <rect x="455.39" y="397.57" transform="matrix(7.727092e-03 -1 1 7.727092e-03 33.3169 896.3029)" class="st29" width="25.79" height="67.59" />
+                    <text id="main-value4" transform="matrix(1 7.730000e-03 -7.730000e-03 1 438.7918 432.9904)" class="percentuale">-90,1%</text>
+                    <g>
+                        <text transform="matrix(1 0 0 1 0.4624 24.9438)" class="date">12 mar</text>
+                    </g>
+                    <g>
+                        <text id="main-value-date4" transform="matrix(1 7.730000e-03 -7.730000e-03 1 438.7115 14.821)" class="data">18 mar</text>
+                    </g>
+                    <text id="main-value-caption4" transform="matrix(1 0 0 1 435.6714 444.998)" class="date"> rispetto al 2019</text>
+                    <line id="cursor4" class="st15" x1="466.92" y1="25.07" x2="467.6" y2="424.06" />
+                </svg>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container u-max-full-width sfondo-nero" id="grafici-stock">
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h2>Impatto economico sulle compagnie aeree</h2>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.
+                </p>
+            </div>
+        </div>
+        <div class="row" id="tendina-compagnie">
+            <div class="columns offset-three-half five">
+                <div id="menu2">
+                    <div class="dropdown">
+                        <a id="menu-selezionato2">Rayanair</a>
+                        <div class="dropdown-content">
+                            <a>Rayanair</a>
+                            <a>Easyjet</a>
+                            <a>Wizzair</a>
+                            <a>Lufthansa</a>
+                            <a>AirFrance</a>
+                            <a>SAS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <svg id="stock" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 368.15 353.7" style="enable-background:new 0 0 368.15 353.7;" xml:space="preserve">
+
+                    <line class="st14" x1="1.42" y1="236.87" x2="366.42" y2="236.87" />
+                    <line class="st15" x1="3.28" y1="171.51" x2="366.76" y2="171.51" />
+                    <line class="st14" x1="3.28" y1="158.41" x2="366.76" y2="158.41" />
+                    <line class="st14" x1="3.28" y1="145.32" x2="366.76" y2="145.32" />
+                    <line class="st14" x1="3.28" y1="132.22" x2="366.76" y2="132.22" />
+                    <line class="st14" x1="3.28" y1="119.13" x2="366.76" y2="119.13" />
+                    <line class="st14" x1="3.28" y1="106.03" x2="366.76" y2="106.03" />
+                    <line class="st14" x1="3.28" y1="92.94" x2="366.76" y2="92.94" />
+                    <line class="st14" x1="3.28" y1="79.85" x2="366.76" y2="79.85" />
+                    <line class="st14" x1="3.28" y1="66.75" x2="366.76" y2="66.75" />
+                    <line class="st14" x1="3.28" y1="53.66" x2="366.76" y2="53.66" />
+                    <line class="st14" x1="3.28" y1="40.56" x2="366.76" y2="40.56" />
+                    <g>
+                        <g>
+                            <line class="st15" x1="1.42" y1="252.35" x2="2.92" y2="252.35" />
+                            <line class="st16" x1="5.91" y1="252.35" x2="363.42" y2="252.35" />
+                            <line class="st15" x1="364.92" y1="252.35" x2="366.42" y2="252.35" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st15" x1="1.42" y1="267.82" x2="2.92" y2="267.82" />
+                            <line class="st16" x1="5.91" y1="267.82" x2="363.42" y2="267.82" />
+                            <line class="st15" x1="364.92" y1="267.82" x2="366.42" y2="267.82" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st15" x1="1.42" y1="283.29" x2="2.92" y2="283.29" />
+                            <line class="st16" x1="5.91" y1="283.29" x2="363.42" y2="283.29" />
+                            <line class="st15" x1="364.92" y1="283.29" x2="366.42" y2="283.29" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st15" x1="1.42" y1="298.77" x2="2.92" y2="298.77" />
+                            <line class="st16" x1="5.91" y1="298.77" x2="363.42" y2="298.77" />
+                            <line class="st15" x1="364.92" y1="298.77" x2="366.42" y2="298.77" />
+                        </g>
+                    </g>
+                    <line class="st15" x1="1.42" y1="314.24" x2="366.42" y2="314.24" />
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="rayanair" class="st3" points="2.17,247.02 4.59,242.89 7.01,247.36 9.44,243.04 11.86,244.4 14.28,251.24 16.71,265.29 
+				19.13,262.11 21.55,248.59 23.98,253.46 26.4,250.13 28.82,251.05 31.25,274.65 33.67,272.03 36.09,263.34 38.52,249.88 
+				40.94,253.55 43.36,252.19 45.79,252.5 48.21,269.78 50.63,271.48 53.06,261.1 55.48,248.06 57.9,253.58 60.33,249.05 
+				62.75,250.74 65.17,270.43 67.6,271.75 70.02,261.56 72.44,249.57 74.87,253.12 77.29,249.08 79.71,250.78 82.14,265.66 
+				84.56,266.02 86.98,261.43 89.41,248.43 91.83,253.24 94.25,251.05 96.68,250.04 99.1,265.22 101.52,265.99 103.95,261.13 
+				106.37,248.1 108.79,252.65 111.22,249.24 113.64,250.56 116.06,265.22 118.49,265.25 120.91,261.62 123.33,248.71 
+				125.76,253.98 128.18,250.25 130.6,250.28 133.03,265.87 135.45,266.09 137.87,261.74 140.3,248.37 142.72,253.7 145.14,250.78 
+				147.57,252.07 149.99,266.12 152.41,266.21 154.84,263.22 157.26,249.51 159.68,254.6 162.11,251.24 164.53,252.72 
+				166.95,267.23 169.38,272 171.8,271.66 174.22,261.03 176.65,274.68 179.07,276.71 181.49,279.09 183.92,289.87 186.34,289.44 
+				188.76,290.33 191.19,290.89 193.61,301.98 196.03,301.95 198.46,302.68 200.88,302.75 203.3,312.2 205.73,310.69 208.15,309.92 
+				210.57,310.91 213,312.73 215.42,312.02 217.84,312.73 220.27,311.25 222.69,311.77 225.11,311.68 227.54,313.19 229.96,313.22 
+				232.38,313.13 234.81,313.04 237.23,313.41 239.65,313.59 242.08,312.97 244.5,313.56 246.92,313.81 249.35,312.36 
+				251.77,311.77 254.19,313.5 256.62,313.07 259.04,313.04 261.46,313.47 263.89,313.56 266.31,312.51 268.73,313.07 271.16,313.5 
+				273.58,313.07 276,312.33 278.43,313.47 280.85,313.25 283.27,312.3 285.7,313.28 288.12,313.25 290.54,313.87 292.97,312.64 
+				295.39,313.96 297.81,313.04 300.24,312.73 302.66,313.56 305.08,313.53 307.51,313.34 309.93,312.51 312.35,313.68 
+				314.78,313.13 317.2,312.11 319.62,313.19 322.05,313.68 324.47,313.62 326.89,312.51 329.32,313.59 331.74,313.44 
+				334.16,312.85 336.59,313.47 339.01,313.56 341.43,313.53 343.86,311.68 346.28,313.01 348.7,312.57 351.13,312.02 
+				353.55,313.19 355.97,313.19 358.4,313.53 360.82,312.6 363.24,313.78 365.67,313.5 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="easyjet" class="st2" points="0.89,262.01 3.33,272.77 5.77,284.09 8.21,266.73 10.65,254.64 13.09,259.06 15.53,258.44 
+				17.97,259.29 20.4,261.7 22.84,291.37 25.28,269.91 27.72,253.48 30.16,258.75 32.6,255.96 35.04,254.49 37.48,258.83 
+				39.92,290.67 42.36,267.12 44.8,252.17 47.23,256.04 49.67,252.48 52.11,249.84 54.55,257.12 56.99,288.58 59.43,266.03 
+				61.87,252.09 64.31,255.96 66.75,252.24 69.19,249.38 71.63,257.28 74.06,285.25 76.5,263.24 78.94,249.92 81.38,254.64 
+				83.82,249.45 86.26,249.14 88.7,251.55 91.14,278.43 93.58,266.34 96.02,255.34 98.46,257.05 100.89,251.24 103.33,248.45 
+				105.77,251.93 108.21,275.25 110.65,260.15 113.09,252.17 115.53,256.43 117.97,252.94 120.41,248.99 122.85,253.95 
+				125.29,276.26 127.72,260.92 130.16,254.18 132.6,256.97 135.04,252.94 137.48,251.31 139.92,254.03 142.36,276.18 144.8,258.67 
+				147.24,248.99 149.68,249.69 152.12,248.06 154.55,245.74 156.99,248.91 159.43,279.13 161.87,259.14 164.31,245.12 
+				166.75,248.99 169.19,245.19 171.63,247.36 174.07,253.56 176.51,281.68 178.95,262.55 181.38,272.39 183.82,281.37 
+				186.26,290.75 188.7,290.59 191.14,293.38 193.58,302.37 196.02,297.49 198.46,302.53 200.9,303.46 203.34,302.45 205.78,304.54 
+				208.21,303.61 210.65,310.04 213.09,305.78 215.53,304.31 217.97,305.16 220.41,305.78 222.85,305.16 225.29,305.62 
+				227.73,311.9 230.17,307.72 232.61,307.87 235.04,308.34 237.48,308.18 239.92,308.57 242.36,310.35 244.8,313.76 247.24,310.12 
+				249.68,308.34 252.12,307.02 254.56,308.41 257,308.1 259.44,308.03 261.87,312.68 264.31,308.65 266.75,307.56 269.19,308.03 
+				271.63,308.1 274.07,307.48 276.51,308.1 278.95,312.68 281.39,309.03 283.83,308.1 286.27,308.26 288.7,308.34 291.14,308.34 
+				293.58,308.88 296.02,312.37 298.46,309.19 300.9,307.72 303.34,307.64 305.78,307.72 308.22,307.17 310.66,307.17 313.1,312.21 
+				315.53,308.8 317.97,307.79 320.41,307.64 322.85,307.56 325.29,307.56 327.73,307.25 330.17,312.13 332.61,308.41 
+				335.05,306.71 337.49,307.87 339.93,307.41 342.36,307.72 344.8,307.56 347.24,311.67 349.68,307.17 352.12,307.1 354.56,307.02 
+				357,307.56 359.44,307.25 361.88,307.1 364.32,312.75 366.76,309.03 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="wizzair" class="st2" points="1.13,268.38 3.56,267.23 5.99,268.34 8.42,266.88 10.85,262.01 13.29,263.12 15.72,262.43 
+				18.15,261.74 20.58,260.4 23.01,268.84 25.44,265.69 27.87,260.02 30.3,263.24 32.73,260.63 35.16,260.55 37.59,259.48 
+				40.02,268.76 42.45,265.92 44.88,259.02 47.32,261.55 49.75,260.4 52.18,259.4 54.61,258.52 57.04,267.65 59.47,265.77 
+				61.9,258.64 64.33,261.21 66.76,259.56 69.19,258.33 71.62,260.25 74.05,266.31 76.48,264.89 78.92,258.48 81.35,262.05 
+				83.78,259.52 86.21,257.6 88.64,257.79 91.07,265.65 93.5,274.4 95.93,290.19 98.36,262.2 100.79,257.83 103.22,253.27 
+				105.65,253.58 108.08,261.7 110.52,260.82 112.95,253.88 115.38,255.57 117.81,253.5 120.24,251.66 122.67,252.01 125.1,260.78 
+				127.53,260.17 129.96,253.04 132.39,255.07 134.82,253.62 137.25,256.84 139.68,252.62 142.11,261.51 144.55,259.67 
+				146.98,255.26 149.41,255.49 151.84,254.73 154.27,256.68 156.7,258.91 159.13,267.53 161.56,269.18 163.99,269.14 
+				166.42,273.17 168.85,276.12 171.28,274.63 173.71,274.89 176.15,281.03 178.58,284.82 181.01,287.12 183.44,292.76 
+				185.87,294.6 188.3,301.62 190.73,301.12 193.16,302.38 195.59,303.72 198.02,311.24 200.45,311.74 202.88,311.24 205.31,310.93 
+				207.74,311.66 210.18,311.66 212.61,310.63 215.04,311.28 217.47,311.55 219.9,311.2 222.33,311.28 224.76,311.43 227.19,311.85 
+				229.62,311.93 232.05,312.01 234.48,311.85 236.91,312.12 239.34,312.08 241.78,312.73 244.21,312.96 246.64,312.96 
+				249.07,312.47 251.5,312.24 253.93,312.43 256.36,311.93 258.79,312.31 261.22,312.27 263.65,312.54 266.08,311.81 
+				268.51,311.85 270.94,311.47 273.37,311.43 275.81,311.47 278.24,311.78 280.67,311.93 283.1,311.62 285.53,311.43 
+				287.96,311.35 290.39,311.66 292.82,311.97 295.25,312.04 297.68,312.31 300.11,312.12 302.54,312.01 304.97,311.93 
+				307.41,311.55 309.84,311.97 312.27,312.43 314.7,312.47 317.13,311.78 319.56,312.16 321.99,311.81 324.42,311.81 
+				326.85,311.43 329.28,312.39 331.71,312.2 334.14,310.2 336.57,310.86 339,310.82 341.44,311.51 343.87,311.43 346.3,312.16 
+				348.73,311.47 351.16,311.09 353.59,311.39 356.02,310.86 358.45,310.86 360.88,310.66 363.31,311.35 365.74,312.24 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="lufthansa" class="st2" points="2.17,252.58 4.59,249.37 7.02,257.07 9.45,251.04 11.88,243.22 14.31,244.37 16.74,244.44 
+				19.16,248.15 21.59,244.63 24.02,260.4 26.45,253.03 28.88,243.6 31.31,248.28 33.73,244.18 36.16,246.17 38.59,243.47 
+				41.02,264.06 43.45,255.14 45.88,244.82 48.3,246.94 50.73,245.14 53.16,245.46 55.59,246.17 58.02,265.79 60.45,255.21 
+				62.87,244.37 65.3,247.13 67.73,247.19 70.16,246.42 72.59,247.19 75.02,263.8 77.44,255.34 79.87,245.08 82.3,247.96 
+				84.73,247.77 87.16,250.14 89.59,250.59 92.01,263.93 94.44,259.31 96.87,249.37 99.3,249.24 101.73,247.9 104.16,246.62 
+				106.58,245.01 109.01,260.02 111.44,253.67 113.87,247 116.3,247.77 118.73,247.58 121.15,248.54 123.58,246.62 126.01,260.15 
+				128.44,253.09 130.87,248.6 133.3,248.6 135.72,249.24 138.15,248.54 140.58,247.71 143.01,260.72 145.44,253.67 147.87,249.31 
+				150.29,250.33 152.72,252 155.15,250.72 157.58,248.99 160.01,264.83 162.44,256.55 164.86,253.35 167.29,255.34 169.72,253.54 
+				172.15,253.8 174.58,252.26 177.01,271.82 179.43,262.84 181.86,271.37 184.29,280.86 186.72,283.1 189.15,285.28 191.58,288.04 
+				194,296.05 196.43,295.99 198.86,305.74 201.29,307.79 203.72,308.17 206.15,309.07 208.57,310.29 211,310.87 213.43,310.42 
+				215.86,311.63 218.29,312.28 220.72,311.76 223.14,312.79 225.57,312.6 228,312.34 230.43,312.72 232.86,312.6 235.29,313.05 
+				237.71,312.6 240.14,312.79 242.57,312.34 245,312.98 247.43,312.85 249.86,313.37 252.28,312.98 254.71,312.79 257.14,312.66 
+				259.57,313.05 262,313.3 264.43,312.79 266.85,313.69 269.28,313.24 271.71,312.15 274.14,312.53 276.57,313.3 279,312.92 
+				281.42,312.98 283.85,313.37 286.28,312.85 288.71,312.66 291.14,312.79 293.57,313.37 295.99,313.56 298.42,312.72 
+				300.85,313.05 303.28,312.15 305.71,312.28 308.14,312.08 310.56,311.96 312.99,312.21 315.42,313.05 317.85,312.02 
+				320.28,311.06 322.71,311.51 325.13,311.51 327.56,311.06 329.99,311.06 332.42,311.96 334.85,311.31 337.28,312.02 
+				339.7,310.42 342.13,310.54 344.56,310.87 346.99,311.7 349.42,310.67 351.85,311.25 354.27,311.44 356.7,309.58 359.13,310.35 
+				361.56,309.2 363.99,310.93 366.42,310.67 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="airfrance" class="st2" points="1.42,250.82 3.85,245.77 6.28,253.28 8.72,244.99 11.15,256.78 13.58,277.24 16.02,278.34 
+				18.45,269.66 20.88,253.41 23.32,272 25.75,250.69 28.18,267.92 30.62,284.69 33.05,284.49 35.48,272.9 37.92,256.58 
+				40.35,269.73 42.78,249.59 45.22,266.3 47.65,282.81 50.08,286.05 52.52,272.97 54.95,257.23 57.38,273.49 59.82,251.92 
+				62.25,267.27 64.68,283.91 67.12,283.39 69.55,271.41 71.98,257.94 74.42,271.48 76.85,251.47 79.28,261.57 81.72,279.83 
+				84.15,280.67 86.58,264.94 89.02,251.53 91.45,265.13 93.88,275.82 96.32,260.34 98.75,271.74 101.18,271.09 103.62,257.94 
+				106.05,250.04 108.48,275.1 110.92,255.61 113.35,253.02 115.78,263.12 118.22,266.69 120.65,254.25 123.08,247.78 
+				125.52,259.63 127.95,249.14 130.38,250.17 132.82,262.93 135.25,266.23 137.68,255.61 140.12,248.94 142.55,259.56 
+				144.98,249.01 147.42,250.75 149.85,263.58 152.28,266.36 154.72,256.13 157.15,249.39 159.58,259.5 162.02,248.94 
+				164.45,250.69 166.88,263.64 169.32,268.89 171.75,258.01 174.18,252.83 176.62,265.78 179.05,253.93 181.48,258.66 
+				183.92,279.05 186.35,282.75 188.78,278.34 191.22,273.16 193.65,303.92 196.08,295.83 198.52,307.48 200.95,313.64 
+				203.38,313.83 205.82,313.12 208.25,312.66 210.68,313.18 213.12,311.69 215.55,311.82 217.98,313.77 220.42,313.7 222.85,313.9 
+				225.28,313.9 227.72,313.96 230.15,313.77 232.58,313.57 235.02,313.7 237.45,313.96 239.88,313.83 242.32,313.7 244.75,313.7 
+				247.18,313.9 249.62,313.57 252.05,313.25 254.48,313.7 256.92,313.57 259.35,313.51 261.78,313.25 264.22,313.9 266.65,313.64 
+				269.08,313.77 271.52,313.51 273.95,313.25 276.38,312.99 278.82,313.7 281.25,313.83 283.68,313.9 286.12,313.18 288.55,313.18 
+				290.98,313.18 293.42,312.66 295.85,313.44 298.28,313.7 300.72,313.7 303.15,313.18 305.58,313.44 308.02,313.44 310.45,313.57 
+				312.88,313.51 315.32,313.96 317.75,313.96 320.18,313.44 322.62,313.25 325.05,313.51 327.48,313.44 329.92,313.18 
+				332.35,313.9 334.78,313.7 337.22,313.31 339.65,313.57 342.08,313.64 344.52,313.7 346.95,313.51 349.38,313.9 351.82,313.9 
+				354.25,313.31 356.68,313.12 359.12,313.31 361.55,313.57 363.98,313.44 366.42,313.9 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="sas" class="st2" points="1.13,248.94 3.56,248.46 6,250.78 8.43,248.46 10.86,255.81 13.29,259.39 15.72,258.04 
+				18.16,274.97 20.59,253.68 23.02,256.68 25.45,253.3 27.89,260.36 30.32,262.68 32.75,261.91 35.18,279.91 37.61,255.43 
+				40.05,258.81 42.48,255.43 44.91,259.78 47.34,261.04 49.77,263.75 52.21,280.1 54.64,254.75 57.07,258.04 59.5,255.72 
+				61.94,259.68 64.37,262.68 66.8,263.75 69.23,279.13 71.66,256.1 74.1,256.97 76.53,254.75 78.96,259.68 81.39,260.84 
+				83.83,263.75 86.26,277.49 88.69,255.52 91.12,257.26 93.55,255.62 95.99,258.23 98.42,259.59 100.85,263.75 103.28,278.74 
+				105.71,256.68 108.15,258.14 110.58,255.14 113.01,260.36 115.44,260.94 117.88,262.88 120.31,278.45 122.74,255.62 
+				125.17,258.62 127.6,255.43 130.04,259.88 132.47,262.3 134.9,262.78 137.33,277.97 139.77,255.52 142.2,258.33 144.63,254.17 
+				147.06,260.17 149.49,260.36 151.93,262.97 154.36,276.33 156.79,256.97 159.22,257.94 161.65,258.62 164.09,263.65 
+				166.52,268.29 168.95,271.49 171.38,285.71 173.82,267.71 176.25,271.78 178.68,283.87 181.11,286.49 183.54,294.42 
+				185.98,299.06 188.41,300.71 190.84,298.1 193.27,299.55 195.7,298.87 198.14,298.58 200.57,302.16 203,306.42 205.43,308.55 
+				207.87,307.58 210.3,308.16 212.73,306.9 215.16,306.51 217.59,308.84 220.03,308.84 222.46,308.55 224.89,308.55 227.32,309.51 
+				229.76,310.96 232.19,309.8 234.62,313.48 237.05,311.35 239.48,313.29 241.92,311.06 244.35,313 246.78,312.61 249.21,311.45 
+				251.64,312.8 254.08,311.74 256.51,313.67 258.94,312.13 261.37,313.48 263.81,313.67 266.24,312.13 268.67,313.87 271.1,312.71 
+				273.53,313.58 275.97,312.42 278.4,312.9 280.83,313.19 283.26,311.26 285.7,313.67 288.13,312.8 290.56,312.03 292.99,307.29 
+				295.42,311.35 297.86,310.96 300.29,310.19 302.72,312.51 305.15,311.84 307.58,310 310.02,308.55 312.45,310.87 314.88,311.06 
+				317.31,309.13 319.75,311.06 322.18,310.09 324.61,311.55 327.04,309.9 329.47,310.96 331.91,310.38 334.34,310.77 
+				336.77,310.29 339.2,311.64 341.63,311.64 344.07,308.55 346.5,309.42 348.93,310.67 351.36,310.38 353.8,310.87 356.23,311.35 
+				358.66,310.67 361.09,309.51 363.52,310.19 365.96,310.77 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="rayanair2" class="st3" points="366.76,103.82 363.28,101.03 359.81,96.94 356.34,94.77 352.87,105.73 349.4,105.99 345.93,113.48 
+				342.46,111.74 338.99,113.22 335.52,128.27 332.05,123.48 328.58,122.44 325.1,122.79 321.63,121.22 318.16,121.31 314.69,120.7 
+				311.22,119.57 307.75,121.57 304.28,114.26 300.81,112 297.34,110 293.87,114 290.4,111.56 286.93,118.44 283.45,119.48 
+				279.98,119.31 276.51,114.69 273.04,111.74 269.57,114.52 266.1,120.7 262.63,120.96 259.16,113.48 255.69,114.09 252.22,113.39 
+				248.75,112 245.27,113.48 241.8,127.66 238.33,127.4 234.86,123.48 231.39,121.66 227.92,122.35 224.45,122.87 220.98,113.91 
+				217.51,114.17 214.04,119.57 210.57,127.4 207.1,121.66 203.62,130.01 200.15,130.97 196.68,120.96 193.21,122 189.74,110.43 
+				186.27,112.35 182.8,104.77 179.33,97.38 175.86,105.64 172.39,103.38 168.92,104.34 165.45,95.03 161.97,94.94 158.5,101.47 
+				155.03,95.12 151.56,94.51 148.09,88.24 144.62,86.24 141.15,87.02 137.68,68.66 134.21,68.66 130.74,67.36 127.27,68.66 
+				123.79,68.31 120.32,66.66 116.85,62.31 113.38,61.18 109.91,60.39 106.44,68.05 102.97,61.79 99.5,59.35 96.03,62.13 
+				92.56,62.4 89.09,60.39 85.62,69.01 82.14,69.18 78.67,70.05 75.2,68.75 71.73,70.4 68.26,69.71 64.79,69.88 61.32,62.57 
+				57.85,67.01 54.38,66.66 50.91,61.87 47.44,61.53 43.96,66.14 40.49,60.13 37.02,60.31 33.55,61.7 30.08,69.27 26.61,69.1 
+				23.14,69.1 19.67,75.45 16.2,69.71 12.73,68.4 9.26,69.71 5.79,68.4 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="airfrance2" class="st2" points="3.67,66.05 7.23,60.74 10.79,59.42 14.35,59.68 17.91,60.55 21.47,60.48 25.03,61.47 28.59,62.64 
+				32.15,61.71 35.71,59.12 39.27,58.99 42.83,60.78 46.39,64 49.95,66.98 53.51,65.96 57.07,67.91 60.63,67.58 64.19,66.72 
+				67.75,63.93 71.31,62.44 74.87,57.76 78.43,59.09 81.99,61.64 85.55,59.75 89.1,57.13 92.66,59.02 96.22,60.71 99.78,60.94 
+				103.34,61.74 106.9,60.91 110.46,60.25 114.02,60.45 117.58,69.47 121.14,76.11 124.7,80.52 128.26,85.97 131.82,90.18 
+				135.38,84.54 138.94,88.29 142.5,88.79 146.06,89.22 149.62,95.18 153.18,97.91 156.74,93.77 160.3,92.11 163.86,101.56 
+				167.42,105.31 170.98,115.17 174.54,116.95 178.1,121.44 181.65,127.35 185.21,125.23 188.77,121.48 192.33,124.33 
+				195.89,119.82 199.45,117.32 203.01,117.03 206.57,121.78 210.13,122.86 213.69,123.53 217.25,125.19 220.81,127.17 
+				224.37,126.64 227.93,122.19 231.49,119.8 235.05,116.22 238.61,114 242.17,115.85 245.73,117.63 249.29,119.07 252.85,117.83 
+				256.41,120.18 259.97,119.35 263.53,121.36 267.09,121.92 270.65,120.97 274.21,121.53 277.76,122.09 281.32,117.36 
+				284.88,121.28 288.44,123.1 292,124.37 295.56,124.5 299.12,126.15 302.68,125.43 306.24,127.23 309.8,127.14 313.36,128.39 
+				316.92,127.78 320.48,126.23 324.04,121.98 327.6,124.7 331.16,122.26 334.72,123.27 338.28,120.48 341.84,115.48 345.4,111.97 
+				348.96,111.85 352.52,113.88 356.08,111.87 359.64,111.08 363.2,108.07 366.76,100.64 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="easyjet2" class="st2" points="366.76,120.44 363.21,114.11 359.66,105.61 356.11,112.38 352.56,123.22 349.01,123.22 
+				345.46,123.22 341.91,123.48 338.36,123.04 334.81,122.35 331.27,123.31 327.72,122.52 324.17,122.09 320.62,122.26 
+				317.07,122.7 313.52,122.52 309.97,127.47 306.42,123.22 302.87,123.39 299.33,121.31 295.78,129.12 292.23,127.55 
+				288.68,121.92 285.13,123.04 281.58,123.04 278.03,122.96 274.48,122.52 270.93,122.7 267.39,128.25 263.84,128.6 260.29,122.96 
+				256.74,122 253.19,122.35 249.64,123.39 246.09,121.4 242.54,121.14 238.99,121.48 235.44,121.05 231.9,120.18 228.35,121.92 
+				224.8,127.29 221.25,128.42 217.7,127.38 214.15,120.79 210.6,123.57 207.05,129.55 203.5,122.26 199.96,131.28 196.41,127.29 
+				192.86,128.51 189.31,131.72 185.76,121.05 182.21,131.37 178.66,122.61 175.11,121.83 171.56,123.39 168.01,121.31 
+				164.47,121.22 160.92,119.14 157.37,112.55 153.82,112.46 150.27,111.34 146.72,118.62 143.17,102.84 139.62,94.69 136.07,87.75 
+				132.53,79.42 128.98,79.68 125.43,79.51 121.88,78.03 118.33,79.94 114.78,79.07 111.23,79.77 107.68,78.64 104.13,79.42 
+				100.59,78.73 97.04,78.38 93.49,80.03 89.94,79.51 86.39,80.2 82.84,79.68 79.29,78.12 75.74,79.51 72.19,80.12 68.64,80.03 
+				65.1,78.03 61.55,75.78 58,70.84 54.45,70.14 50.9,69.01 47.35,67.71 43.8,66.67 40.25,68.93 36.7,68.58 33.16,69.19 29.61,67.8 
+				26.06,60.08 22.51,59.47 18.96,71.36 15.41,70.06 11.86,68.93 8.31,66.41 4.76,66.41 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="wizzair2" class="st2" points="366.76,121.51 363.22,120.64 359.68,123.61 356.14,123.08 352.6,129.2 349.06,130.77 
+				345.53,129.98 341.99,130.6 338.45,131.82 334.91,131.73 331.37,136.97 327.83,139.25 324.3,137.06 320.76,132.08 317.22,132.34 
+				313.68,131.12 310.14,129.81 306.6,130.25 303.07,132.43 299.53,129.9 295.99,132.26 292.45,129.02 288.91,130.07 285.37,132.17 
+				281.84,130.07 278.3,130.16 274.76,129.98 271.22,131.99 267.68,129.2 264.15,130.16 260.61,130.86 257.07,128.5 253.53,121.25 
+				249.99,122.56 246.45,121.95 242.92,121.51 239.38,129.55 235.84,132.52 232.3,129.29 228.76,130.51 225.22,127.89 
+				221.69,121.07 218.15,120.55 214.61,119.41 211.07,115.22 207.53,121.86 203.99,123.08 200.46,121.42 196.92,120.64 
+				193.38,128.59 189.84,123.69 186.3,128.94 182.76,119.76 179.23,123.61 175.69,112.25 172.15,105.69 168.61,102.81 
+				165.07,104.38 161.53,101.41 158,94.33 154.46,95.56 150.92,105.69 147.38,96.87 143.84,95.56 140.31,88.66 136.77,85.33 
+				133.23,79.74 129.69,69.43 126.15,70.92 122.61,68.3 119.08,69.87 115.54,68.82 112,69.26 108.46,70.48 104.92,68.56 
+				101.38,68.82 97.85,75.37 94.31,70.92 90.77,71.09 87.23,70.74 83.69,77.03 80.15,80.27 76.62,77.91 73.08,76.95 69.54,78.78 
+				66,78.61 62.46,78.34 58.92,76.07 55.39,75.55 51.85,76.16 48.31,75.55 44.77,68.21 41.23,69 37.7,69 34.16,68.56 30.62,68.3 
+				27.08,66.99 23.54,62.53 20,59.38 16.47,68.73 12.93,67.42 9.39,69.08 5.85,62.44 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="sas2" class="st2" points="366.76,102.87 363.21,104.2 359.65,101.11 356.1,98.91 352.55,115.21 349,114.33 345.45,116.09 
+				341.9,120.06 338.35,120.5 334.8,132.83 331.25,131.51 327.7,130.63 324.15,124.02 320.6,128.87 317.05,128.87 313.5,129.75 
+				309.95,131.95 306.4,132.39 302.85,124.46 299.3,120.94 295.75,117.85 292.2,127.55 288.65,127.55 285.1,130.19 281.55,132.39 
+				278,129.31 274.45,127.11 270.9,127.99 267.35,126.67 263.8,138.56 260.25,139 256.7,129.75 253.15,126.67 249.6,128.87 
+				246.05,128.43 242.5,142.97 238.95,151.78 235.4,152.22 231.85,154.86 228.3,145.61 224.75,153.54 221.2,146.93 217.65,140.76 
+				214.1,149.57 210.55,143.85 207,157.5 203.45,146.93 199.9,158.83 196.35,156.62 192.8,141.2 189.25,150.46 185.7,126.67 
+				182.15,130.19 178.6,110.36 175.05,98.47 171.5,99.35 167.95,95.39 164.4,99.79 160.85,93.62 157.3,98.03 153.75,101.11 
+				150.2,96.71 146.65,93.62 143.1,83.49 139.55,80.85 136,75.12 132.45,53.09 128.9,51.77 125.35,51.77 121.8,53.09 118.25,49.57 
+				114.7,49.57 111.15,51.33 107.6,49.13 104.05,54.85 100.5,58.82 96.95,61.46 93.4,60.14 89.85,61.9 86.3,62.34 82.75,64.11 
+				79.2,62.78 75.65,62.34 72.1,57.94 68.55,68.51 64.99,68.95 61.44,61.02 57.89,62.52 54.34,60.27 50.79,61.24 47.24,61.15 
+				43.69,59.96 40.14,61.9 36.59,61.95 33.04,56.66 29.49,58.64 25.94,65.91 22.39,77.41 18.84,81.07 15.29,78.38 11.74,80.67 
+				8.19,75.74 4.64,71.59 			" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <g>
+                                <polyline id="lufthansa2" class="st2" points="366.76,158.48 363.21,154.36 359.67,154.69 356.13,156.66 352.59,156.66 349.04,159.46 
+				345.5,157.82 341.96,156.99 338.41,156.66 334.87,157.16 331.33,154.19 327.79,155.18 324.24,153.7 320.7,158.64 317.16,158.31 
+				313.62,156.01 310.07,157.82 306.53,156.17 302.99,153.21 299.45,154.52 295.9,142.17 292.36,149.75 288.82,152.22 
+				285.28,151.23 281.73,151.89 278.19,150.41 274.65,151.23 271.11,150.74 267.56,140.36 264.02,140.53 260.48,142.17 
+				256.94,141.19 253.39,142.5 249.85,138.39 246.31,138.22 242.77,137.73 239.22,141.02 235.68,136.91 232.14,137.89 228.6,139.71 
+				225.05,141.35 221.51,139.71 217.97,137.56 214.43,138.88 210.88,138.88 207.34,142.5 203.8,152.38 200.26,142.67 196.71,150.41 
+				193.17,155.35 189.63,153.37 186.09,154.19 182.54,139.71 179,155.18 175.46,138.39 171.92,141.68 168.37,140.03 164.83,124.72 
+				161.29,134.44 157.75,122.91 154.2,118.46 150.66,120.44 147.12,104.96 143.58,103.81 140.03,87.84 136.49,93.27 132.95,88.83 
+				129.41,75.82 125.86,70.71 122.32,58.53 118.78,57.21 115.24,59.02 111.69,67.91 108.15,60.67 104.61,68.24 101.07,73.18 
+				97.52,73.84 93.98,73.02 90.44,74.5 86.89,74.83 83.35,74.01 79.81,85.7 76.27,87.18 72.72,85.37 69.18,85.53 65.64,85.37 
+				62.1,86.36 58.55,71.54 55.01,70.71 51.47,73.51 47.93,74.01 44.38,69.89 40.84,55.73 37.3,58.86 33.76,60.01 30.21,57.87 
+				26.67,55.57 23.13,55.89 19.59,57.05 16.04,69.89 12.5,70.71 8.96,71.37 5.42,69.89 			" />
+                            </g>
+                        </g>
+                    </g>
+
+                    <g>
+                        <text transform="matrix(1 0 0 1 1.1315 232.1768)" class="dati">2,500 voli</text>
+                    </g>
+                    <g>
+                        <rect x="1.3" y="301.28" class="st17" width="31.11" height="14.62" />
+                        <text transform="matrix(1 0 0 1 1.297 311.9914)" class="dati">0 voli </text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 3.145 34.6479)" class="dati">100$</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1.2487 0 0 1 2.4678 169.4155)" class="dati">0 $</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 326.4454 183.8165)" class="date">31 mag</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 0.8922 183.8165)" class="date">1 gen</text>
+                    </g>
+                    <g>
+                        <text id="main-value-date5" transform="matrix(1 0 0 1 201.1544 14.8235)" class="data">20 mar</text>
+                    </g>
+                    <g>
+                        <text id="main-value5" transform="matrix(1 0 0 1 204.0132 213.8165)" class="percentuale">50,5$</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 1.220703e-04 350.8651)" class="fonte">Fonte: Airnav, Investing.com</text>
+                    </g>
+                    <line id="cursor51" class="st18" x1="229.75" y1="22.39" x2="229.75" y2="190.25" />
+                    <line id="cursor52" class="st18" x1="229.42" y1="219.31" x2="229.42" y2="330.78" />
+                </svg>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--        //------carburante--------//-->
+    <div class="container u-max-full-width sfondo-nero" id="grafico-carburante">
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h2>Mercato del petrolio grezzo</h2>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <svg id="carburante" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 367.89 387.94" style="enable-background:new 0 0 367.89 387.94;" xml:space="preserve">
+
+                    <g>
+                        <text transform="matrix(1 0 0 1 2.7268 40.6284)" class="dati">80$/bar</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 3.052 129.6284)" class="dati">40$/bar</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 1.387 303.6284)" class="dati">-40$/bar</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 1.5906 216.6284)" class="dati">0</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 1.2039 230.8228)" class="date">2 gen</text>
+                    </g>
+                    <g>
+                        <text id="main-value-date6" transform="matrix(1 0 0 1 218.3718 14.8228)" class="data">18 mar</text>
+                    </g>
+                    <g>
+                        <text id="main-value6" transform="matrix(1 0 0 1 216.6799 349.8228)" class="percentuale">-25,2%</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 326.1858 230.8228)" class="date">31 mag</text>
+                    </g>
+                    <line class="st5" x1="1.15" y1="43.02" x2="366.15" y2="43.02" />
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="65.41" x2="2.65" y2="65.41" />
+                            <line class="st1" x1="5.64" y1="65.41" x2="363.16" y2="65.41" />
+                            <line class="st0" x1="364.65" y1="65.41" x2="366.15" y2="65.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="87.41" x2="2.65" y2="87.41" />
+                            <line class="st1" x1="5.64" y1="87.41" x2="363.16" y2="87.41" />
+                            <line class="st0" x1="364.65" y1="87.41" x2="366.15" y2="87.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="109.41" x2="2.65" y2="109.41" />
+                            <line class="st1" x1="5.64" y1="109.41" x2="363.16" y2="109.41" />
+                            <line class="st0" x1="364.65" y1="109.41" x2="366.15" y2="109.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="131.41" x2="2.65" y2="131.41" />
+                            <line class="st1" x1="5.64" y1="131.41" x2="363.16" y2="131.41" />
+                            <line class="st0" x1="364.65" y1="131.41" x2="366.15" y2="131.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="153.41" x2="2.65" y2="153.41" />
+                            <line class="st1" x1="5.64" y1="153.41" x2="363.16" y2="153.41" />
+                            <line class="st0" x1="364.65" y1="153.41" x2="366.15" y2="153.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="175.41" x2="2.65" y2="175.41" />
+                            <line class="st1" x1="5.64" y1="175.41" x2="363.16" y2="175.41" />
+                            <line class="st0" x1="364.65" y1="175.41" x2="366.15" y2="175.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="197.41" x2="2.65" y2="197.41" />
+                            <line class="st1" x1="5.64" y1="197.41" x2="363.16" y2="197.41" />
+                            <line class="st0" x1="364.65" y1="197.41" x2="366.15" y2="197.41" />
+                        </g>
+                    </g>
+                    <line class="st0" x1="1.15" y1="219.41" x2="366.15" y2="219.41" />
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="241.41" x2="2.65" y2="241.41" />
+                            <line class="st1" x1="5.64" y1="241.41" x2="363.16" y2="241.41" />
+                            <line class="st0" x1="364.65" y1="241.41" x2="366.15" y2="241.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="263.41" x2="2.65" y2="263.41" />
+                            <line class="st1" x1="5.64" y1="263.41" x2="363.16" y2="263.41" />
+                            <line class="st0" x1="364.65" y1="263.41" x2="366.15" y2="263.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="285.41" x2="2.65" y2="285.41" />
+                            <line class="st1" x1="5.64" y1="285.41" x2="363.16" y2="285.41" />
+                            <line class="st0" x1="364.65" y1="285.41" x2="366.15" y2="285.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <line class="st0" x1="1.15" y1="307.41" x2="2.65" y2="307.41" />
+                            <line class="st1" x1="5.64" y1="307.41" x2="363.16" y2="307.41" />
+                            <line class="st0" x1="364.65" y1="307.41" x2="366.15" y2="307.41" />
+                        </g>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 -0.2302 373.1069)" class="fonte">Fonte: EIA</text>
+                    </g>
+                    <g>
+                        <g>
+                            <polyline class="st8" points="1.1,85 4.7,80.9 8.3,80.4 11.9,80.8 15.5,87.6 19,88.6 22.6,89.8 26.2,91.9 29.8,91.5 33.4,91.6 
+	36.9,90.9 40.5,90.9 44.1,91.3 47.7,93.9 51.2,97.4 54.8,100.4 58.4,102.8 62,102 65.6,102.3 69.1,105 72.7,106.2 76.3,109.4 
+	79.9,109.7 83.5,108 87,107.6 90.6,109 94.2,110.6 97.8,109.8 101.3,107.1 104.9,106.6 108.5,105.2 112.1,105.2 115.7,102.4 
+	119.2,101.3 122.8,102.2 126.4,106.5 130,109.9 133.6,112.5 137.1,116.1 140.7,121.2 144.3,116.8 147.9,115.9 151.4,116.8 
+	155,118.7 158.6,128.9 162.2,151.3 165.8,144.2 169.3,147.2 172.9,150.5 176.5,150 180.1,156.6 183.6,160.5 187.2,175 190.8,164.3 
+	194.4,170.5 198,168.4 201.5,167 205.1,165.9 208.7,170.1 212.3,172.5 215.9,175.6 219.4,174.8 223,175.1 226.6,164.1 230.2,157.4 
+	233.7,162.4 237.3,167.8 240.9,164.6 244.5,169.7 248.1,170.5 251.6,175.6 255.2,176.1 258.8,176.1 262.4,179.6 266,302.9 
+	269.5,197.8 273.1,189.5 276.7,183.5 280.3,182.6 283.8,191.7 287.4,192.7 291,186.7 294.6,178.4 298.2,176.3 301.7,175 
+	305.3,165.8 308.9,167 312.5,168 316.1,165.4 319.6,166.7 323.2,163.1 326.8,164.2 330.4,159.2 333.9,155 337.5,149.8 341.1,148.3 
+	344.7,146.1 348.3,145.1 351.8,146.6 355.4,144.2 359,147.6 362.6,145.6 366.1,141.7 "/>
+
+                        </g>
+                    </g>
+                    <line id="cursor6" class="st6" x1="246.15" y1="21.76" x2="245.96" y2="324.22" />
+                    <text id="main-value-caption6" transform="matrix(1 0 0 1 208.4541 363.7021)" class="date"> rispetto al gg prec.</text>
+                </svg>
+
+            </div>
+        </div>
+    </div>
+    <!--        // ----------inquinamento--------//-->
+    <div class="container u-max-full-width sfondo-nero" id="inquinamento">
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <h2>Emissioni di CO2</h2>
+                <p>
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns offset-three-half five">
+                <svg id="inquinamento" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 370.19 382.94" style="enable-background:new 0 0 370.19 382.94;" xml:space="preserve">
+
+                    <line class="st5" x1="3.45" y1="49.17" x2="368.45" y2="49.17" />
+                    <line class="st5" x1="3.45" y1="115.93" x2="368.45" y2="115.93" />
+                    <line class="st5" x1="3.45" y1="182.68" x2="368.45" y2="182.68" />
+                    <line class="st5" x1="3.45" y1="249.44" x2="368.45" y2="249.44" />
+                    <line class="st0" x1="3.45" y1="313.3" x2="368.45" y2="313.3" />
+                    <g>
+                        <text transform="matrix(1 0 0 1 -0.0647 44.6284)" class="dati"> 40 mln kg Co2</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 0.0525 176.6284)" class="dati"> 20 mln kg Co2</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 4.1272 309.6284)" class="dati">0 mln kg Co2</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 335.9724 288.0332)" class="dati_blu">2020</text>
+                    </g>
+                    <text transform="matrix(1 0 0 1 336.9724 125.8496)" class="dati">2019</text>
+                    <g>
+                        <text transform="matrix(1 0 0 1 328.4861 325.8228)" class="date">31 mag</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 234.6721 14.8228)" class="data">18 mar</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 240.6003 365.8228)" class="percentuale">-75%</text>
+                    </g>
+                    <g>
+                        <text transform="matrix(1 0 0 1 2.9329 325.8228)" class="date">1 gen</text>
+                    </g>
+                    <polyline class="st7" points="366.6,84.1 364.2,87.8 361.8,92.1 359.4,95 357,98.9 354.5,109.5 352.1,110.8 349.7,82.9 347.3,86.3 
+	344.8,90.6 342.4,95.5 340,93.2 337.6,102.9 335.2,113.5 332.7,86.1 330.3,87.9 327.9,91.9 325.5,96 323,92.5 320.6,105.7 
+	318.2,113.4 315.8,86.9 313.4,92.3 310.9,92.7 308.5,95.8 306.1,93.2 303.7,99.5 301.2,110.9 298.8,85.8 296.4,89.8 294,95.3 
+	291.6,95.8 289.1,93.2 286.7,101.4 284.3,110.5 281.9,86.6 279.4,86.7 277,89.1 274.6,92.6 272.2,91.8 269.8,108.2 267.3,114.1 
+	264.9,94.9 262.5,85.5 260.1,89.5 257.6,94.4 255.2,92.5 252.8,102.9 250.4,109.6 248,79.6 245.5,86.4 243.1,89.9 240.7,92.8 
+	238.3,93.2 235.8,102.7 233.4,115.4 231,87.3 228.6,88.2 226.2,90.9 223.7,94.7 221.3,99 218.9,114.5 216.5,132.3 214,103.9 
+	211.6,106.2 209.2,111.5 206.8,114.8 204.4,111 201.9,118.5 199.5,132.2 197.1,104.4 194.7,107.1 192.2,112.5 189.8,115.8 
+	187.4,111.3 185,118.7 182.6,131.9 180.1,103.9 177.7,110.3 175.3,117.2 172.9,115.7 170.5,110.3 168,119.3 165.6,127.5 
+	163.2,104.6 160.8,110.2 158.3,116.5 155.9,116.8 153.5,114.5 151.1,127.9 148.7,123.2 146.2,105.3 143.8,110.1 141.4,115.8 
+	139,118.2 136.5,117.1 134.1,126.3 131.7,131.9 129.3,106.4 126.9,111.3 124.4,119.5 122,118.6 119.6,116.5 117.2,129 114.7,131.1 
+	112.3,105.7 109.9,111.4 107.5,123.5 105.1,124.7 102.6,133.2 100.2,144.3 97.8,134.9 95.4,109.7 92.9,117.1 90.5,120.7 88.1,124.1 
+	85.7,124.1 83.3,132.9 80.8,133.5 78.4,110.6 76,117.6 73.6,122.8 71.1,123.6 68.7,120.8 66.3,129.3 63.9,136 61.5,130 59,118.1 
+	56.6,115.1 54.2,118 51.8,115.6 49.3,132.9 46.9,135.3 44.5,104 42.1,109.6 39.7,131.6 37.2,142.6 34.8,138.7 32.4,149.8 30,154.9 
+	27.5,133.5 25.1,135.9 22.7,138.6 20.3,139.6 17.9,135.2 15.4,140.1 13,144.1 10.6,130.8 8.2,129.7 5.7,132.7 3.3,138.3 " />
+                    <polyline class="st8" points="366.6,260.2 364.2,263.2 361.8,252.5 359.4,253.9 356.9,254.9 354.5,260.1 352.1,261.2 349.7,265.3 
+	347.3,266.1 344.8,254.9 342.4,257.1 340,257.1 337.6,261.3 335.1,261.2 332.7,266.9 330.3,268.6 327.9,258.9 325.4,260.7 
+	323,261.5 320.6,264 318.2,266.1 315.7,269.7 313.3,271.1 310.9,262.7 308.5,263 306.1,264.3 303.6,264 301.2,269.5 298.8,274.5 
+	296.4,276.2 293.9,266 291.5,264.2 289.1,266.7 286.7,268.9 284.2,273.5 281.8,276.6 279.4,276.6 277,268.5 274.6,268.9 
+	272.1,268.9 269.7,271.2 267.3,274 264.9,276.1 262.4,276.5 260,268.5 257.6,269.1 255.2,267.7 252.7,268.9 250.3,272.8 
+	247.9,274.9 245.5,274.4 243,266.7 240.6,265.1 238.2,262.7 235.8,264.2 233.4,265.8 230.9,269 228.5,270.1 226.1,258.6 
+	223.7,259.1 221.2,254.9 218.8,253.2 216.4,255.7 214,254.5 211.5,253.4 209.1,242.9 206.7,239.8 204.3,236.4 201.8,228.1 
+	199.4,223.2 197,214.6 194.6,207.5 192.2,185.2 189.7,181.5 187.3,174.2 184.9,165.7 182.5,154 180,152.5 177.6,157.8 175.2,134.7 
+	172.8,136.4 170.3,140.1 167.9,142.3 165.5,136 163.1,145.4 160.6,155.6 158.2,134.3 155.8,137.6 153.4,140.4 151,141.9 
+	148.5,137.7 146.1,144.8 143.7,153.3 141.3,131.2 138.8,136.6 136.4,139.4 134,142.7 131.6,140.3 129.1,148.8 126.7,153.3 
+	124.3,127.6 121.9,128.3 119.5,132.8 117,136.6 114.6,134.2 112.2,145.3 109.8,148.3 107.3,124.3 104.9,130.2 102.5,136.3 
+	100.1,139.7 97.6,136.6 95.2,145 92.8,148 90.4,126.3 87.9,130.3 85.5,134.9 83.1,136.6 80.7,129.1 78.3,138.2 75.8,143.1 
+	73.4,119.9 71,118.1 68.6,122.3 66.1,122.2 63.7,115.8 61.3,124.2 58.9,134.3 56.4,108.8 54,107.2 51.6,113.4 49.2,114.6 
+	46.7,111.2 44.3,125.5 41.9,130.9 39.5,104.6 37.1,108.2 34.6,115.4 32.2,118.8 29.8,113.3 27.4,124 24.9,132.6 22.5,107.4 
+	20.1,110 17.7,114.7 15.2,114.8 12.8,108.6 10.4,111.9 8,117.4 5.6,103 3.1,109.5 " />
+
+                    <line class="st6" x1="262.95" y1="21.75" x2="262.95" y2="339.76" />
+                    <g>
+                        <text transform="matrix(1 0 0 1 1.0105 380.1069)" class="fonte">Fonte: AirNav, MIT, NEF</text>
+                    </g>
+                    <text transform="matrix(1 0 0 1 231.5366 379.7021)" class="date"> rispetto al 2019</text>
+                </svg>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+</html>

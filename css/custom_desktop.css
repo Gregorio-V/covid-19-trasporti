@@ -487,3 +487,21 @@ div#tendina-compagnie {
 }
 
 
+/*//---- footer --- //*/
+
+svg#foot {
+    padding-top: 5vh;
+}
+
+#foot p {
+    padding-top: 0;
+}
+
+.sfondo-bianco #foot{
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+}
+#nomi-foot{
+    padding-top: 3vh;
+}
+

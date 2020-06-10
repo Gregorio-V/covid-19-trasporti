@@ -70,6 +70,10 @@ video {
     height: auto;
 }
 
+#grafico-cina #cina{
+    top: 0;
+}
+
 .camminatori{
     height: 18vw;
     text-align: center;
@@ -493,8 +497,9 @@ svg#foot {
     padding-top: 5vh;
 }
 
-#foot p {
+#footer p {
     padding-top: 0;
+    color: white;
 }
 
 .sfondo-bianco #foot{
@@ -505,3 +510,16 @@ svg#foot {
     padding-top: 3vh;
 }
 
+/*//---- heater --- //*/
+
+#fixed-header{
+        width: 100%;
+        position: fixed;        
+        padding: 10px 0;
+        top: 0;
+        z-index: 1000;
+    }
+#fixed-header p {
+    text-align: center;
+    font-weight: 500;
+}

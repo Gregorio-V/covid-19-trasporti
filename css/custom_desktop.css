@@ -21,11 +21,12 @@ hr {
     width: 100%;
 }
 
-   
+
 .offset-three-half.columns,
-.offset-three-half.columns        
-{ margin-left: 30.33333333%;            }
-   
+.offset-three-half.columns {
+    margin-left: 30.33333333%;
+}
+
 
 /*----- background ------*/
 .sfondo-bianco {
@@ -49,7 +50,7 @@ p {
 .sfondo-nero p {
     color: #726f76;
     padding-bottom: 2vh;
-      
+
 }
 
 .sfondo-nero {
@@ -70,57 +71,60 @@ video {
     height: auto;
 }
 
-#grafico-cina #cina{
+#grafico-cina #cina {
     top: 0;
 }
 
-.camminatori{
+.camminatori {
     height: 313px;
     text-align: center;
 }
 
-#video-cina video{
+#video-cina video {
     position: absolute;
     transform: translate(-50%, 0);
 }
 
-#video-italia video{
+#video-italia video {
     position: absolute;
     transform: translate(-50%, 0);
 }
 
 .video-container,
-    .value-container {
-        position: absolute;
-        left: 0px;
-        right: 0px;
-        width: 176px;
-        height: 313px;
-        margin: auto;
-    }
+.value-container {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 176px;
+    height: 313px;
+    margin: auto;
+}
+
 .value-container h2,
-    .value-container h4 {
-        color: white;
-        text-align: center;
-/*        width: 53%;*/
-        margin: auto;
-        position: relative;
-        z-index: 5;
-        top: 50%;
-        transform: translateY(-75%);
-    }
-.value-container h4{
+.value-container h4 {
+    color: white;
+    text-align: center;
+    /*        width: 53%;*/
+    margin: auto;
+    position: relative;
+    z-index: 5;
+    top: 50%;
+    transform: translateY(-75%);
+}
+
+.value-container h4 {
     margin-top: -1vh;
 }
 
-#no-margin{
+#no-margin {
     padding-bottom: 0vh;
 }
 
 .visible {
     visibility: visible;
 }
-.invisible{
+
+.invisible {
     visibility: hidden;
 }
 
@@ -139,16 +143,19 @@ video {
     color: #dfdfd7;
     text-align: center;
 }
-#aeroporti-italiani .grafici-palla h1{
-font-size: 50px;
+
+#aeroporti-italiani .grafici-palla h1 {
+    font-size: 50px;
 }
-#aeroporti-italiani .grafici-palla h2{
-font-size: 36px;
+
+#aeroporti-italiani .grafici-palla h2 {
+    font-size: 36px;
     padding-bottom: 0;
 }
 
-#aeroporti-italiani
-{padding-top: 5vh;}
+#aeroporti-italiani {
+    padding-top: 5vh;
+}
 
 #aeroporti-italiani img {
     width: 100%;
@@ -200,17 +207,17 @@ font-size: 36px;
 
 }
 
-.grafici-palla h2{
+.grafici-palla h2 {
     font-size: 24px;
     padding: inherit;
 }
 
-.grafici-palla .row{
+.grafici-palla .row {
     background-position: center;
     background-size: cover;
     padding-top: 11vh;
     padding-bottom: 11vh;
-    
+
 }
 
 /*----- svg ------*/
@@ -236,6 +243,7 @@ svg .dati {
     font-weight: 400;
 
 }
+
 svg .date {
     font-size: 12px;
     fill: #dfdfd7;
@@ -260,7 +268,7 @@ svg .fonte {
 
 }
 
-#crollo{
+#crollo {
     width: 90vw;
     padding-left: 5vw;
 }
@@ -295,7 +303,7 @@ h1 {
     letter-spacing: 0rem;
 }
 
-.sfondo-nero h1{
+.sfondo-nero h1 {
     color: #dfdfd7;
     font-size: 70px;
 }
@@ -314,12 +322,12 @@ h2 {
 
 }
 
-.sfondo-nero h2{
+.sfondo-nero h2 {
     padding-bottom: 2vh;
     font-size: 45px;
 }
 
-h4{
+h4 {
     font-size: 16px;
     letter-spacing: 0rem;
 }
@@ -340,7 +348,7 @@ h4{
     padding-top: 10vh;
 }
 
-.padding-luogo{
+.padding-luogo {
     padding-bottom: 2vh;
 }
 
@@ -354,9 +362,9 @@ h6 {
     font-weight: 300;
     color: #726F76;
     padding-right: 5vh;
-    
+
     letter-spacing: 0rem;
-    
+
 }
 
 #fonte-palle {
@@ -364,12 +372,12 @@ h6 {
 }
 
 /*----- intro ------*/
-#sole_display-intro{
+#sole_display-intro {
     position: relative;
     bottom: 450px;
 }
 
-#intro p{
+#intro p {
     padding-bottom: 10vh;
 }
 
@@ -395,14 +403,15 @@ h6 {
 
 /*// -------- dropdown grafico nazioni pandemia -----//*/
 
-#crollo polyline{
+#crollo polyline {
     transition: all 0.5s ease;
 
 }
 
 
-#menu,#menu2{
-  text-align: center;
+#menu,
+#menu2 {
+    text-align: center;
 }
 
 /*
@@ -412,78 +421,80 @@ h6 {
 }
 */
 
-.sfondo-nero #tendina-nazioni p, .sfondo-nero #tendina-compagnie p{
+.sfondo-nero #tendina-nazioni p,
+.sfondo-nero #tendina-compagnie p {
     color: #dfdfd7;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: relative;
-  display: inline-block;
-  width: 240px;
+    position: relative;
+    display: inline-block;
+    width: 240px;
     color: blue;
-  border-style:solid;
-  border-width: 3px;
-  border-radius: 3px;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 3px;
 
 }
 
-#menu-selezionato,#menu-selezionato2{
-    
-  
-    
-  color: blue;
-  padding: 12px;
-  padding-top: 0px;
+#menu-selezionato,
+#menu-selezionato2 {
+
+
+
+    color: blue;
+    padding: 12px;
+    padding-top: 0px;
     padding-bottom: 0px;
     width: 240px;
-    
-    
-  font-family: 'SoleSans';
 
-  font-size: 21px;
-  
-  cursor: pointer;
+
+    font-family: 'SoleSans';
+
+    font-size: 21px;
+
+    cursor: pointer;
 }
 
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
-  position: absolute;
+    display: none;
+    position: absolute;
     left: -3px;
-  background-color: rgba(0,0,255,0.1);
-    
-  width: 247px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-    
+    background-color: rgba(0, 0, 255, 0.1);
+
+    width: 247px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: gainsboro;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+    color: gainsboro;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
     font-family: 'SoleSans';
- font-size: 18px;
+    font-size: 18px;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
     background-color: black;
-    color:blue;
+    color: blue;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+    background-color: #3e8e41;
 }
 
 div#tendina-compagnie {
@@ -502,23 +513,25 @@ svg#foot {
     color: white;
 }
 
-.sfondo-bianco #foot{
+.sfondo-bianco #foot {
     padding-bottom: 5vh;
     padding-top: 5vh;
 }
-#nomi-foot{
+
+#nomi-foot {
     padding-top: 3vh;
 }
 
 /*//---- heater --- //*/
 
-#fixed-header{
-        width: 100%;
-        position: fixed;        
-        padding: 10px 0;
-        top: 0;
-        z-index: 1000;
-    }
+#fixed-header {
+    width: 100%;
+    position: fixed;
+    padding: 10px 0;
+    top: 0;
+    z-index: 1000;
+}
+
 #fixed-header p {
     text-align: center;
     font-weight: 500;
@@ -528,14 +541,15 @@ svg#foot {
 
 
 @media (max-width: 900px) {
-    .offset-three-half.columns{
-    margin-left: 2.5%;
-}
+    .offset-three-half.columns {
+        margin-left: 2.5%;
+    }
+
     .five.columns {
         width: 95%;
-        
+
     }
-    
+
 }
 
 /* 
@@ -544,9 +558,9 @@ svg#foot {
 */
 
 @media (min-width: 1281px) {
-  
-  /* normale*/
-  
+
+    /* normale*/
+
 }
 
 /* 
@@ -555,15 +569,20 @@ svg#foot {
 */
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-  
-  .offset-three-half.columns{
-    margin-left: 20%;
-}
+
+    .offset-three-half.columns {
+        margin-left: 20%;
+    }
+
     .five.columns {
         width: 60%;
-        
+
     }
-  
+    h2{width: 90%;}
+    
+    p {font-size:21px; line-height: 1.25;}
+    .sfondo-nero h2{font-size:28px;}
+
 }
 
 /* 
@@ -572,15 +591,20 @@ svg#foot {
 */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  
-  .offset-three-half.columns{
-    margin-left: 15%;
-}
+
+    .offset-three-half.columns {
+        margin-left: 15%;
+    }
+
     .five.columns {
         width: 70%;
-        
     }
-  
+    h2{width: 90%;}
+    
+    p {font-size:21px; line-height: 1.25;}
+    .sfondo-nero h2{font-size:28px;}
+    
+
 }
 
 /* 
@@ -589,27 +613,45 @@ svg#foot {
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
-  
-    .offset-three-half.columns{margin-left: 2.5%;}
-    .five.columns {width: 95%;}
-    
-    h2{width: 90%;}
-    
-    p {font-size:21px; line-height: 1.25;}
-    .sfondo-nero h2{font-size:28px;}
-    
-    .camminatori {height: 500px;}
-    .video-container, .value-container {
-        height:500px; width: 275px;
+
+    .offset-three-half.columns {
+        margin-left: 2.5%;
     }
-    
+
+    .five.columns {
+        width: 95%;
+    }
+
+    h2 {
+        width: 90%;
+    }
+
+    p {
+        font-size: 21px;
+        line-height: 1.25;
+    }
+
+    .sfondo-nero h2 {
+        font-size: 28px;
+    }
+
+    .camminatori {
+        height: 500px;
+    }
+
+    .video-container,
+    .value-container {
+        height: 500px;
+        width: 275px;
+    }
+
     .value-container h4 {
-    margin-top: 0vh;
-    font-size: 24px;
+        margin-top: 0vh;
+        font-size: 24px;
+    }
+
 }
-  
-}
-  
+
 
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
@@ -617,23 +659,27 @@ svg#foot {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-  
-        .offset-three-half.columns{
-    margin-left: 2.5%;
-}
+
+    .offset-three-half.columns {
+        margin-left: 2.5%;
+    }
+
     .five.columns {
         width: 95%;
-        
+
     }
-  
-    .camminatori {height: 250px;}
-    .video-container, .value-container {
-        height:250px;
+
+    .camminatori {
+        height: 250px;
     }
-    
-    h2{width: 90%;}
-    
+
+    .video-container,
+    .value-container {
+        height: 250px;
+    }
+
+    h2 {
+        width: 90%;
+    }
+
 }
-
-
-

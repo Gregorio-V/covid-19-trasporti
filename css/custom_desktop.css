@@ -102,7 +102,7 @@ video {
 
 .value-container h2,
 .value-container h4 {
-    color: white;
+    color: red;
     text-align: center;
     /*        width: 53%;*/
     margin: auto;

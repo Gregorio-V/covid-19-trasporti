@@ -684,8 +684,56 @@ svg#foot {
     }
     
     p {
-        font-size: 21px;
+        font-size: 19px;
         line-height: 1.25;
     }
-
-}
+    
+/*    grafici_palla*/
+    .grafici-palla .row {
+    background-size: 115%;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    margin-bottom: 2vh;
+    }
+    #aeroporti-italiani .grafici-palla h2 {
+    font-size: 25px;
+    }
+    #aeroporti-italiani .grafici-palla h1 {
+    font-size: 40px;
+    }
+    
+/*    telegramma*/
+    .telegramma h2{
+        font-size: 32px;
+    }
+    .telegramma h1{
+        font-size: 50px;
+    }
+    
+/*menu tendina*/
+    .dropdown{
+        width: 130px;
+    }
+    .dropdown-content {
+        width: 136px;
+    }
+    .dropdown-content a {
+    padding: 4px 6px;
+    }
+    
+/*    grafico nazioni pandemia*/
+    #crollo {
+    width: 100%;
+    padding-left: 0;
+    }
+    div#tendina-nazioni {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    }
+/*grafico compagnie aeree*/
+    div#tendina-compagnie {
+    padding-bottom: 4vh;
+    padding-top: 3vh;
+    }
+    
+} /* fine mobile-mini*/

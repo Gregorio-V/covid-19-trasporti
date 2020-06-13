@@ -102,7 +102,7 @@ video {
 
 .value-container h2,
 .value-container h4 {
-    color: red;
+    color: white;
     text-align: center;
     /*        width: 53%;*/
     margin: auto;
@@ -678,8 +678,14 @@ svg#foot {
         height: 250px;
     }
 
-    h2 {
+    #sfondo-nero h2 {
         width: 90%;
+        font-size: 30px;
+    }
+    
+    p {
+        font-size: 21px;
+        line-height: 1.25;
     }
 
 }

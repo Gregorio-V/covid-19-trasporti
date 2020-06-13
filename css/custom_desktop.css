@@ -593,8 +593,9 @@ svg#foot {
     .offset-three-half.columns{margin-left: 2.5%;}
     .five.columns {width: 95%;}
     
-    p {font-size:24px;}
-    sfondo-nero h2{font-size:50px; }
+    p {font-size:21px; line-height: 1.25;}
+    sfondo-nero h2{font-size:24px;
+    }
     
     .camminatori {height: 500px;}
     .video-container, .value-container {

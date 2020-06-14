@@ -668,7 +668,10 @@ svg#foot {
         width: 98%;
 
     }
-
+    .sfondo-nero{
+        padding-top:11vh;
+    }
+    
     .camminatori {
         height: 250px;
     }
@@ -681,7 +684,6 @@ svg#foot {
     .sfondo-nero h2 {
         width: 100%;
         font-size: 30px;
-        padding-top: 5vh;
     }
     
     h2#no-margin, h2#no-margin2 {

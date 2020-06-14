@@ -1,8 +1,15 @@
 @import url("font.css");
 
 /*----- globali ------*/
+
+
 html {
     background-color: black;
+    overflow-x: hidden;
+}
+
+body{
+    overflow-x: hidden;
 }
 
 #max {
@@ -126,6 +133,7 @@ video {
 
 .invisible {
     visibility: hidden;
+    
 }
 
 
@@ -271,6 +279,10 @@ svg .fonte {
 #crollo {
     width: 90vw;
     padding-left: 5vw;
+    position: absolute;
+}
+#crollo2{
+    visibility: hidden;
 }
 
 /*----- spaziature ------*/
@@ -403,7 +415,7 @@ h6 {
 
 /*// -------- dropdown grafico nazioni pandemia -----//*/
 
-#crollo polyline {
+#crollo, #crollo2 polyline {
     transition: all 0.5s ease;
 
 }
@@ -506,11 +518,15 @@ div#tendina-compagnie {
 
 svg#foot {
     padding-top: 5vh;
+    width: 90%;
+    padding-left: 5%;
 }
 
 #footer p {
     padding-top: 0;
     color: white;
+    width: 90%;
+    font-size: 15px;
 }
 
 .sfondo-bianco #foot {
@@ -560,7 +576,13 @@ svg#foot {
 @media (min-width: 1281px) {
 
     /* normale*/
-
+    svg#crollo {
+    position: absolute;
+    visibility: visible;
+}
+    svg#crollo2{
+    visibility:hidden;    
+    }
 }
 
 /* 
@@ -585,6 +607,14 @@ svg#foot {
 
 }
 
+    svg#crollo {
+    position: absolute;
+    visibility: visible;
+}
+    svg#crollo2{
+    visibility:hidden;    
+    }
+
 /* 
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
@@ -604,6 +634,13 @@ svg#foot {
     p {font-size:21px; line-height: 1.25;}
     .sfondo-nero h2{font-size:28px;}
     
+    svg#crollo {
+    position: absolute;
+    visibility: hidden;
+}
+    svg#crollo2{
+    visibility:visible;    
+    }
 
 }
 
@@ -620,6 +657,10 @@ svg#foot {
 
     .five.columns {
         width: 98%;
+    }
+    
+    .container {
+    padding: 0 3px;
     }
 
     h2 {
@@ -650,9 +691,17 @@ svg#foot {
         font-size: 24px;
     }
 
+
+
+    svg#crollo {
+    position: absolute;
+    visibility: hidden;
 }
+    svg#crollo2{
+    visibility:visible;    
+    }
 
-
+}
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
@@ -668,8 +717,15 @@ svg#foot {
         width: 98%;
 
     }
+
+    .container {
+    padding-right: 3px;
+    padding-left: 3px
+    }
+
+    
     .sfondo-nero{
-        padding-top:11vh;
+        padding-top: 11vh;
     }
     
     .camminatori {
@@ -697,6 +753,7 @@ svg#foot {
     p {
         font-size: 19px;
         line-height: 1.25;
+        max-width: 98%;
     }
     
     
@@ -754,6 +811,14 @@ svg#foot {
     padding-top: 3vh;
     padding-bottom: 3vh;
     }
+    svg#crollo {
+    position: absolute;
+    visibility: hidden;
+}
+    svg#crollo2{
+    visibility:visible;    
+    }
+    
 /*grafico compagnie aeree*/
     div#tendina-compagnie {
     padding-bottom: 4vh;

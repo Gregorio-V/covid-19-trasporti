@@ -615,11 +615,11 @@ svg#foot {
 @media (min-width: 481px) and (max-width: 767px) {
 
     .offset-three-half.columns {
-        margin-left: 2.5%;
+        margin-left: 1%;
     }
 
     .five.columns {
-        width: 95%;
+        width: 98%;
     }
 
     h2 {
@@ -661,11 +661,11 @@ svg#foot {
 @media (min-width: 320px) and (max-width: 480px) {
 
     .offset-three-half.columns {
-        margin-left: 2.5%;
+        margin-left: 1%;
     }
 
     .five.columns {
-        width: 95%;
+        width: 98%;
 
     }
 
@@ -679,7 +679,7 @@ svg#foot {
     }
 
     .sfondo-nero h2 {
-        width: 90%;
+        width: 95%;
         font-size: 30px;
     }
     
@@ -719,7 +719,9 @@ svg#foot {
     }
     .dropdown-content a {
     padding: 4px 6px;
+    background-color: #000344;
     }
+    
     
 /*    grafico nazioni pandemia*/
     #crollo {

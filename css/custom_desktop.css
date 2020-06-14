@@ -8,7 +8,7 @@ html {
     overflow-x: hidden;
 }
 
-body{
+body {
     overflow-x: hidden;
 }
 
@@ -123,7 +123,8 @@ video {
     margin-top: -1vh;
 }
 
-#no-margin, #no-margin2 {
+#no-margin,
+#no-margin2 {
     padding-bottom: 0vh;
 }
 
@@ -133,7 +134,7 @@ video {
 
 .invisible {
     visibility: hidden;
-    
+
 }
 
 
@@ -281,7 +282,8 @@ svg .fonte {
     padding-left: 5vw;
     position: absolute;
 }
-#crollo2{
+
+#crollo2 {
     visibility: hidden;
 }
 
@@ -415,7 +417,8 @@ h6 {
 
 /*// -------- dropdown grafico nazioni pandemia -----//*/
 
-#crollo, #crollo2 polyline {
+#crollo,
+#crollo2 polyline {
     transition: all 0.5s ease;
 
 }
@@ -577,11 +580,12 @@ svg#foot {
 
     /* normale*/
     svg#crollo {
-    position: absolute;
-    visibility: visible;
-}
-    svg#crollo2{
-    visibility:hidden;    
+        position: absolute;
+        visibility: visible;
+    }
+
+    svg#crollo2 {
+        visibility: hidden;
     }
 }
 
@@ -600,20 +604,30 @@ svg#foot {
         width: 60%;
 
     }
-    h2{width: 90%;}
-    
-    p {font-size:21px; line-height: 1.25;}
-    .sfondo-nero h2{font-size:28px;}
+
+    h2 {
+        width: 90%;
+    }
+
+    p {
+        font-size: 21px;
+        line-height: 1.25;
+    }
+
+    .sfondo-nero h2 {
+        font-size: 28px;
+    }
 
 }
 
-    svg#crollo {
+svg#crollo {
     position: absolute;
     visibility: visible;
 }
-    svg#crollo2{
-    visibility:hidden;    
-    }
+
+svg#crollo2 {
+    visibility: hidden;
+}
 
 /* 
   ##Device = Tablets, Ipads (portrait)
@@ -629,17 +643,27 @@ svg#foot {
     .five.columns {
         width: 70%;
     }
-    h2{width: 90%;}
-    
-    p {font-size:21px; line-height: 1.25;}
-    .sfondo-nero h2{font-size:28px;}
-    
+
+    h2 {
+        width: 90%;
+    }
+
+    p {
+        font-size: 21px;
+        line-height: 1.25;
+    }
+
+    .sfondo-nero h2 {
+        font-size: 28px;
+    }
+
     svg#crollo {
-    position: absolute;
-    visibility: hidden;
-}
-    svg#crollo2{
-    visibility:visible;    
+        position: absolute;
+        visibility: hidden;
+    }
+
+    svg#crollo2 {
+        visibility: visible;
     }
 
 }
@@ -658,9 +682,9 @@ svg#foot {
     .five.columns {
         width: 98%;
     }
-    
+
     .container {
-    padding: 0 3px;
+        padding: 0 3px;
     }
 
     h2 {
@@ -694,14 +718,16 @@ svg#foot {
 
 
     svg#crollo {
-    position: absolute;
-    visibility: hidden;
-}
-    svg#crollo2{
-    visibility:visible;    
+        position: absolute;
+        visibility: hidden;
+    }
+
+    svg#crollo2 {
+        visibility: visible;
     }
 
 }
+
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
@@ -719,15 +745,15 @@ svg#foot {
     }
 
     .container {
-    padding-right: 3px;
-    padding-left: 3px
+        padding-right: 3px;
+        padding-left: 3px
     }
 
-    
-    .sfondo-nero{
+
+    .sfondo-nero {
         padding-top: 11vh;
     }
-    
+
     .camminatori {
         height: 250px;
     }
@@ -741,94 +767,105 @@ svg#foot {
         width: 100%;
         font-size: 30px;
     }
-    
-    h2#no-margin, h2#no-margin2 {
-    font-size: 40px;
+
+    h2#no-margin,
+    h2#no-margin2 {
+        font-size: 40px;
     }
-    
+
     h2 {
         max-width: 95%;
     }
-    
+
     p {
         font-size: 19px;
         line-height: 1.25;
         max-width: 98%;
     }
-    
-    
-/*    grafici_palla*/
+
+
+    /*    grafici_palla*/
     .grafici-palla .row {
-    background-size: 115%;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    margin-bottom: 2vh;
+        background-size: 115%;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+        margin-bottom: 2vh;
     }
+
     #aeroporti-italiani .grafici-palla h2 {
-    font-size: 25px;
+        font-size: 25px;
     }
+
     #aeroporti-italiani .grafici-palla h1 {
-    font-size: 40px;
+        font-size: 40px;
     }
-    
+
     .grafici-palla h2 {
-    padding-top: 0vh;
+        padding-top: 0vh;
     }
-    
-/*grafico malpensa*/
+
+    /*grafico malpensa*/
     #aeroporti-italiani {
-    padding-top: 10vh;
-}
-    
-    
-/*    telegramma*/
-    .telegramma h2{
+        padding-top: 10vh;
+    }
+
+
+    /*    telegramma*/
+    .telegramma h2 {
         font-size: 32px;
     }
-    .telegramma h1{
+
+    .telegramma h1 {
         font-size: 50px;
     }
-    
-/*menu tendina*/
-    .dropdown{
+
+    /*menu tendina*/
+    .dropdown {
         width: 110px;
         border-width: 2px;
     }
+
     .dropdown-content {
         width: 116px;
     }
+
     .dropdown-content a {
-    padding: 4px 6px;
-    background-color: #000344;
-    font-size: 16px;
+        padding: 4px 6px;
+        background-color: #000344;
+        font-size: 16px;
     }
-    
+
     #menu-selezionato2 {
         font-size: 18px;
     }
-    
-    
-/*    grafico nazioni pandemia*/
+
+
+    /*    grafico nazioni pandemia*/
     #crollo {
-    width: 100%;
-    padding-left: 0;
+        width: 100%;
+        padding-left: 0;
     }
+
     div#tendina-nazioni {
-    padding-top: 3vh;
-    padding-bottom: 3vh;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
     }
+
     svg#crollo {
-    position: absolute;
-    visibility: hidden;
-}
-    svg#crollo2{
-    visibility:visible;    
+        position: absolute;
+        visibility: hidden;
     }
-    
-/*grafico compagnie aeree*/
+
+    svg#crollo2 {
+        visibility: visible;
+    }
+
+    /*grafico compagnie aeree*/
     div#tendina-compagnie {
-    padding-bottom: 4vh;
-    padding-top: 3vh;
+        padding-bottom: 4vh;
+        padding-top: 3vh;
     }
-    
-} /* fine mobile-mini*/
+
+}
+
+/* fine mobile-mini*/

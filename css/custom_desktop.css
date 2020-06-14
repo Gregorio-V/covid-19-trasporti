@@ -417,8 +417,8 @@ h6 {
 
 /*// -------- dropdown grafico nazioni pandemia -----//*/
 
-#crollo,
-#crollo2 polyline {
+#crollo polyline,
+#crollo2 polyline, #stock polyline {
     transition: all 0.5s ease;
 
 }

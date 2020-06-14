@@ -44,7 +44,7 @@
     <script src="data/dati_compagnie_aeree.js"></script>
     <script src="data/dati_inquinamento.js"></script>
     <script src="data/dati_carburante.js"></script>
-    
+
     <!--//scroll magic cina -- da capire come si mette-->
 
     <!--    ----------------------------------------------------- -->
@@ -57,7 +57,7 @@
                     triggerElement: "#grafico-cina",
                     triggerHook: 'onLeave',
                     duration: "300%"
-                    
+
                 })
                 .setPin("#grafico-cina", {
                     pushFollowers: true
@@ -83,7 +83,7 @@
                     $("#cina #main-value-date").text(date[Math.floor(prog * valori.length)]);
                     //AGGIORNA VIDEO - OPACITA' RETTANGOLI
                     if (prog >= 0) {
-                        
+
 
                         $("#video-cina h2").text("13.765");
                         $("#video-cina h4").text("voli giornalieri in media 8 gen - 26 gen");
@@ -285,160 +285,160 @@
                 .addTo(controller3);
 
             //------grafico pandemia ------//
-if (screen.width > 1023) {
-            var controller4 = new ScrollMagic.Controller();
-            duration = "600vh";
+            if (screen.width > 1023) {
+                var controller4 = new ScrollMagic.Controller();
+                duration = "600vh";
 
-            new ScrollMagic.Scene({
-                    triggerElement: "#pandemia",
-                    triggerHook: 'onLeave',
-                    duration: "300%"
-                })
-                .setPin("#pandemia", {
-                    pushFollowers: true
-                })
-            
-            
-                .on("progress", function(e) {
-                    date = giorni_nazioni;
-                    valori = valori_n;
+                new ScrollMagic.Scene({
+                        triggerElement: "#pandemia",
+                        triggerHook: 'onLeave',
+                        duration: "300%"
+                    })
+                    .setPin("#pandemia", {
+                        pushFollowers: true
+                    })
 
 
-                    //PROGRESSIONE SCROLL  
-                    prog = e.progress.toFixed(3);
-                    //RILIEVO LARGHEZZA SVG
-                    viewBox = ($("#pandemia #crollo").attr('viewBox')).split(" ");
-                    svgWidth = viewBox[2];
-                    //MUOVE LINEA
-                    $("#crollo #cursor4").attr("x1", prog * svgWidth);
-                    $("#crollo #cursor4").attr("x2", prog * svgWidth);
-                    //MOUVE TESTI
-                    $("#crollo #main-value4").css("transform", "translate(" + prog * svgWidth * 0.91 + "px,450px)");
-                    $("#crollo #main-value-caption4").css("transform", "translate(" + prog * svgWidth * 0.92 + "px,465px)");
-                    $("#crollo #main-value-date4").css("transform", "translate(" + prog * svgWidth * 0.96 + "px,14px)");
-                    //AGGIORNA VALORI
-                    $("#crollo #main-value-date4").text(date[Math.floor(prog * valori.length)]);
-
-                    //                    var nazione = "Italia";
-                    //                    valori = NAZ[nazione];
-
-                    $("#crollo #main-value4").text(valori[Math.floor(prog * valori.length)]);
+                    .on("progress", function(e) {
+                        date = giorni_nazioni;
+                        valori = valori_n;
 
 
+                        //PROGRESSIONE SCROLL  
+                        prog = e.progress.toFixed(3);
+                        //RILIEVO LARGHEZZA SVG
+                        viewBox = ($("#pandemia #crollo").attr('viewBox')).split(" ");
+                        svgWidth = viewBox[2];
+                        //MUOVE LINEA
+                        $("#crollo #cursor4").attr("x1", prog * svgWidth);
+                        $("#crollo #cursor4").attr("x2", prog * svgWidth);
+                        //MOUVE TESTI
+                        $("#crollo #main-value4").css("transform", "translate(" + prog * svgWidth * 0.91 + "px,450px)");
+                        $("#crollo #main-value-caption4").css("transform", "translate(" + prog * svgWidth * 0.92 + "px,465px)");
+                        $("#crollo #main-value-date4").css("transform", "translate(" + prog * svgWidth * 0.96 + "px,14px)");
+                        //AGGIORNA VALORI
+                        $("#crollo #main-value-date4").text(date[Math.floor(prog * valori.length)]);
+
+                        //                    var nazione = "Italia";
+                        //                    valori = NAZ[nazione];
+
+                        $("#crollo #main-value4").text(valori[Math.floor(prog * valori.length)]);
 
 
 
 
-                    //    console.log(prog);
-
-                })
-
-                //.addIndicators() // add indicators (requires plugin)
-                .addTo(controller4);
-            //---- dropdown cambia colore grafico nazioni ------//
-
-            $("#pandemia .dropdown-content a").on("click", function(event) {
 
 
-                nazione = $(this).text();
-                // cambia_colore_roma();
-                console.log(nazione);
+                        //    console.log(prog);
 
-                valori_n = NAZ[nazione];
+                    })
 
-                console.log(valori);
+                    //.addIndicators() // add indicators (requires plugin)
+                    .addTo(controller4);
+                //---- dropdown cambia colore grafico nazioni ------//
 
-                $("#menu-selezionato").text(nazione);
-                $("#TAG_selezionato").text(TAG[nazione]);
-
-                $("#crollo polyline").css("stroke", "#dfdfd7");
-                $("#crollo polyline").css("opacity", "0.15");
-                $("#crollo polyline").css("stroke-width", "1");
+                $("#pandemia .dropdown-content a").on("click", function(event) {
 
 
-                $("svg #" + nazione.toLowerCase()).css("stroke", "blue");
-                $("svg #" + nazione.toLowerCase()).css("opacity", "1");
-                $("svg #" + nazione.toLowerCase()).css("stroke-width", "2");
+                    nazione = $(this).text();
+                    // cambia_colore_roma();
+                    console.log(nazione);
 
-                return valori_n;
+                    valori_n = NAZ[nazione];
+
+                    console.log(valori);
+
+                    $("#menu-selezionato").text(nazione);
+                    $("#TAG_selezionato").text(TAG[nazione]);
+
+                    $("#crollo polyline").css("stroke", "#dfdfd7");
+                    $("#crollo polyline").css("opacity", "0.15");
+                    $("#crollo polyline").css("stroke-width", "1");
 
 
-            });
+                    $("svg #" + nazione.toLowerCase()).css("stroke", "blue");
+                    $("svg #" + nazione.toLowerCase()).css("opacity", "1");
+                    $("svg #" + nazione.toLowerCase()).css("stroke-width", "2");
 
-                
-                } else {
-            // -----grafico pandemia per mobile -----// 
-            
+                    return valori_n;
+
+
+                });
+
+
+            } else {
+                // -----grafico pandemia per mobile -----// 
+
                 var controller8 = new ScrollMagic.Controller();
-            duration = "600vh";
+                duration = "600vh";
 
-            new ScrollMagic.Scene({
-                    triggerElement: "#pandemia",
-                    triggerHook: 'onLeave',
-                    duration: "300%"
-                })
-                .setPin("#pandemia", {
-                    pushFollowers: true
-                })    
-                    
-                .on("progress", function(e) {
-                    date = giorni_nazioni;
-                    valori = valori_n;
+                new ScrollMagic.Scene({
+                        triggerElement: "#pandemia",
+                        triggerHook: 'onLeave',
+                        duration: "300%"
+                    })
+                    .setPin("#pandemia", {
+                        pushFollowers: true
+                    })
 
-
-                    //PROGRESSIONE SCROLL  
-                    prog = e.progress.toFixed(3);
-                    //RILIEVO LARGHEZZA SVG
-                    viewBox = ($("#pandemia #crollo2").attr('viewBox')).split(" ");
-                    svgWidth = viewBox[2];
-                    //MUOVE LINEA
-                    $("#crollo2 #cursor8").attr("x1", prog * svgWidth);
-                    $("#crollo2 #cursor8").attr("x2", prog * svgWidth);
-                    //MOUVE TESTI
-                    $("#crollo2 #main-value8").css("transform", "translate(" + prog * svgWidth * 0.79 + "px,362px)");
-                    $("#crollo2 #main-value-caption8").css("transform", "translate(" + prog * svgWidth * 0.78 + "px,377px)");
-                    $("#crollo2 #main-value-date8").css("transform", "translate(" + prog * svgWidth * 0.86 + "px,10px)");
-                    //AGGIORNA VALORI
-                    $("#crollo2 #main-value-date8").text(date[Math.floor(prog * valori.length)]);
-                    $("#crollo2 #main-value8").text(valori[Math.floor(prog * valori.length)]);
-
-                })
-
-                .addTo(controller8);
-
-            $("#pandemia .dropdown-content a").on("click", function(event) {
+                    .on("progress", function(e) {
+                        date = giorni_nazioni;
+                        valori = valori_n;
 
 
-                nazione = $(this).text();
-                // cambia_colore_roma();
-                console.log(nazione);
+                        //PROGRESSIONE SCROLL  
+                        prog = e.progress.toFixed(3);
+                        //RILIEVO LARGHEZZA SVG
+                        viewBox = ($("#pandemia #crollo2").attr('viewBox')).split(" ");
+                        svgWidth = viewBox[2];
+                        //MUOVE LINEA
+                        $("#crollo2 #cursor8").attr("x1", prog * svgWidth);
+                        $("#crollo2 #cursor8").attr("x2", prog * svgWidth);
+                        //MOUVE TESTI
+                        $("#crollo2 #main-value8").css("transform", "translate(" + prog * svgWidth * 0.79 + "px,362px)");
+                        $("#crollo2 #main-value-caption8").css("transform", "translate(" + prog * svgWidth * 0.78 + "px,377px)");
+                        $("#crollo2 #main-value-date8").css("transform", "translate(" + prog * svgWidth * 0.86 + "px,10px)");
+                        //AGGIORNA VALORI
+                        $("#crollo2 #main-value-date8").text(date[Math.floor(prog * valori.length)]);
+                        $("#crollo2 #main-value8").text(valori[Math.floor(prog * valori.length)]);
 
-                valori_n = NAZ[nazione];
+                    })
 
-                //console.log(valori);
+                    .addTo(controller8);
 
-                $("#menu-selezionato").text(nazione);
-                $("#TAG_selezionato3").text(TAG[nazione]);
-
-                $("#crollo2 polyline").css("stroke", "#dfdfd7");
-                $("#crollo2 polyline").css("opacity", "0.15");
-                $("#crollo2 polyline").css("stroke-width", "1");
+                $("#pandemia .dropdown-content a").on("click", function(event) {
 
 
-                $("svg #" + nazione.toLowerCase()+ "2").css("stroke", "blue");
-                $("svg #" + nazione.toLowerCase()+ "2").css("opacity", "1");
-                $("svg #" + nazione.toLowerCase()+ "2").css("stroke-width", "2");
+                    nazione = $(this).text();
+                    // cambia_colore_roma();
+                    console.log(nazione);
 
-                return valori_n;
+                    valori_n = NAZ[nazione];
+
+                    //console.log(valori);
+
+                    $("#menu-selezionato").text(nazione);
+                    $("#TAG_selezionato3").text(TAG[nazione]);
+
+                    $("#crollo2 polyline").css("stroke", "#dfdfd7");
+                    $("#crollo2 polyline").css("opacity", "0.15");
+                    $("#crollo2 polyline").css("stroke-width", "1");
 
 
-            });
-                    
-                
-                }
-            
+                    $("svg #" + nazione.toLowerCase() + "2").css("stroke", "blue");
+                    $("svg #" + nazione.toLowerCase() + "2").css("opacity", "1");
+                    $("svg #" + nazione.toLowerCase() + "2").css("stroke-width", "2");
+
+                    return valori_n;
+
+
+                });
+
+
+            }
+
             // ------ variabili per grafico crollo e crollo2--------//
-             var TAG = {
+            var TAG = {
                 Spagna: "ES",
                 Francia: "FR",
                 Italia: "IT",
@@ -462,7 +462,7 @@ if (screen.width > 1023) {
 
             }
             var valori_n = perc_italia;
-            
+
 
 
             //------grafico stock compagnie ------//
@@ -483,10 +483,10 @@ if (screen.width > 1023) {
                     valori = valori_s;
 
                     //PROGRESSIONE SCROLL 
-                
-                    
+
+
                     prog = Math.abs(e.progress.toFixed(3) - 0.001);
-                    
+
                     //RILIEVO LARGHEZZA SVG
                     viewBox = ($("#stock").attr('viewBox')).split(" ");
                     svgWidth = viewBox[2];
@@ -502,14 +502,14 @@ if (screen.width > 1023) {
                     //AGGIORNA VALORI
                     $("#stock #main-value5").text(valori[Math.floor(prog * valori.length)] + "$");
                     $("#stock #main-value-date5").text(date[Math.floor(prog * valori.length)]);
-                    
-                    console.log( [Math.floor(prog * valori.length)]  );
-                    console.log (prog);
+
+                    console.log([Math.floor(prog * valori.length)]);
+                    console.log(prog);
                     console.log(valori.length);
 
                 })
 
-             //   .addIndicators() // add indicators (requires plugin)
+                //   .addIndicators() // add indicators (requires plugin)
                 .addTo(controller5);
 
             //---- dropdown cambia colore grafico compagniee aeree ------//
@@ -522,11 +522,11 @@ if (screen.width > 1023) {
                 console.log(compagnia);
 
                 valori_s = COM[compagnia];
-                
-               // scala_v = legenda_stock.(compagnia)[0]
+
+                // scala_v = legenda_stock.(compagnia)[0]
                 //console.log(valori_c);
                 n = numero_compagnia[compagnia];
-                
+
                 //nome compagnia
                 $("#menu-selezionato2").text(compagnia);
                 // cambio scala grafici
@@ -542,7 +542,7 @@ if (screen.width > 1023) {
                 $("svg #" + compagnia.toLowerCase()).css("stroke", "blue");
                 $("svg #" + compagnia.toLowerCase()).css("opacity", "1");
                 $("svg #" + compagnia.toLowerCase()).css("stroke-width", "1");
-                
+
                 // voli //
                 $("svg #" + compagnia.toLowerCase() + "2").css("stroke", "blue");
                 $("svg #" + compagnia.toLowerCase() + "2").css("opacity", "1");
@@ -551,7 +551,7 @@ if (screen.width > 1023) {
                 return valori_s;
 
             });
-            
+
             var COM = {
                 Rayanair: stock_rayanair,
                 Easyjet: stock_easyjet,
@@ -559,10 +559,10 @@ if (screen.width > 1023) {
                 Lufthansa: stock_lufthansa,
                 AirFrance: stock_airfrance,
                 SAS: stock_sas,
-                };
-            
+            };
+
             var valori_s = stock_rayanair;
-            
+
             var numero_compagnia = {
                 Rayanair: 0,
                 Easyjet: 1,
@@ -570,7 +570,7 @@ if (screen.width > 1023) {
                 Lufthansa: 3,
                 AirFrance: 4,
                 SAS: 5,
-                };
+            };
 
             //---- grafico carburante ------//
 
@@ -612,9 +612,9 @@ if (screen.width > 1023) {
 
                 })
 
-             //   .addIndicators() // add indicators (requires plugin)
+                //   .addIndicators() // add indicators (requires plugin)
                 .addTo(controller6);
-            
+
             //---- grafico inquinamento ------//
 
             var controller7 = new ScrollMagic.Controller();
@@ -655,7 +655,7 @@ if (screen.width > 1023) {
 
                 })
 
-              //  .addIndicators() // add indicators (requires plugin)
+                //  .addIndicators() // add indicators (requires plugin)
                 .addTo(controller7);
 
 
@@ -667,8 +667,8 @@ if (screen.width > 1023) {
 </head>
 
 <body>
-    
-<!--    // -------- header --------- //    -->
+
+    <!--    // -------- header --------- //    -->
 
     <div class="container u-max-full-width sfondo-bianco" id="fixed-header">
         <div class="row">
@@ -698,7 +698,7 @@ if (screen.width > 1023) {
             </div>
         </div>
     </div>
- <div class="container u-max-full-width sfondo-bianco telegramma" id="cina-bianco">
+    <div class="container u-max-full-width sfondo-bianco telegramma" id="cina-bianco">
         <div class="row">
             <div class="columns offset-three-half five">
                 <h1> Sono il titolo per la Cina
@@ -1174,7 +1174,7 @@ if (screen.width > 1023) {
                 </div>
                 <h6 id="fonte-palle"> Fonte: Assaeroporti</h6>
             </div>
-            
+
         </div>
 
     </div>
@@ -1316,113 +1316,183 @@ if (screen.width > 1023) {
                     <text id="main-value-caption4" transform="matrix(1 0 0 1 500 460)" class="date"> rispetto al 2019</text>
                     <line id="cursor4" class="st15" x1="466.92" y1="25.07" x2="467.6" y2="424.06" />
                 </svg>
-                
-            <div class="columns offset-three-half five">
-            
-                <svg id="crollo2" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 366.9 388.2" style="enable-background:new 0 0 366.9 388.2;" xml:space="preserve">
 
-<style type="text/css">
-	.st0{opacity:0.3;fill:none;stroke:#0000FF;stroke-miterlimit:10;enable-background:new    ;}
-	#crollo2 .st1{fill:none;stroke:#000344;stroke-miterlimit:10;stroke-dasharray:3;}
-	#crollo2 .st2{fill:#DEDED6;}
-	#crollo2 .st3{font-family:'Sole24Sans-Semibold';}
-	#crollo2 .st4{font-size:13px;}
-	#crollo2 .st5{fill:#726F76;}
-	#crollo2 .st6{font-family:'Sole24Sans-Book';}
-	#crollo2 .st7{enable-background:new    ;}
-	#crollo2 .st8{font-family:'Sole24Sans-LightExtended';}
-	#crollo2 .st9{font-size:10px;}
-	#crollo2 .st10{font-size:18px;}
-	#crollo2 .st11{fill:none;stroke:#DEDED6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	#crollo2 .st12{fill:#0000FF;}
-	#crollo2 .st13{font-size:18.2681px;}
-	#crollo2 .st14{letter-spacing:-1;}
-	#crollo2 .st15{fill:none;stroke:#0000FF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	#crollo2 .st16{fill:none;stroke:#D1D1D1;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
-</style>
+                <div class="columns offset-three-half five">
 
-<line class="st0" x1="2.7" y1="41.1" x2="366.9" y2="41.1"/>
-<line class="st1" x1="1.9" y1="69.4" x2="366.9" y2="69.4"/>
-<line class="st1" x1="1.9" y1="97.6" x2="366.9" y2="97.6"/>
-<line class="st1" x1="1.9" y1="125.8" x2="366.9" y2="125.8"/>
-<line class="st1" x1="1.9" y1="154.1" x2="366.9" y2="154.1"/>
-<line class="st1" x1="1.9" y1="182.3" x2="366.9" y2="182.3"/>
-<line class="st1" x1="1.9" y1="210.6" x2="366.9" y2="210.6"/>
-<line class="st1" x1="1.9" y1="238.9" x2="366.9" y2="238.9"/>
-<line class="st1" x1="1.9" y1="267.1" x2="366.9" y2="267.1"/>
-<line class="st1" x1="1.9" y1="295.3" x2="366.9" y2="295.3"/>
-<line class="st1" x1="1.9" y1="323.8" x2="366.9" y2="323.8"/>
-<g>
-	<text transform="matrix(1 0 0 1 324.8845 24.9452)" class="date">31 mag</text>
-</g>
-<text transform="matrix(1 0 0 1 2.4639 178.1001)" class="dati">-50%</text>
-<text transform="matrix(1 0 0 1 2.2919 319.1271)" class="dati">-100%</text>
-<g>
-	<text transform="matrix(1 0 0 1 -4.577637e-05 388.1724)" class="fonte">Fonte: AirNav</text>
-</g>
-<g>
-	<text id="main-value-date8" transform="matrix(1 7.730000e-03 -7.730000e-03 1 188.75 24.9453)" class="data">18 mar</text>
-</g>
-<g>
-	<text id="main-value8" transform="matrix(1 7.730000e-03 -7.730000e-03 1 197.75 362.2944)" class="percentuale">30%</text>
-</g>
-<text id="main-value-caption8" transform="matrix(1 0 0 1 179 377)" class="date"> rispetto al 2019</text>
-<polyline id="norvegia2" class="st11 linea" points="358,193.8 350.9,147.6 343.7,177.3 336.5,181.9 329.3,234.3 322.2,254.9 315,207.1 307.8,221.3 
+                    <svg id="crollo2" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 366.9 388.2" style="enable-background:new 0 0 366.9 388.2;" xml:space="preserve">
+
+                        <style type="text/css">
+                            .st0 {
+                                opacity: 0.3;
+                                fill: none;
+                                stroke: #0000FF;
+                                stroke-miterlimit: 10;
+                                enable-background: new;
+                            }
+
+                            #crollo2 .st1 {
+                                fill: none;
+                                stroke: #000344;
+                                stroke-miterlimit: 10;
+                                stroke-dasharray: 3;
+                            }
+
+                            #crollo2 .st2 {
+                                fill: #DEDED6;
+                            }
+
+                            #crollo2 .st3 {
+                                font-family: 'Sole24Sans-Semibold';
+                            }
+
+                            #crollo2 .st4 {
+                                font-size: 13px;
+                            }
+
+                            #crollo2 .st5 {
+                                fill: #726F76;
+                            }
+
+                            #crollo2 .st6 {
+                                font-family: 'Sole24Sans-Book';
+                            }
+
+                            #crollo2 .st7 {
+                                enable-background: new;
+                            }
+
+                            #crollo2 .st8 {
+                                font-family: 'Sole24Sans-LightExtended';
+                            }
+
+                            #crollo2 .st9 {
+                                font-size: 10px;
+                            }
+
+                            #crollo2 .st10 {
+                                font-size: 18px;
+                            }
+
+                            #crollo2 .st11 {
+                                fill: none;
+                                stroke: #DEDED6;
+                                stroke-linecap: round;
+                                stroke-linejoin: round;
+                                stroke-miterlimit: 10;
+                            }
+
+                            #crollo2 .st12 {
+                                fill: #0000FF;
+                            }
+
+                            #crollo2 .st13 {
+                                font-size: 18.2681px;
+                            }
+
+                            #crollo2 .st14 {
+                                letter-spacing: -1;
+                            }
+
+                            #crollo2 .st15 {
+                                fill: none;
+                                stroke: #0000FF;
+                                stroke-width: 2;
+                                stroke-linecap: round;
+                                stroke-linejoin: round;
+                                stroke-miterlimit: 10;
+                            }
+
+                            #crollo2 .st16 {
+                                fill: none;
+                                stroke: #D1D1D1;
+                                stroke-width: 2;
+                                stroke-linecap: round;
+                                stroke-miterlimit: 10;
+                            }
+
+                        </style>
+
+                        <line class="st0" x1="2.7" y1="41.1" x2="366.9" y2="41.1" />
+                        <line class="st1" x1="1.9" y1="69.4" x2="366.9" y2="69.4" />
+                        <line class="st1" x1="1.9" y1="97.6" x2="366.9" y2="97.6" />
+                        <line class="st1" x1="1.9" y1="125.8" x2="366.9" y2="125.8" />
+                        <line class="st1" x1="1.9" y1="154.1" x2="366.9" y2="154.1" />
+                        <line class="st1" x1="1.9" y1="182.3" x2="366.9" y2="182.3" />
+                        <line class="st1" x1="1.9" y1="210.6" x2="366.9" y2="210.6" />
+                        <line class="st1" x1="1.9" y1="238.9" x2="366.9" y2="238.9" />
+                        <line class="st1" x1="1.9" y1="267.1" x2="366.9" y2="267.1" />
+                        <line class="st1" x1="1.9" y1="295.3" x2="366.9" y2="295.3" />
+                        <line class="st1" x1="1.9" y1="323.8" x2="366.9" y2="323.8" />
+                        <g>
+                            <text transform="matrix(1 0 0 1 324.8845 24.9452)" class="date">31 mag</text>
+                        </g>
+                        <text transform="matrix(1 0 0 1 2.4639 178.1001)" class="dati">-50%</text>
+                        <text transform="matrix(1 0 0 1 2.2919 319.1271)" class="dati">-100%</text>
+                        <g>
+                            <text transform="matrix(1 0 0 1 -4.577637e-05 388.1724)" class="fonte">Fonte: AirNav</text>
+                        </g>
+                        <g>
+                            <text id="main-value-date8" transform="matrix(1 7.730000e-03 -7.730000e-03 1 188.75 24.9453)" class="data">18 mar</text>
+                        </g>
+                        <g>
+                            <text id="main-value8" transform="matrix(1 7.730000e-03 -7.730000e-03 1 197.75 362.2944)" class="percentuale">30%</text>
+                        </g>
+                        <text id="main-value-caption8" transform="matrix(1 0 0 1 179 377)" class="date"> rispetto al 2019</text>
+                        <polyline id="norvegia2" class="st11 linea" points="358,193.8 350.9,147.6 343.7,177.3 336.5,181.9 329.3,234.3 322.2,254.9 315,207.1 307.8,221.3 
 	300.6,217.8 293.5,219 286.3,202.6 279.1,247 272,254.1 264.7,98 257.6,163.2 250.4,192.9 243.2,188.7 236.1,227.5 228.9,255.2 
 	221.8,279.8 214.6,284.1 207.3,250.7 200.2,231.4 193,216.7 185.9,220.4 178.7,244.8 171.5,241.1 164.4,232.6 157.2,244.5 
 	150,213.9 142.8,219.5 135.6,222.3 128.5,250.7 121.3,264.9 114.2,213.9 107,213.9 99.8,202.6 92.6,202.6 85.4,194.1 78.3,230.9 
-	71.1,160 63.9,191.2 56.8,182.7 49.6,182.7 42.3,162.9 35.3,134.5 28,49.6 20.9,46.7 13.7,46.7 6.5,41.1 "/>
-<g>
-	<polyline id="usa2" class="st11 linea" points="358,202.6 350.9,221 343.7,221.8 336.5,237.9 329.3,242.7 322.2,229.7 315,224.6 307.8,226.1 
+	71.1,160 63.9,191.2 56.8,182.7 49.6,182.7 42.3,162.9 35.3,134.5 28,49.6 20.9,46.7 13.7,46.7 6.5,41.1 " />
+                        <g>
+                            <polyline id="usa2" class="st11 linea" points="358,202.6 350.9,221 343.7,221.8 336.5,237.9 329.3,242.7 322.2,229.7 315,224.6 307.8,226.1 
 		300.6,232.9 293.5,235.9 286.3,249.5 279.1,261.4 272,242.7 264.7,232.9 257.6,241.6 250.4,247 243.2,248.4 236.1,261.7 
 		228.9,264.9 221.8,254.6 214.6,243 207.3,249.5 200.2,248.1 193,249.3 185.9,260.6 178.7,265.7 171.5,251.6 164.4,243.3 
 		157.2,245.6 150,243.9 142.8,165.7 135.6,188.4 128.5,208.2 121.3,205.4 114.2,185.5 107,171.4 99.8,165.7 92.6,145.9 85.4,128.9 
-		78.3,145.9 71.1,128.9 63.9,94.9 56.8,80.8 49.6,66.6 42.3,41.1 35.3,15.6 28,75.1 20.9,66.6 13.7,18.4 6.5,29.8 	"/>
-</g>
-<polyline id="cina2" class="st11 linea" points="358,212.7 350.9,214.8 343.7,203.4 336.5,237.4 329.3,222.3 322.2,195.5 315,212.2 307.8,204.2 
+		78.3,145.9 71.1,128.9 63.9,94.9 56.8,80.8 49.6,66.6 42.3,41.1 35.3,15.6 28,75.1 20.9,66.6 13.7,18.4 6.5,29.8 	" />
+                        </g>
+                        <polyline id="cina2" class="st11 linea" points="358,212.7 350.9,214.8 343.7,203.4 336.5,237.4 329.3,222.3 322.2,195.5 315,212.2 307.8,204.2 
 	300.6,213.9 293.5,196 286.3,214.5 279.1,198.8 272,201.1 264.7,207.9 257.6,194.9 250.4,197.4 243.2,191.2 236.1,201.4 
 	228.9,193.8 221.8,198.3 214.6,207.7 207.3,200 200.2,202 193,195.5 185.9,198.6 178.7,194.9 171.5,199.7 164.4,191.5 157.2,177.1 
 	150,157.5 142.8,216.7 135.6,208.2 128.5,199.7 121.3,199.7 114.2,202.6 107,208.2 99.8,199.7 92.6,213.9 85.4,205.4 78.3,196.9 
-	71.1,205.4 63.9,191.2 56.8,202.6 49.6,194.1 42.3,202.6 35.3,199.7 28,191.2 20.9,208.2 13.7,205.4 6.5,213.9 "/>
-<polyline id="germania2" class="st11 linea" points="358,276.2 350.9,273.3 343.7,279 336.5,284.7 329.3,293.1 322.2,293.1 315,279 307.8,279 300.6,279 
+	71.1,205.4 63.9,191.2 56.8,202.6 49.6,194.1 42.3,202.6 35.3,199.7 28,191.2 20.9,208.2 13.7,205.4 6.5,213.9 " />
+                        <polyline id="germania2" class="st11 linea" points="358,276.2 350.9,273.3 343.7,279 336.5,284.7 329.3,293.1 322.2,293.1 315,279 307.8,279 300.6,279 
 	293.5,284.7 286.3,281.8 279.1,293.1 272,296 264.7,281.8 257.6,284.7 250.4,284.7 243.2,287.5 236.1,301.7 228.9,304.5 
 	221.8,298.8 214.6,296 207.3,284.7 200.2,284.7 193,287.5 185.9,287.5 178.7,293.1 171.5,293.1 164.4,284.7 157.2,284.7 150,281.8 
 	142.8,281.8 135.6,287.5 128.5,287.5 121.3,279 114.2,276.2 107,270.5 99.8,267.7 92.6,267.7 85.4,264.9 78.3,239.4 71.1,228 
-	63.9,208.2 56.8,199.7 49.6,182.7 42.3,168.6 35.3,143.1 28,106.3 20.9,97.7 13.7,100.6 6.5,94.9 "/>
-<polyline id="francia2" class="st11 linea" points="358,293.1 350.9,287.5 343.7,296 336.5,298.8 329.3,313 322.2,307.3 315,298.8 307.8,296 300.6,296 
+	63.9,208.2 56.8,199.7 49.6,182.7 42.3,168.6 35.3,143.1 28,106.3 20.9,97.7 13.7,100.6 6.5,94.9 " />
+                        <polyline id="francia2" class="st11 linea" points="358,293.1 350.9,287.5 343.7,296 336.5,298.8 329.3,313 322.2,307.3 315,298.8 307.8,296 300.6,296 
 	293.5,296 286.3,296 279.1,310.2 272,310.2 264.7,301.7 257.6,301.7 250.4,298.8 243.2,298.8 236.1,313 228.9,313 221.8,310.2 
 	214.6,304.5 207.3,298.8 200.2,296 193,301.7 185.9,301.7 178.7,313 171.5,304.5 164.4,304.5 157.2,298.8 150,296 142.8,298.8 
 	135.6,301.7 128.5,304.5 121.3,293.1 114.2,290.4 107,287.5 99.8,281.8 92.6,273.3 85.4,279 78.3,259.2 71.1,250.7 63.9,225.2 
-	56.8,222.3 49.6,205.4 42.3,168.6 35.3,126.1 28,100.6 20.9,94.9 13.7,77.9 6.5,75.1 "/>
-<polyline id="spagna2" class="st11 linea" points="358,307.3 350.9,307.3 343.7,307.3 336.5,310.2 329.3,313 322.2,315.9 315,307.3 307.8,307.3 
+	56.8,222.3 49.6,205.4 42.3,168.6 35.3,126.1 28,100.6 20.9,94.9 13.7,77.9 6.5,75.1 " />
+                        <polyline id="spagna2" class="st11 linea" points="358,307.3 350.9,307.3 343.7,307.3 336.5,310.2 329.3,313 322.2,315.9 315,307.3 307.8,307.3 
 	300.6,307.3 293.5,307.3 286.3,310.2 279.1,313 272,313 264.7,304.5 257.6,307.3 250.4,310.2 243.2,307.3 236.1,310.2 228.9,313 
 	221.8,315.9 214.6,313 207.3,307.3 200.2,304.5 193,304.5 185.9,310.2 178.7,310.2 171.5,310.2 164.4,304.5 157.2,304.5 150,301.7 
 	142.8,298.8 135.6,298.8 128.5,304.5 121.3,298.8 114.2,287.5 107,284.7 99.8,287.5 92.6,281.8 85.4,290.4 78.3,279 71.1,256.3 
-	63.9,236.5 56.8,219.5 49.6,202.6 42.3,165.7 35.3,111.9 28,83.5 20.9,72.2 13.7,66.6 6.5,69.4 "/>
-<polyline id="uk2" class="st11 linea" points="358,296.9 350.9,298 343.7,297.7 336.5,305.6 329.3,305 322.2,303.1 315,303.1 307.8,304 
+	63.9,236.5 56.8,219.5 49.6,202.6 42.3,165.7 35.3,111.9 28,83.5 20.9,72.2 13.7,66.6 6.5,69.4 " />
+                        <polyline id="uk2" class="st11 linea" points="358,296.9 350.9,298 343.7,297.7 336.5,305.6 329.3,305 322.2,303.1 315,303.1 307.8,304 
 	300.6,302.8 293.5,307.3 286.3,311.6 279.1,310.7 272,309.3 264.7,307.3 257.6,304.5 250.4,302.8 243.2,303.1 236.1,310.2 
 	228.9,308.5 221.8,304 214.6,305.6 207.3,304 200.2,302.3 193,303.7 185.9,310.7 178.7,308.2 171.5,302 164.4,302 157.2,302.8 
 	150,301.1 142.8,296 135.6,287.5 128.5,290.4 121.3,287.5 114.2,270.5 107,267.7 99.8,273.3 92.6,253.5 85.4,228 78.3,228 
-	71.1,225.2 63.9,137.4 56.8,143.1 49.6,165.7 42.3,140.2 35.3,60.9 28,100.6 20.9,111.9 13.7,29.8 6.5,41.1 "/>
-<g>
-	<text transform="matrix(1 0 0 1 0.8521 24.9452)" class="date">12 mar</text>
-</g>
-<text transform="matrix(1 0 0 1 2.6713 37.2222)" class="dati">0%</text>
-<text id="TAG_selezionato3" transform="matrix(1 0 0 1 340.0427 319.1268)" class="dati_blu">ITA</text>
+	71.1,225.2 63.9,137.4 56.8,143.1 49.6,165.7 42.3,140.2 35.3,60.9 28,100.6 20.9,111.9 13.7,29.8 6.5,41.1 " />
+                        <g>
+                            <text transform="matrix(1 0 0 1 0.8521 24.9452)" class="date">12 mar</text>
+                        </g>
+                        <text transform="matrix(1 0 0 1 2.6713 37.2222)" class="dati">0%</text>
+                        <text id="TAG_selezionato3" transform="matrix(1 0 0 1 340.0427 319.1268)" class="dati_blu">ITA</text>
 
-			<polyline id="italia2" class="st15 linea" points="358,301.7 350.9,298.8 343.7,301.7 336.5,304.5 329.3,310.2 322.2,310.2 315,301.7 307.8,301.7 
+                        <polyline id="italia2" class="st15 linea" points="358,301.7 350.9,298.8 343.7,301.7 336.5,304.5 329.3,310.2 322.2,310.2 315,301.7 307.8,301.7 
 				300.6,301.7 293.5,301.7 286.3,301.7 279.1,310.2 272,310.2 264.7,304.5 257.6,304.5 250.4,301.7 243.2,304.5 236.1,313 
 				228.9,315.9 221.8,307.3 214.6,307.3 207.3,301.7 200.2,301.7 193,301.7 185.9,304.5 178.7,307.3 171.5,307.3 164.4,304.5 
 				157.2,301.7 150,301.7 142.8,310.2 135.6,304.5 128.5,307.3 121.3,307.3 114.2,301.7 107,301.7 99.8,298.8 92.6,301.7 
 				85.4,301.7 78.3,307.3 71.1,301.7 63.9,293.1 56.8,293.1 49.6,296 42.3,293.1 35.3,290.4 28,296 20.9,293.1 13.7,233.7 
-				6.5,236.5 			"/>
-<line id="cursor8" class="st16" x1="214.3" y1="18.8" x2="214.3" y2="337.2"/>
-</svg>
+				6.5,236.5 			" />
+                        <line id="cursor8" class="st16" x1="214.3" y1="18.8" x2="214.3" y2="337.2" />
+                    </svg>
 
 
-                
-            </div>
+
+                </div>
 
 
 
@@ -1923,7 +1993,7 @@ if (screen.width > 1023) {
 	233.7,162.4 237.3,167.8 240.9,164.6 244.5,169.7 248.1,170.5 251.6,175.6 255.2,176.1 258.8,176.1 262.4,179.6 266,302.9 
 	269.5,197.8 273.1,189.5 276.7,183.5 280.3,182.6 283.8,191.7 287.4,192.7 291,186.7 294.6,178.4 298.2,176.3 301.7,175 
 	305.3,165.8 308.9,167 312.5,168 316.1,165.4 319.6,166.7 323.2,163.1 326.8,164.2 330.4,159.2 333.9,155 337.5,149.8 341.1,148.3 
-	344.7,146.1 348.3,145.1 351.8,146.6 355.4,144.2 359,147.6 362.6,145.6 366.1,141.7 "/>
+	344.7,146.1 348.3,145.1 351.8,146.6 355.4,144.2 359,147.6 362.6,145.6 366.1,141.7 " />
 
                         </g>
                     </g>
@@ -2020,9 +2090,9 @@ if (screen.width > 1023) {
             </div>
         </div>
     </div>
-    
-<!--    // ------- conclusione --------//-->
-    
+
+    <!--    // ------- conclusione --------//-->
+
     <div class="container u-max-full-width sfondo-bianco telegramma" id="conclusione">
         <div class="row">
             <div class="columns offset-three-half five">
@@ -2045,14 +2115,14 @@ if (screen.width > 1023) {
             </div>
         </div>
     </div>
-   
-    
+
+
     <div class="row sfondo-nero">
         <div class="columns offset-three-half five">
-            <div id="footer"> 
+            <div id="footer">
                 <p>Progetto in collaborazione con gli studenti del lab. di design dei sistemi del corso di laurea magistrale in design della Università degli studi della Repubblica di San Marino</p>
 
- 
+
 
                 <p id="nomi-foot"> <b>Testi:</b> Luca Salvioli <br>
                     <b>Design:</b> Federico Topa e Gregorio Vaccari <br>
@@ -2060,57 +2130,71 @@ if (screen.width > 1023) {
                     <b>Docente:</b> Matteo Moretti
                 </p>
             </div>
-        
-        <svg id="foot" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 264.6 33.4" style="enable-background:new 0 0 264.6 33.4;" xml:space="preserve">
-<style type="text/css">
-	#foot .st0{fill:none;stroke:#0000FF;stroke-width:4;stroke-linecap:round;stroke-miterlimit:10;}
-	#foot .st1{fill:#0000FF;}
-	#foot .st2{fill:#FFFFFF;}
-	#foot .st3{fill:none;}
-</style>
-<g>
-	<line class="st0" x1="68.8" y1="9.9" x2="82.4" y2="23.5"/>
-	<line class="st0" x1="68.8" y1="23.5" x2="82.4" y2="9.9"/>
-</g>
-<g id="XMLID_2_">
-	<path id="XMLID_28_" class="st1" d="M25.7,25.6c-0.2,0.4-0.5,0.6-0.9,0.6c-0.5,0-0.8-0.2-1-0.6c-0.1-0.1-0.1-0.3-0.1-0.5v-1.8h0.7
+
+            <svg id="foot" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 264.6 33.4" style="enable-background:new 0 0 264.6 33.4;" xml:space="preserve">
+                <style type="text/css">
+                    #foot .st0 {
+                        fill: none;
+                        stroke: #0000FF;
+                        stroke-width: 4;
+                        stroke-linecap: round;
+                        stroke-miterlimit: 10;
+                    }
+
+                    #foot .st1 {
+                        fill: #0000FF;
+                    }
+
+                    #foot .st2 {
+                        fill: #FFFFFF;
+                    }
+
+                    #foot .st3 {
+                        fill: none;
+                    }
+
+                </style>
+                <g>
+                    <line class="st0" x1="68.8" y1="9.9" x2="82.4" y2="23.5" />
+                    <line class="st0" x1="68.8" y1="23.5" x2="82.4" y2="9.9" />
+                </g>
+                <g id="XMLID_2_">
+                    <path id="XMLID_28_" class="st1" d="M25.7,25.6c-0.2,0.4-0.5,0.6-0.9,0.6c-0.5,0-0.8-0.2-1-0.6c-0.1-0.1-0.1-0.3-0.1-0.5v-1.8h0.7
 		V25c0,0.2,0,0.3,0.1,0.4c0.1,0.1,0.2,0.1,0.3,0.1s0.2,0,0.3-0.1c0.1,0,0.2-0.1,0.2-0.2c0.1-0.2,0.2-0.4,0.2-0.7v-1.4h0.7v2.8h-0.7
-		L25.7,25.6L25.7,25.6z"/>
-	<path id="XMLID_27_" class="st1" d="M28.2,23.8c0.2-0.4,0.5-0.6,0.9-0.6c0.4,0,0.6,0.1,0.8,0.3s0.3,0.5,0.3,0.9v1.7h-0.7v-1.7
-		c0-0.2-0.1-0.4-0.2-0.5c-0.1-0.1-0.2-0.2-0.4-0.2c-0.2,0-0.3,0.1-0.5,0.2c-0.1,0.2-0.2,0.4-0.2,0.7v1.3h-0.7v-2.8h0.6L28.2,23.8z"
-		/>
-	<path id="XMLID_24_" class="st1" d="M31.2,23.3h0.7v2.8h-0.7V23.3z M31.2,22.4c0-0.1,0-0.2,0.1-0.3c0.1-0.1,0.2-0.1,0.3-0.1
+		L25.7,25.6L25.7,25.6z" />
+                    <path id="XMLID_27_" class="st1" d="M28.2,23.8c0.2-0.4,0.5-0.6,0.9-0.6c0.4,0,0.6,0.1,0.8,0.3s0.3,0.5,0.3,0.9v1.7h-0.7v-1.7
+		c0-0.2-0.1-0.4-0.2-0.5c-0.1-0.1-0.2-0.2-0.4-0.2c-0.2,0-0.3,0.1-0.5,0.2c-0.1,0.2-0.2,0.4-0.2,0.7v1.3h-0.7v-2.8h0.6L28.2,23.8z" />
+                    <path id="XMLID_24_" class="st1" d="M31.2,23.3h0.7v2.8h-0.7V23.3z M31.2,22.4c0-0.1,0-0.2,0.1-0.3c0.1-0.1,0.2-0.1,0.3-0.1
 		c0.1,0,0.2,0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3c0,0.1,0,0.2-0.1,0.3c-0.1,0.1-0.2,0.1-0.3,0.1c-0.1,0-0.2,0-0.3-0.1
-		C31.2,22.6,31.2,22.5,31.2,22.4"/>
-	<path id="XMLID_23_" class="st1" d="M33.8,23.8c0.2-0.4,0.4-0.6,0.8-0.6c0.1,0,0.2,0,0.3,0l0,0.7c-0.1,0-0.2,0-0.3,0
-		c-0.5,0-0.7,0.3-0.7,1v1.2h-0.7v-2.8h0.7V23.8z"/>
-	<path id="XMLID_22_" class="st1" d="M36,25.3c0,0.3,0.2,0.4,0.6,0.4c0.2,0,0.3,0,0.4-0.1c0.1-0.1,0.1-0.1,0.1-0.2s0-0.2-0.1-0.2
+		C31.2,22.6,31.2,22.5,31.2,22.4" />
+                    <path id="XMLID_23_" class="st1" d="M33.8,23.8c0.2-0.4,0.4-0.6,0.8-0.6c0.1,0,0.2,0,0.3,0l0,0.7c-0.1,0-0.2,0-0.3,0
+		c-0.5,0-0.7,0.3-0.7,1v1.2h-0.7v-2.8h0.7V23.8z" />
+                    <path id="XMLID_22_" class="st1" d="M36,25.3c0,0.3,0.2,0.4,0.6,0.4c0.2,0,0.3,0,0.4-0.1c0.1-0.1,0.1-0.1,0.1-0.2s0-0.2-0.1-0.2
 		c-0.1,0-0.2-0.1-0.3-0.1l-0.6-0.2c-0.5-0.2-0.7-0.4-0.7-0.8c0-0.2,0.1-0.4,0.3-0.6c0.2-0.1,0.5-0.2,0.9-0.2c0.4,0,0.6,0.1,0.9,0.2
 		c0.2,0.2,0.3,0.4,0.3,0.6h-0.7c0-0.1-0.1-0.2-0.1-0.2c-0.1-0.1-0.2-0.1-0.4-0.1s-0.3,0-0.4,0.1c-0.1,0.1-0.1,0.1-0.1,0.2
 		c0,0.1,0.1,0.2,0.3,0.3l0.7,0.2c0.2,0.1,0.4,0.2,0.5,0.3c0.1,0.1,0.2,0.3,0.2,0.4c0,0.2-0.1,0.4-0.3,0.6c-0.2,0.2-0.5,0.3-0.9,0.3
-		c-0.4,0-0.7-0.1-0.9-0.2c-0.2-0.2-0.3-0.4-0.4-0.7L36,25.3L36,25.3z"/>
-	<path id="XMLID_21_" class="st1" d="M41.2,23.8c0.2-0.4,0.5-0.6,1-0.6c0.3,0,0.6,0.1,0.8,0.3c0.2,0.2,0.3,0.5,0.3,0.9v1.7h-0.7
+		c-0.4,0-0.7-0.1-0.9-0.2c-0.2-0.2-0.3-0.4-0.4-0.7L36,25.3L36,25.3z" />
+                    <path id="XMLID_21_" class="st1" d="M41.2,23.8c0.2-0.4,0.5-0.6,1-0.6c0.3,0,0.6,0.1,0.8,0.3c0.2,0.2,0.3,0.5,0.3,0.9v1.7h-0.7
 		v-1.7c0-0.2-0.1-0.4-0.2-0.5c-0.1-0.1-0.2-0.2-0.4-0.2s-0.3,0.1-0.5,0.2c-0.1,0.2-0.2,0.4-0.2,0.7v1.3h-0.7v-1.7
 		c0-0.2-0.1-0.4-0.2-0.5c-0.1-0.1-0.2-0.2-0.4-0.2s-0.3,0.1-0.5,0.2c-0.1,0.2-0.2,0.4-0.2,0.7v1.3h-0.7v-2.8h0.6l0.1,0.5
-		c0.2-0.4,0.5-0.6,0.9-0.6c0.2,0,0.4,0.1,0.6,0.2C41,23.5,41.1,23.6,41.2,23.8"/>
-	<path id="XMLID_18_" class="st1" d="M25.1,29.6c-0.2,0-0.4,0.1-0.5,0.2c-0.1,0.2-0.2,0.4-0.2,0.6c0,0.3,0.1,0.5,0.2,0.6
+		c0.2-0.4,0.5-0.6,0.9-0.6c0.2,0,0.4,0.1,0.6,0.2C41,23.5,41.1,23.6,41.2,23.8" />
+                    <path id="XMLID_18_" class="st1" d="M25.1,29.6c-0.2,0-0.4,0.1-0.5,0.2c-0.1,0.2-0.2,0.4-0.2,0.6c0,0.3,0.1,0.5,0.2,0.6
 		c0.1,0.2,0.3,0.2,0.5,0.2c0.2,0,0.3-0.1,0.5-0.2c0.1-0.1,0.2-0.3,0.2-0.5v-0.4c0-0.2-0.1-0.4-0.2-0.5
 		C25.5,29.6,25.3,29.6,25.1,29.6 M25.9,31.4c-0.2,0.3-0.4,0.5-0.8,0.5c-0.4,0-0.7-0.1-0.9-0.4c-0.3-0.3-0.4-0.7-0.4-1.1
-		s0.1-0.8,0.4-1.1c0.2-0.3,0.5-0.4,0.9-0.4c0.4,0,0.6,0.1,0.8,0.4v-1.5h0.7v4h-0.6L25.9,31.4z"/>
-	<path id="XMLID_15_" class="st1" d="M28.7,29.5c-0.2,0-0.3,0.1-0.5,0.2s-0.2,0.3-0.2,0.5h1.2c0-0.3-0.1-0.5-0.3-0.6
+		s0.1-0.8,0.4-1.1c0.2-0.3,0.5-0.4,0.9-0.4c0.4,0,0.6,0.1,0.8,0.4v-1.5h0.7v4h-0.6L25.9,31.4z" />
+                    <path id="XMLID_15_" class="st1" d="M28.7,29.5c-0.2,0-0.3,0.1-0.5,0.2s-0.2,0.3-0.2,0.5h1.2c0-0.3-0.1-0.5-0.3-0.6
 		C28.9,29.5,28.8,29.5,28.7,29.5 M29.8,29.8c0.1,0.2,0.1,0.3,0.1,0.5c0,0.1,0,0.3,0,0.4H28c0,0.2,0.1,0.4,0.2,0.6
 		c0.1,0.1,0.3,0.2,0.5,0.2c0.3,0,0.5-0.1,0.5-0.4h0.7c0,0.3-0.2,0.5-0.4,0.7C29.3,31.9,29,32,28.7,32c-0.4,0-0.7-0.1-0.9-0.4
-		c-0.3-0.3-0.4-0.6-0.4-1.1c0-0.5,0.1-0.8,0.4-1.1c0.2-0.3,0.6-0.4,0.9-0.4c0.4,0,0.7,0.1,0.9,0.4C29.7,29.5,29.8,29.7,29.8,29.8"/>
-	<path id="XMLID_14_" class="st1" d="M31.1,31c0,0.3,0.2,0.4,0.6,0.4c0.2,0,0.3,0,0.4-0.1c0.1-0.1,0.1-0.1,0.1-0.2
+		c-0.3-0.3-0.4-0.6-0.4-1.1c0-0.5,0.1-0.8,0.4-1.1c0.2-0.3,0.6-0.4,0.9-0.4c0.4,0,0.7,0.1,0.9,0.4C29.7,29.5,29.8,29.7,29.8,29.8" />
+                    <path id="XMLID_14_" class="st1" d="M31.1,31c0,0.3,0.2,0.4,0.6,0.4c0.2,0,0.3,0,0.4-0.1c0.1-0.1,0.1-0.1,0.1-0.2
 		c0-0.1,0-0.2-0.1-0.2c-0.1,0-0.2-0.1-0.3-0.1l-0.6-0.2c-0.5-0.2-0.7-0.4-0.7-0.8c0-0.2,0.1-0.4,0.3-0.6c0.2-0.1,0.5-0.2,0.9-0.2
 		c0.4,0,0.6,0.1,0.9,0.2c0.2,0.2,0.3,0.4,0.3,0.6h-0.7c0-0.1-0.1-0.2-0.1-0.2c-0.1-0.1-0.2-0.1-0.4-0.1s-0.3,0-0.4,0.1
 		c-0.1,0.1-0.1,0.1-0.1,0.2c0,0.1,0.1,0.2,0.3,0.3l0.7,0.2c0.2,0.1,0.4,0.2,0.5,0.3c0.1,0.1,0.2,0.3,0.2,0.4c0,0.2-0.1,0.4-0.3,0.6
-		c-0.2,0.2-0.5,0.3-0.9,0.3c-0.4,0-0.7-0.1-0.9-0.2c-0.2-0.2-0.3-0.4-0.4-0.7L31.1,31L31.1,31z"/>
-	<path id="XMLID_11_" class="st1" d="M33.9,29h0.7v2.8h-0.7V29z M33.8,28.1c0-0.1,0-0.2,0.1-0.3c0.1-0.1,0.2-0.1,0.3-0.1
+		c-0.2,0.2-0.5,0.3-0.9,0.3c-0.4,0-0.7-0.1-0.9-0.2c-0.2-0.2-0.3-0.4-0.4-0.7L31.1,31L31.1,31z" />
+                    <path id="XMLID_11_" class="st1" d="M33.9,29h0.7v2.8h-0.7V29z M33.8,28.1c0-0.1,0-0.2,0.1-0.3c0.1-0.1,0.2-0.1,0.3-0.1
 		c0.1,0,0.2,0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3c0,0.1,0,0.2-0.1,0.3s-0.2,0.1-0.3,0.1c-0.1,0-0.2,0-0.3-0.1
-		C33.9,28.4,33.8,28.3,33.8,28.1"/>
-	<path id="XMLID_7_" class="st1" d="M37.5,30c0-0.2,0-0.3-0.1-0.4c-0.1-0.1-0.2-0.2-0.4-0.2c-0.2,0-0.3,0.1-0.4,0.2
+		C33.9,28.4,33.8,28.3,33.8,28.1" />
+                    <path id="XMLID_7_" class="st1" d="M37.5,30c0-0.2,0-0.3-0.1-0.4c-0.1-0.1-0.2-0.2-0.4-0.2c-0.2,0-0.3,0.1-0.4,0.2
 		s-0.1,0.2-0.1,0.4s0,0.3,0.1,0.4c0.1,0.1,0.2,0.2,0.4,0.2c0.2,0,0.3-0.1,0.4-0.2C37.4,30.3,37.5,30.1,37.5,30 M36.6,31.9
 		c-0.4,0-0.6,0.2-0.6,0.4c0,0.1,0.1,0.2,0.2,0.3c0.2,0.1,0.3,0.1,0.5,0.1c0.2,0,0.4,0,0.5-0.1c0.1,0,0.2-0.1,0.3-0.1
 		c0.2-0.1,0.3-0.3,0.3-0.4c0-0.1,0-0.1-0.1-0.2c-0.1,0-0.1-0.1-0.2-0.1L36.6,31.9L36.6,31.9z M36,30.7c-0.2-0.2-0.3-0.4-0.3-0.7
@@ -2118,19 +2202,19 @@ if (screen.width > 1023) {
 		c-0.3,0-0.5,0.1-0.5,0.3c0.1,0.2,0.2,0.4,0.2,0.5s0,0.3-0.1,0.5s-0.2,0.2-0.3,0.3c-0.2,0.2-0.5,0.3-0.9,0.3c-0.2,0-0.4,0-0.5-0.1
 		c-0.2,0-0.2,0.1-0.2,0.3c0,0.2,0.2,0.3,0.4,0.3h1c0.7,0,1,0.2,1,0.7c0,0.2,0,0.3-0.1,0.4c-0.1,0.1-0.2,0.3-0.3,0.4
 		c-0.3,0.2-0.7,0.4-1.2,0.4c-0.5,0-0.9-0.1-1.2-0.3c-0.3-0.2-0.4-0.4-0.4-0.7c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.2-0.2,0.4-0.2
-		c-0.2-0.1-0.3-0.3-0.3-0.5c0-0.1,0-0.2,0.1-0.3C35.8,30.8,35.9,30.8,36,30.7"/>
-	<path id="XMLID_6_" class="st1" d="M39.9,29.5c0.2-0.4,0.5-0.6,0.9-0.6c0.4,0,0.6,0.1,0.8,0.3c0.2,0.2,0.3,0.5,0.3,0.9v1.7h-0.7
+		c-0.2-0.1-0.3-0.3-0.3-0.5c0-0.1,0-0.2,0.1-0.3C35.8,30.8,35.9,30.8,36,30.7" />
+                    <path id="XMLID_6_" class="st1" d="M39.9,29.5c0.2-0.4,0.5-0.6,0.9-0.6c0.4,0,0.6,0.1,0.8,0.3c0.2,0.2,0.3,0.5,0.3,0.9v1.7h-0.7
 		v-1.7c0-0.2-0.1-0.4-0.2-0.5c-0.1-0.1-0.2-0.2-0.4-0.2c-0.2,0-0.3,0.1-0.5,0.2c-0.1,0.2-0.2,0.4-0.2,0.7v1.3h-0.7V29h0.6L39.9,29.5
-		z"/>
-	<path id="XMLID_5_" class="st1" d="M13.1,19.4H6.4c-3.6,0-6.4-2.9-6.4-6.4V1.2c0-0.6,0.5-1.1,1.1-1.1h17.3c0.6,0,1.1,0.5,1.1,1.1
-		V13C19.5,16.6,16.6,19.4,13.1,19.4"/>
-	<path id="XMLID_4_" class="st1" d="M43.3,6.4V13c0,3.5-2.9,6.4-6.4,6.4h-12c-0.6,0-1.1-0.5-1.1-1.1V1.1c0-0.6,0.5-1.1,1.1-1.1h12
-		C40.4,0.1,43.3,2.9,43.3,6.4"/>
-</g>
-<g>
-	<g>
-		<g>
-			<path id="SVGID_42_" class="st2" d="M168,16.1l-2.8,4.6h2.7v-4.6H168z M168,6.9h0.5v14.3h-8.8v-0.1c1.8-2.4,2.7-3.6,4.2-6.2
+		z" />
+                    <path id="XMLID_5_" class="st1" d="M13.1,19.4H6.4c-3.6,0-6.4-2.9-6.4-6.4V1.2c0-0.6,0.5-1.1,1.1-1.1h17.3c0.6,0,1.1,0.5,1.1,1.1
+		V13C19.5,16.6,16.6,19.4,13.1,19.4" />
+                    <path id="XMLID_4_" class="st1" d="M43.3,6.4V13c0,3.5-2.9,6.4-6.4,6.4h-12c-0.6,0-1.1-0.5-1.1-1.1V1.1c0-0.6,0.5-1.1,1.1-1.1h12
+		C40.4,0.1,43.3,2.9,43.3,6.4" />
+                </g>
+                <g>
+                    <g>
+                        <g>
+                            <path id="SVGID_42_" class="st2" d="M168,16.1l-2.8,4.6h2.7v-4.6H168z M168,6.9h0.5v14.3h-8.8v-0.1c1.8-2.4,2.7-3.6,4.2-6.2
 				C165.6,11.7,166.5,10,168,6.9z M179.3,21h-4.2V1c-1.3,0.3-2.2,0.4-3.7,0.4h-0.3c-1.2,0-1.9,0-3.1-0.3c-0.9,4.3-1.8,6.9-4,10.8
 				c-1.9,3.6-3.4,5.8-6.4,8.8v1.5h10.7v3.5c-0.3,0.7-0.6,1-1.2,1.4c-0.8,0.6-1.5,0.6-2.4,0.6v1h14.5v-1.1h-1.2c-0.9,0-1.5,0-2.1-0.6
 				c-0.6-0.4-0.9-0.8-0.9-1.4v-3.4h4.2L179.3,21z M179.9,21l3.3,3.8v1.4h-3v1.5l2.8,3.5v1.7h-14.5l-4.2-3.8v-1.7h0.2
@@ -2159,11 +2243,11 @@ if (screen.width > 1023) {
 				c0.6,0.6,0.6,1.1,0.6,1.8v0.3v19.7c0,1-0.3,1.5-1,2.2c-0.6,0.6-1,0.7-1.9,0.8v0.8h19.1L260.4,21L260.4,21z M255.7,20.2h-0.5v6.3
 				c0.6-0.3,1.3-0.8,1.9-1.4c0.5-0.4,0.9-0.8,1.2-1.4C257.9,23,256.5,21.3,255.7,20.2z M264.6,24.1v8.7H245l-3.9-3.9v-1.5h0.2
 				c0.8,0,1.3-0.3,1.8-0.7c0.6-0.6,0.9-1.1,0.9-2V5.8l-3.1-3.6V0.5h19.9l3.9,3.8v8.7h-2.1l-3.7-3.5c0,0,0-2.2-1-2.9
-				c-1-0.8-2.4-0.8-2.4-0.8v3.9h1.6l4,4.3V21L264.6,24.1z"/>
-		</g>
-		<g>
-			<g>
-				<path id="SVGID_41_" class="st2" d="M168,16.1l-2.8,4.6h2.7v-4.6H168z M168,6.9h0.5v14.3h-8.8v-0.1c1.8-2.4,2.7-3.6,4.2-6.2
+				c-1-0.8-2.4-0.8-2.4-0.8v3.9h1.6l4,4.3V21L264.6,24.1z" />
+                        </g>
+                        <g>
+                            <g>
+                                <path id="SVGID_41_" class="st2" d="M168,16.1l-2.8,4.6h2.7v-4.6H168z M168,6.9h0.5v14.3h-8.8v-0.1c1.8-2.4,2.7-3.6,4.2-6.2
 					C165.6,11.7,166.5,10,168,6.9z M179.3,21h-4.2V1c-1.3,0.3-2.2,0.4-3.7,0.4h-0.3c-1.2,0-1.9,0-3.1-0.3c-0.9,4.3-1.8,6.9-4,10.8
 					c-1.9,3.6-3.4,5.8-6.4,8.8v1.5h10.7v3.5c-0.3,0.7-0.6,1-1.2,1.4c-0.8,0.6-1.5,0.6-2.4,0.6v1h14.5v-1.1h-1.2
 					c-0.9,0-1.5,0-2.1-0.6c-0.6-0.4-0.9-0.8-0.9-1.4v-3.4h4.2L179.3,21z M179.9,21l3.3,3.8v1.4h-3v1.5l2.8,3.5v1.7h-14.5l-4.2-3.8
@@ -2192,9 +2276,9 @@ if (screen.width > 1023) {
 					c0.6,0.6,0.6,1.1,0.6,1.8v0.3v19.7c0,1-0.3,1.5-1,2.2c-0.6,0.6-1,0.7-1.9,0.8v0.8h19.1L260.4,21L260.4,21z M255.7,20.2h-0.5v6.3
 					c0.6-0.3,1.3-0.8,1.9-1.4c0.5-0.4,0.9-0.8,1.2-1.4C257.9,23,256.5,21.3,255.7,20.2z M264.6,24.1v8.7H245l-3.9-3.9v-1.5h0.2
 					c0.8,0,1.3-0.3,1.8-0.7c0.6-0.6,0.9-1.1,0.9-2V5.8l-3.1-3.6V0.5h19.9l3.9,3.8v8.7h-2.1l-3.7-3.5c0,0,0-2.2-1-2.9
-					c-1-0.8-2.4-0.8-2.4-0.8v3.9h1.6l4,4.3V21L264.6,24.1z"/>
-			</g>
-			<path class="st3" d="M168,16.1l-2.8,4.6h2.7v-4.6H168z M168,6.9h0.5v14.3h-8.8v-0.1c1.8-2.4,2.7-3.6,4.2-6.2
+					c-1-0.8-2.4-0.8-2.4-0.8v3.9h1.6l4,4.3V21L264.6,24.1z" />
+                            </g>
+                            <path class="st3" d="M168,16.1l-2.8,4.6h2.7v-4.6H168z M168,6.9h0.5v14.3h-8.8v-0.1c1.8-2.4,2.7-3.6,4.2-6.2
 				C165.6,11.7,166.5,10,168,6.9z M179.3,21h-4.2V1c-1.3,0.3-2.2,0.4-3.7,0.4h-0.3c-1.2,0-1.9,0-3.1-0.3c-0.9,4.3-1.8,6.9-4,10.8
 				c-1.9,3.6-3.4,5.8-6.4,8.8v1.5h10.7v3.5c-0.3,0.7-0.6,1-1.2,1.4c-0.8,0.6-1.5,0.6-2.4,0.6v1h14.5v-1.1h-1.2c-0.9,0-1.5,0-2.1-0.6
 				c-0.6-0.4-0.9-0.8-0.9-1.4v-3.4h4.2L179.3,21z M179.9,21l3.3,3.8v1.4h-3v1.5l2.8,3.5v1.7h-14.5l-4.2-3.8v-1.7h0.2
@@ -2223,106 +2307,106 @@ if (screen.width > 1023) {
 				c0.6,0.6,0.6,1.1,0.6,1.8v0.3v19.7c0,1-0.3,1.5-1,2.2c-0.6,0.6-1,0.7-1.9,0.8v0.8h19.1L260.4,21L260.4,21z M255.7,20.2h-0.5v6.3
 				c0.6-0.3,1.3-0.8,1.9-1.4c0.5-0.4,0.9-0.8,1.2-1.4C257.9,23,256.5,21.3,255.7,20.2z M264.6,24.1v8.7H245l-3.9-3.9v-1.5h0.2
 				c0.8,0,1.3-0.3,1.8-0.7c0.6-0.6,0.9-1.1,0.9-2V5.8l-3.1-3.6V0.5h19.9l3.9,3.8v8.7h-2.1l-3.7-3.5c0,0,0-2.2-1-2.9
-				c-1-0.8-2.4-0.8-2.4-0.8v3.9h1.6l4,4.3V21L264.6,24.1z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<path id="SVGID_38_" class="st2" d="M106.2,3.2C106,3.3,106,3.5,106,4.7v4c0,1.2,0,1.3,0.2,1.5l0.6,0.2c0,0,0,0,0,0.2h-3.6
+				c-1-0.8-2.4-0.8-2.4-0.8v3.9h1.6l4,4.3V21L264.6,24.1z" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <path id="SVGID_38_" class="st2" d="M106.2,3.2C106,3.3,106,3.5,106,4.7v4c0,1.2,0,1.3,0.2,1.5l0.6,0.2c0,0,0,0,0,0.2h-3.6
 				c0-0.2,0-0.2,0-0.2l0.6-0.2C104,10,104,9.9,104,8.7v-4c0-1.2,0-1.3-0.2-1.5L103.2,3c0,0,0,0,0-0.2h3.6c0,0.2,0,0.2,0,0.2
-				L106.2,3.2z"/>
-		</g>
-		<g>
-			<g>
-				<path id="SVGID_37_" class="st2" d="M106.2,3.2C106,3.3,106,3.5,106,4.7v4c0,1.2,0,1.3,0.2,1.5l0.6,0.2c0,0,0,0,0,0.2h-3.6
+				L106.2,3.2z" />
+                        </g>
+                        <g>
+                            <g>
+                                <path id="SVGID_37_" class="st2" d="M106.2,3.2C106,3.3,106,3.5,106,4.7v4c0,1.2,0,1.3,0.2,1.5l0.6,0.2c0,0,0,0,0,0.2h-3.6
 					c0-0.2,0-0.2,0-0.2l0.6-0.2C104,10,104,9.9,104,8.7v-4c0-1.2,0-1.3-0.2-1.5L103.2,3c0,0,0,0,0-0.2h3.6c0,0.2,0,0.2,0,0.2
-					L106.2,3.2z"/>
-			</g>
-			<path class="st3" d="M106.2,3.2C106,3.3,106,3.5,106,4.7v4c0,1.2,0,1.3,0.2,1.5l0.6,0.2c0,0,0,0,0,0.2h-3.6c0-0.2,0-0.2,0-0.2
-				l0.6-0.2C104,10,104,9.9,104,8.7v-4c0-1.2,0-1.3-0.2-1.5L103.2,3c0,0,0,0,0-0.2h3.6c0,0.2,0,0.2,0,0.2L106.2,3.2z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<path id="SVGID_34_" class="st2" d="M110,10.3v0.2h-3c0-0.2,0-0.2,0-0.2l0.3-0.2c0.2,0,0.2-0.2,0.2-0.9V3.7c0-0.9,0-0.9-0.2-1
-				h-0.3c0-0.2,0-0.2,0-0.2s1.2-0.3,2.2-0.5h0.2c0,0,0,1.3,0,2.2v5c0,0.8,0,0.8,0.2,0.9L110,10.3L110,10.3z"/>
-		</g>
-		<g>
-			<g>
-				<path id="SVGID_33_" class="st2" d="M110,10.3v0.2h-3c0-0.2,0-0.2,0-0.2l0.3-0.2c0.2,0,0.2-0.2,0.2-0.9V3.7c0-0.9,0-0.9-0.2-1
-					h-0.3c0-0.2,0-0.2,0-0.2s1.2-0.3,2.2-0.5h0.2c0,0,0,1.3,0,2.2v5c0,0.8,0,0.8,0.2,0.9L110,10.3L110,10.3z"/>
-			</g>
-		</g>
-	</g>
-	<g>
-		<g>
-			<path id="SVGID_30_" class="st2" d="M117.1,2.9L117.1,2.9c0.2,0.6,0.2,1.3,0.2,2.2h-0.2c-0.5-0.9-0.9-1.5-1.5-2.1
+					L106.2,3.2z" />
+                            </g>
+                            <path class="st3" d="M106.2,3.2C106,3.3,106,3.5,106,4.7v4c0,1.2,0,1.3,0.2,1.5l0.6,0.2c0,0,0,0,0,0.2h-3.6c0-0.2,0-0.2,0-0.2
+				l0.6-0.2C104,10,104,9.9,104,8.7v-4c0-1.2,0-1.3-0.2-1.5L103.2,3c0,0,0,0,0-0.2h3.6c0,0.2,0,0.2,0,0.2L106.2,3.2z" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <path id="SVGID_34_" class="st2" d="M110,10.3v0.2h-3c0-0.2,0-0.2,0-0.2l0.3-0.2c0.2,0,0.2-0.2,0.2-0.9V3.7c0-0.9,0-0.9-0.2-1
+				h-0.3c0-0.2,0-0.2,0-0.2s1.2-0.3,2.2-0.5h0.2c0,0,0,1.3,0,2.2v5c0,0.8,0,0.8,0.2,0.9L110,10.3L110,10.3z" />
+                        </g>
+                        <g>
+                            <g>
+                                <path id="SVGID_33_" class="st2" d="M110,10.3v0.2h-3c0-0.2,0-0.2,0-0.2l0.3-0.2c0.2,0,0.2-0.2,0.2-0.9V3.7c0-0.9,0-0.9-0.2-1
+					h-0.3c0-0.2,0-0.2,0-0.2s1.2-0.3,2.2-0.5h0.2c0,0,0,1.3,0,2.2v5c0,0.8,0,0.8,0.2,0.9L110,10.3L110,10.3z" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <path id="SVGID_30_" class="st2" d="M117.1,2.9L117.1,2.9c0.2,0.6,0.2,1.3,0.2,2.2h-0.2c-0.5-0.9-0.9-1.5-1.5-2.1
 				c-0.3-0.2-0.6-0.2-0.9-0.2c-0.8,0-1.3,0.5-1.3,1.2s0.5,1,1.9,1.6s2.2,1.2,2.2,2.4c0,1.6-1.3,2.5-3,2.5c-0.8,0-1.6,0-2.5-0.2
 				c0-1,0-1.6,0-2.5h0.2c0.5,0.9,0.9,1.5,1.5,2.4c0.3,0.2,0.6,0.2,1,0.2c0.9,0,1.5-0.5,1.5-1.3c0-0.8-0.6-1-1.9-1.5
-				c-1.6-0.8-2.2-1.3-2.2-2.5c0-1.5,1.3-2.4,2.8-2.4C115.5,2.7,116.7,2.7,117.1,2.9"/>
-		</g>
-		<g>
-			<g>
-				<path id="SVGID_29_" class="st2" d="M117.1,2.9L117.1,2.9c0.2,0.6,0.2,1.3,0.2,2.2h-0.2c-0.5-0.9-0.9-1.5-1.5-2.1
+				c-1.6-0.8-2.2-1.3-2.2-2.5c0-1.5,1.3-2.4,2.8-2.4C115.5,2.7,116.7,2.7,117.1,2.9" />
+                        </g>
+                        <g>
+                            <g>
+                                <path id="SVGID_29_" class="st2" d="M117.1,2.9L117.1,2.9c0.2,0.6,0.2,1.3,0.2,2.2h-0.2c-0.5-0.9-0.9-1.5-1.5-2.1
 					c-0.3-0.2-0.6-0.2-0.9-0.2c-0.8,0-1.3,0.5-1.3,1.2s0.5,1,1.9,1.6s2.2,1.2,2.2,2.4c0,1.6-1.3,2.5-3,2.5c-0.8,0-1.6,0-2.5-0.2
 					c0-1,0-1.6,0-2.5h0.2c0.5,0.9,0.9,1.5,1.5,2.4c0.3,0.2,0.6,0.2,1,0.2c0.9,0,1.5-0.5,1.5-1.3c0-0.8-0.6-1-1.9-1.5
-					c-1.6-0.8-2.2-1.3-2.2-2.5c0-1.5,1.3-2.4,2.8-2.4C115.5,2.7,116.7,2.7,117.1,2.9"/>
-			</g>
-			<path class="st3" d="M117.1,2.9L117.1,2.9c0.2,0.6,0.2,1.3,0.2,2.2h-0.2c-0.5-0.9-0.9-1.5-1.5-2.1c-0.3-0.2-0.6-0.2-0.9-0.2
+					c-1.6-0.8-2.2-1.3-2.2-2.5c0-1.5,1.3-2.4,2.8-2.4C115.5,2.7,116.7,2.7,117.1,2.9" />
+                            </g>
+                            <path class="st3" d="M117.1,2.9L117.1,2.9c0.2,0.6,0.2,1.3,0.2,2.2h-0.2c-0.5-0.9-0.9-1.5-1.5-2.1c-0.3-0.2-0.6-0.2-0.9-0.2
 				c-0.8,0-1.3,0.5-1.3,1.2s0.5,1,1.9,1.6s2.2,1.2,2.2,2.4c0,1.6-1.3,2.5-3,2.5c-0.8,0-1.6,0-2.5-0.2c0-1,0-1.6,0-2.5h0.2
 				c0.5,0.9,0.9,1.5,1.5,2.4c0.3,0.2,0.6,0.2,1,0.2c0.9,0,1.5-0.5,1.5-1.3c0-0.8-0.6-1-1.9-1.5c-1.6-0.8-2.2-1.3-2.2-2.5
-				c0-1.5,1.3-2.4,2.8-2.4C115.5,2.7,116.7,2.7,117.1,2.9"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<path id="SVGID_24_" class="st2" d="M120.9,10.4c0.6,0,0.8-1.5,0.8-2.7c0-1.5-0.2-3-0.9-3c-0.6,0-0.9,1.5-0.9,2.7
+				c0-1.5,1.3-2.4,2.8-2.4C115.5,2.7,116.7,2.7,117.1,2.9" />
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <path id="SVGID_24_" class="st2" d="M120.9,10.4c0.6,0,0.8-1.5,0.8-2.7c0-1.5-0.2-3-0.9-3c-0.6,0-0.9,1.5-0.9,2.7
 				C120,8.8,120.1,10.4,120.9,10.4 M120.9,4.5c1.5,0,2.8,1.2,2.8,3.1s-1.5,3.1-3,3.1s-2.8-1.2-2.8-3.1
-				C117.9,5.8,119.2,4.5,120.9,4.5"/>
-		</g>
-		<g>
-			<g>
-				<path id="SVGID_22_" class="st2" d="M120.9,10.4c0.6,0,0.8-1.5,0.8-2.7c0-1.5-0.2-3-0.9-3c-0.6,0-0.9,1.5-0.9,2.7
+				C117.9,5.8,119.2,4.5,120.9,4.5" />
+                        </g>
+                        <g>
+                            <g>
+                                <path id="SVGID_22_" class="st2" d="M120.9,10.4c0.6,0,0.8-1.5,0.8-2.7c0-1.5-0.2-3-0.9-3c-0.6,0-0.9,1.5-0.9,2.7
 					C120,8.8,120.1,10.4,120.9,10.4 M120.9,4.5c1.5,0,2.8,1.2,2.8,3.1s-1.5,3.1-3,3.1s-2.8-1.2-2.8-3.1
-					C117.9,5.8,119.2,4.5,120.9,4.5"/>
-			</g>
-		</g>
-	</g>
-	<g>
-		<g>
-			<path id="SVGID_16_" class="st2" d="M126.8,10.3v0.2h-3c0-0.2,0-0.2,0-0.2l0.3-0.2c0.2,0,0.2-0.2,0.2-0.9V3.7c0-0.9,0-0.9-0.2-1
-				h-0.3c0-0.2,0-0.2,0-0.2s1.2-0.3,2.2-0.5h0.2c0,0,0,1.3,0,2.2v5c0,0.8,0,0.8,0.2,0.9L126.8,10.3L126.8,10.3z"/>
-		</g>
-		<g>
-			<g>
-				<path id="SVGID_14_" class="st2" d="M126.8,10.3v0.2h-3c0-0.2,0-0.2,0-0.2l0.3-0.2c0.2,0,0.2-0.2,0.2-0.9V3.7c0-0.9,0-0.9-0.2-1
-					h-0.3c0-0.2,0-0.2,0-0.2s1.2-0.3,2.2-0.5h0.2c0,0,0,1.3,0,2.2v5c0,0.8,0,0.8,0.2,0.9L126.8,10.3L126.8,10.3z"/>
-			</g>
-		</g>
-	</g>
-	<g>
-		<g>
-			<path id="SVGID_8_" class="st2" d="M129,6.6h1c0.2,0,0.2-0.3,0.2-0.9s-0.2-1-0.6-1C129.2,4.7,128.9,5.4,129,6.6
+					C117.9,5.8,119.2,4.5,120.9,4.5" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <path id="SVGID_16_" class="st2" d="M126.8,10.3v0.2h-3c0-0.2,0-0.2,0-0.2l0.3-0.2c0.2,0,0.2-0.2,0.2-0.9V3.7c0-0.9,0-0.9-0.2-1
+				h-0.3c0-0.2,0-0.2,0-0.2s1.2-0.3,2.2-0.5h0.2c0,0,0,1.3,0,2.2v5c0,0.8,0,0.8,0.2,0.9L126.8,10.3L126.8,10.3z" />
+                        </g>
+                        <g>
+                            <g>
+                                <path id="SVGID_14_" class="st2" d="M126.8,10.3v0.2h-3c0-0.2,0-0.2,0-0.2l0.3-0.2c0.2,0,0.2-0.2,0.2-0.9V3.7c0-0.9,0-0.9-0.2-1
+					h-0.3c0-0.2,0-0.2,0-0.2s1.2-0.3,2.2-0.5h0.2c0,0,0,1.3,0,2.2v5c0,0.8,0,0.8,0.2,0.9L126.8,10.3L126.8,10.3z" />
+                            </g>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <path id="SVGID_8_" class="st2" d="M129,6.6h1c0.2,0,0.2-0.3,0.2-0.9s-0.2-1-0.6-1C129.2,4.7,128.9,5.4,129,6.6
 				C128.9,6.6,128.9,6.6,129,6.6 M129.6,4.5c1.3,0,2.4,0.5,2.4,1.8c0,0.3,0,0.5-0.2,0.6c0,0-0.2,0-0.3,0c-0.9,0-1.8,0-2.8,0V7
-				c0,1,0.6,2.2,1.8,2.2c0.5,0,0.9,0,1.3-0.2v0.2c-0.5,0.9-1,1.5-2.4,1.5c-1.5,0-2.8-1.2-2.8-3C126.9,5.8,128.3,4.5,129.6,4.5"/>
-		</g>
-		<g>
-			<g>
-				<path id="SVGID_6_" class="st2" d="M129,6.6h1c0.2,0,0.2-0.3,0.2-0.9s-0.2-1-0.6-1C129.2,4.7,128.9,5.4,129,6.6
+				c0,1,0.6,2.2,1.8,2.2c0.5,0,0.9,0,1.3-0.2v0.2c-0.5,0.9-1,1.5-2.4,1.5c-1.5,0-2.8-1.2-2.8-3C126.9,5.8,128.3,4.5,129.6,4.5" />
+                        </g>
+                        <g>
+                            <g>
+                                <path id="SVGID_6_" class="st2" d="M129,6.6h1c0.2,0,0.2-0.3,0.2-0.9s-0.2-1-0.6-1C129.2,4.7,128.9,5.4,129,6.6
 					C128.9,6.6,128.9,6.6,129,6.6 M129.6,4.5c1.3,0,2.4,0.5,2.4,1.8c0,0.3,0,0.5-0.2,0.6c0,0-0.2,0-0.3,0c-0.9,0-1.8,0-2.8,0V7
-					c0,1,0.6,2.2,1.8,2.2c0.5,0,0.9,0,1.3-0.2v0.2c-0.5,0.9-1,1.5-2.4,1.5c-1.5,0-2.8-1.2-2.8-3C126.9,5.8,128.3,4.5,129.6,4.5"/>
-			</g>
-			<path class="st3" d="M129,6.6h1c0.2,0,0.2-0.3,0.2-0.9s-0.2-1-0.6-1C129.2,4.7,128.9,5.4,129,6.6C128.9,6.6,128.9,6.6,129,6.6
+					c0,1,0.6,2.2,1.8,2.2c0.5,0,0.9,0,1.3-0.2v0.2c-0.5,0.9-1,1.5-2.4,1.5c-1.5,0-2.8-1.2-2.8-3C126.9,5.8,128.3,4.5,129.6,4.5" />
+                            </g>
+                            <path class="st3" d="M129,6.6h1c0.2,0,0.2-0.3,0.2-0.9s-0.2-1-0.6-1C129.2,4.7,128.9,5.4,129,6.6C128.9,6.6,128.9,6.6,129,6.6
 				 M129.6,4.5c1.3,0,2.4,0.5,2.4,1.8c0,0.3,0,0.5-0.2,0.6c0,0-0.2,0-0.3,0c-0.9,0-1.8,0-2.8,0V7c0,1,0.6,2.2,1.8,2.2
-				c0.5,0,0.9,0,1.3-0.2v0.2c-0.5,0.9-1,1.5-2.4,1.5c-1.5,0-2.8-1.2-2.8-3C126.9,5.8,128.3,4.5,129.6,4.5"/>
-		</g>
-	</g>
-</g>
-</svg>
+				c0.5,0,0.9,0,1.3-0.2v0.2c-0.5,0.9-1,1.5-2.4,1.5c-1.5,0-2.8-1.2-2.8-3C126.9,5.8,128.3,4.5,129.6,4.5" />
+                        </g>
+                    </g>
+                </g>
+            </svg>
 
 
 
-       </div> 
+        </div>
     </div>
 
 </body>

@@ -712,6 +712,10 @@ svg#foot {
     font-size: 40px;
     }
     
+    .grafici-palla h2 {
+    padding-top: 0vh;
+    }
+    
 /*    telegramma*/
     .telegramma h2{
         font-size: 32px;

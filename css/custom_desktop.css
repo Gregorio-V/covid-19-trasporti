@@ -113,7 +113,7 @@ video {
 }
 
 .value-container h4 {
-    margin-top: -1vh;
+    padding-top: -1vh;
 }
 
 #no-margin {
@@ -646,7 +646,7 @@ svg#foot {
     }
 
     .value-container h4 {
-        margin-top: 0vh;
+        padding-top: 0vh;
         font-size: 24px;
     }
 
@@ -691,6 +691,11 @@ svg#foot {
     p {
         font-size: 19px;
         line-height: 1.25;
+    }
+    
+    .value-container h4 {
+        padding-top: 0vh;
+        
     }
     
 /*    grafici_palla*/

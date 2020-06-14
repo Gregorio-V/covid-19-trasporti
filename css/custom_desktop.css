@@ -113,10 +113,10 @@ video {
 }
 
 .value-container h4 {
-    padding-top: -1vh;
+    margin-top: -1vh;
 }
 
-#no-margin {
+#no-margin, #no-margin2 {
     padding-bottom: 0vh;
 }
 
@@ -646,7 +646,7 @@ svg#foot {
     }
 
     .value-container h4 {
-        padding-top: 0vh;
+        margin-top: 0vh;
         font-size: 24px;
     }
 
@@ -681,7 +681,11 @@ svg#foot {
     .sfondo-nero h2 {
         width: 100%;
         font-size: 30px;
-        padding-top: 6vh;
+        padding-top: 5vh;
+    }
+    
+    h2#no-margin, h2#no-margin2 {
+    font-size: 40px;
     }
     
     h2 {
@@ -694,7 +698,7 @@ svg#foot {
     }
     
     .value-container h4 {
-        padding-top: 0vh;
+        margin-top: 0vh;
         
     }
     

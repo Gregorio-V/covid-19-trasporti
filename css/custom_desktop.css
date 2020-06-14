@@ -679,8 +679,12 @@ svg#foot {
     }
 
     .sfondo-nero h2 {
-        width: 95%;
+        width: 100%;
         font-size: 30px;
+    }
+    
+    h2 {
+        max-width: 95%;
     }
     
     p {
@@ -712,14 +716,20 @@ svg#foot {
     
 /*menu tendina*/
     .dropdown{
-        width: 130px;
+        width: 110px;
+        border-width: 2px;
     }
     .dropdown-content {
-        width: 136px;
+        width: 116px;
     }
     .dropdown-content a {
     padding: 4px 6px;
     background-color: #000344;
+    font-size: 16px;
+    }
+    
+    #menu-selezionato2 {
+        font-size: 18px;
     }
     
     

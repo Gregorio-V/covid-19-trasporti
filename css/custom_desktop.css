@@ -681,6 +681,7 @@ svg#foot {
     .sfondo-nero h2 {
         width: 100%;
         font-size: 30px;
+        padding-top: 6vh;
     }
     
     h2 {

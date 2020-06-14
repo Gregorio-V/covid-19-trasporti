@@ -775,6 +775,12 @@ svg#foot {
     padding-top: 0vh;
     }
     
+/*grafico malpensa*/
+    #aeroporti-italiani {
+    padding-top: 10vh;
+}
+    
+    
 /*    telegramma*/
     .telegramma h2{
         font-size: 32px;

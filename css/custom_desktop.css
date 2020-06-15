@@ -514,10 +514,13 @@ h6 {
     display: block;
 }
 
+
 /* Change the background color of the dropdown button when the dropdown content is shown */
+/*
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+*/
 
 div#tendina-compagnie {
     padding-bottom: 1vh;
@@ -683,46 +686,130 @@ svg#crollo2 {
 @media (min-width: 481px) and (max-width: 767px) {
 
     .offset-three-half.columns {
-        margin-left: 1%;
+        margin-left: 10%;
     }
 
     .five.columns {
-        width: 98%;
+        width: 80%;
     }
 
     .container {
-        padding: 0 3px;
+        padding-right: 3px;
+        padding-left: 3px
     }
 
-    h2 {
-        width: 90%;
-    }
 
-    p {
-        font-size: 21px;
-        line-height: 1.25;
-    }
-
-    .sfondo-nero h2 {
-        font-size: 28px;
+    .sfondo-nero {
+        padding-top: 11vh;
     }
 
     .camminatori {
-        height: 500px;
+        height: 250px;
     }
 
     .video-container,
     .value-container {
-        height: 500px;
-        width: 275px;
+        height: 250px;
     }
 
-    .value-container h4 {
-        margin-top: 0vh;
-        font-size: 24px;
+    h1#titolo-intro {
+    font-size: 40px;
+    max-width: 95%;
+    }
+    
+    .sfondo-nero h2 {
+        width: 100%;
+        font-size: 30px;
+    }
+
+    h2#no-margin,
+    h2#no-margin2 {
+        font-size: 40px;
+    }
+
+    h2 {
+        max-width: 95%;
+    }
+
+    p {
+        font-size: 19px;
+        line-height: 1.25;
+        max-width: 98%;
     }
 
 
+    /*    grafici_palla*/
+    .grafici-palla .row {
+        background-size: 115%;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+        margin-bottom: 2vh;
+    }
+
+    #aeroporti-italiani .grafici-palla h2 {
+        font-size: 25px;
+    }
+
+    #aeroporti-italiani .grafici-palla h1 {
+        font-size: 40px;
+    }
+
+    .grafici-palla h2 {
+        padding-top: 0vh;
+    }
+    
+    #fonte-palle{
+        font-size: 12px;
+    }
+    
+    
+
+    /*grafico malpensa*/
+    #aeroporti-italiani {
+        padding-top: 10vh;
+    }
+
+
+    /*    telegramma*/
+    .telegramma h2 {
+        font-size: 32px;
+    }
+
+    .telegramma h1 {
+        font-size: 50px;
+    }
+
+    /*menu tendina*/
+    .dropdown {
+        width: 110px;
+        border-width: 2px;
+    }
+
+    .dropdown-content {
+        width: 116px;
+    }
+
+    .dropdown-content a {
+        padding: 4px 6px;
+        background-color: #000344;
+        font-size: 16px;
+    }
+
+    #menu-selezionato2 {
+        font-size: 18px;
+    }
+
+
+    /*    grafico nazioni pandemia*/
+    #crollo {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    div#tendina-nazioni {
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+    }
 
     svg#crollo {
         position: absolute;
@@ -731,6 +818,12 @@ svg#crollo2 {
 
     svg#crollo2 {
         visibility: visible;
+    }
+
+    /*grafico compagnie aeree*/
+    div#tendina-compagnie {
+        padding-bottom: 4vh;
+        padding-top: 3vh;
     }
 
 }
@@ -887,3 +980,9 @@ svg#crollo2 {
 }
 
 /* fine mobile-mini*/
+
+@media(hover: hover) and (pointer: fine) {
+    .dropdown:hover .dropdown-content{
+        display: block;
+    }
+}

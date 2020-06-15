@@ -62,6 +62,7 @@
                 .setPin("#grafico-cina", {
                     pushFollowers: true
                 })
+                .reverse(true)
                 .on("progress", function(e) {
                     date = giorni_cina;
                     valori = perc_cina_solo;
@@ -146,8 +147,8 @@
                 })
 
                 //.addIndicators() // add indicators (requires plugin)
-                .reverse(true);
-            .addTo(controller0);
+                
+                .addTo(controller0);
 
             //------grafico italico ------//
 
@@ -242,7 +243,7 @@
                 })
 
                 //.addIndicators() // add indicators (requires plugin)
-                .reverse(true);
+                .reverse(true)
             .addTo(controller2);
 
             //------grafico malpensa ------//
@@ -284,7 +285,7 @@
                 })
 
                 // .addIndicators() // add indicators (requires plugin)
-                .reverse(true);
+                .reverse(true)
             .addTo(controller3);
 
             //------grafico pandemia ------//
@@ -337,7 +338,7 @@
                     })
 
                     //.addIndicators() // add indicators (requires plugin)
-                    .reverse(true);
+                    .reverse(true)
                 .addTo(controller4);
                 //---- dropdown cambia colore grafico nazioni ------//
 
@@ -514,7 +515,7 @@
                 })
 
                 //   .addIndicators() // add indicators (requires plugin)
-                .reverse(true);
+                .reverse(true)
             .addTo(controller5);
 
             //---- dropdown cambia colore grafico compagniee aeree ------//
@@ -618,7 +619,7 @@
                 })
 
                 //   .addIndicators() // add indicators (requires plugin)
-                .reverse(true);
+                .reverse(true)
             .addTo(controller6);
 
             //---- grafico inquinamento ------//
@@ -662,7 +663,7 @@
                 })
 
                 //  .addIndicators() // add indicators (requires plugin)
-                .reverse(true);
+                .reverse(true)
             .addTo(controller7);
 
 

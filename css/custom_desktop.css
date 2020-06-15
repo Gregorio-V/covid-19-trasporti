@@ -803,6 +803,12 @@ svg#crollo2 {
     .grafici-palla h2 {
         padding-top: 0vh;
     }
+    
+    #fonte-palle{
+        font-size: 12px;
+    }
+    
+    
 
     /*grafico malpensa*/
     #aeroporti-italiani {

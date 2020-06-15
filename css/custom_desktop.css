@@ -320,7 +320,7 @@ h1 {
 
 .sfondo-nero h1 {
     color: #dfdfd7;
-    
+
 }
 
 h1#titolo-intro {
@@ -424,7 +424,8 @@ h6 {
 /*// -------- dropdown grafico nazioni pandemia -----//*/
 
 #crollo polyline,
-#crollo2 polyline, #stock polyline {
+#crollo2 polyline,
+#stock polyline {
     transition: all 0.5s ease;
 
 }
@@ -713,10 +714,10 @@ svg#crollo2 {
     }
 
     h1#titolo-intro {
-    font-size: 40px;
-    max-width: 95%;
+        font-size: 40px;
+        max-width: 95%;
     }
-    
+
     .sfondo-nero h2 {
         width: 100%;
         font-size: 30px;
@@ -757,12 +758,12 @@ svg#crollo2 {
     .grafici-palla h2 {
         padding-top: 0vh;
     }
-    
-    #fonte-palle{
+
+    #fonte-palle {
         font-size: 12px;
     }
-    
-    
+
+
 
     /*grafico malpensa*/
     #aeroporti-italiani {
@@ -864,10 +865,10 @@ svg#crollo2 {
     }
 
     h1#titolo-intro {
-    font-size: 40px;
-    max-width: 95%;
+        font-size: 40px;
+        max-width: 95%;
     }
-    
+
     .sfondo-nero h2 {
         width: 100%;
         font-size: 30px;
@@ -908,12 +909,12 @@ svg#crollo2 {
     .grafici-palla h2 {
         padding-top: 0vh;
     }
-    
-    #fonte-palle{
+
+    #fonte-palle {
         font-size: 12px;
     }
-    
-    
+
+
 
     /*grafico malpensa*/
     #aeroporti-italiani {
@@ -982,7 +983,7 @@ svg#crollo2 {
 /* fine mobile-mini*/
 
 @media(hover: hover) and (pointer: fine) {
-    .dropdown:hover .dropdown-content{
+    .dropdown:hover .dropdown-content {
         display: block;
     }
 }

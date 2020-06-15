@@ -74,7 +74,8 @@ video {
 }
 
 #intro video {
-    max-width: 100%;
+    max-width: 90%;
+    left: 5%;
     height: auto;
 }
 
@@ -319,7 +320,12 @@ h1 {
 
 .sfondo-nero h1 {
     color: #dfdfd7;
-    font-size: 70px;
+    
+}
+
+h1#titolo-intro {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
 }
 
 h2 {

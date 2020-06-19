@@ -256,4 +256,5 @@ var giorni_carburante = [
 ,'27 mag'
 ,'28 mag'
 ,'29 mag'
+,'30 mag'
 ];

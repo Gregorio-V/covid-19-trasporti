@@ -35,6 +35,10 @@ hr {
 }
 
 
+.block{
+    display: block;
+}
+
 /*----- background ------*/
 .sfondo-bianco {
     background-color: #dfdfd7;

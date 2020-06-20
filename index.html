@@ -348,11 +348,11 @@
 
                     nazione = $(this).text();
                     // cambia_colore_roma();
-                    console.log(nazione);
+                    //console.log(nazione);
 
                     valori_n = NAZ[nazione];
 
-                    console.log(valori);
+                    //console.log(valori);
 
                     $("#menu-selezionato").text(nazione);
                     
@@ -417,7 +417,7 @@
 
                     nazione = $(this).text();
                     // cambia_colore_roma();
-                    console.log(nazione);
+                    //console.log(nazione);
 
                     valori_n = NAZ[nazione];
 
@@ -509,9 +509,9 @@
                     $("#stock #main-value5").text(valori[Math.floor(prog * valori.length)] + "$");
                     $("#stock #main-value-date5").text(date[Math.floor(prog * valori.length)]);
 
-                    console.log([Math.floor(prog * valori.length)]);
-                    console.log(prog);
-                    console.log(valori.length);
+//                    console.log([Math.floor(prog * valori.length)]);
+//                    console.log(prog);
+//                    console.log(valori.length);
 
                 })
 
@@ -526,7 +526,7 @@
 
                 compagnia = $(this).text();
 
-                console.log(compagnia);
+                //console.log(compagnia);
 
                 valori_s = COM[compagnia];
 
@@ -684,18 +684,15 @@
                      });
             
         $('body').on("touchstart", function(event) {
-            
+            if (window.innerWidth<760){
                      $(".dropdown-content").removeClass("block");
-                     console.log("miao");
+                     //console.log("miao");
                 
-            
+            }
                      });
       
         
         
-//        function pincopallo(){
-//            $(".dropdown-content").css("display", "block")
-//        } 
         
         
             

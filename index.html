@@ -677,10 +677,18 @@
         
         $('.dropdown').on("touchstart", function(event) {
             if (window.innerWidth<760){
-                     $(".dropdown-content").css("display", "block");
-                     console.log("bao");
+                     $(".dropdown-content").addClass("block");
+                     
                 
             }
+                     });
+            
+        $('body').on("touchstart", function(event) {
+            
+                     $(".dropdown-content").removeClass("block");
+                     console.log("miao");
+                
+            
                      });
       
         
@@ -703,7 +711,7 @@
 
     <div class="container u-max-full-width sfondo-bianco" id="fixed-header">
         <div class="row">
-            <p>header sole 24 ore  16:24</p>
+            <p>header sole 24 ore </p>
         </div>
     </div>
 

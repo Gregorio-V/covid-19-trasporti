@@ -4,7 +4,7 @@ var legenda_stock = {
     
 };
 
-var stock_rayanair = [
+var stock_ryanair = [
 '15.33'
 , '15.18'
 , '14.52'

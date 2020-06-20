@@ -510,7 +510,7 @@ h6 {
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.dropdown:hover, .dropdown:active .dropdown-content {
     display: block;
 }
 
@@ -986,7 +986,7 @@ svg#crollo2 {
 
 /* fine mobile-mini*/
 
-@media(hover: hover) and (pointer: fine) {
+@media(hover: hover) and (pointer: fine){
     .dropdown:hover .dropdown-content {
         display: block;
     }

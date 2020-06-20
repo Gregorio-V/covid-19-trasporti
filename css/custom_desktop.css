@@ -976,20 +976,21 @@ svg#crollo2 {
         padding-bottom: 4vh;
         padding-top: 3vh;
     }
+
     #intro video {
-    max-width: 100%;
+        max-width: 100%;
         left: 0%;
     }
-    
+
     .dropdown:onclick .dropdown-content {
-    display: block;
-}
+        display: block;
+    }
 
 }
 
 /* fine mobile-mini*/
 
-@media(hover: hover) and (pointer: fine){
+@media(hover: hover) and (pointer: fine) {
     .dropdown:hover .dropdown-content {
         display: block;
     }

@@ -510,7 +510,7 @@ h6 {
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover, .dropdown:active .dropdown-content {
+.dropdown:hover .dropdown-content {
     display: block;
 }
 
@@ -981,6 +981,9 @@ svg#crollo2 {
         left: 0%;
     }
     
+    .dropdown:onclick .dropdown-content {
+    display: block;
+}
 
 }
 

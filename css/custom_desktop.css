@@ -312,7 +312,7 @@ h1 {
 
     text-align: center;
     margin: auto;
-    max-width: 70%;
+    max-width: 75%;
 
     margin-bottom: 0rem;
     letter-spacing: 0rem;
@@ -325,7 +325,6 @@ h1 {
 
 h1#titolo-intro {
     padding-top: 3vh;
-    padding-bottom: 3vh;
 }
 
 h2 {

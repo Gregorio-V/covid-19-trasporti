@@ -976,6 +976,11 @@ svg#crollo2 {
         padding-bottom: 4vh;
         padding-top: 3vh;
     }
+    #intro video {
+    max-width: 100%;
+        left: 0%;
+    }
+    
 
 }
 

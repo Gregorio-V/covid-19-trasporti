@@ -49,6 +49,7 @@
 
     <!--    ----------------------------------------------------- -->
     <script>
+        
         $(document).ready(function() { // wait for document ready
             var controller0 = new ScrollMagic.Controller();
             duration = "600vh";
@@ -354,7 +355,7 @@
                     console.log(valori);
 
                     $("#menu-selezionato").text(nazione);
-                    $("#TAG_selezionato").text(TAG[nazione]);
+                    
 
                     $("#crollo polyline").css("stroke", "#dfdfd7");
                     $("#crollo polyline").css("opacity", "0.15");
@@ -423,7 +424,7 @@
                     //console.log(valori);
 
                     $("#menu-selezionato").text(nazione);
-                    $("#TAG_selezionato3").text(TAG[nazione]);
+                    
 
                     $("#crollo2 polyline").css("stroke", "#dfdfd7");
                     $("#crollo2 polyline").css("opacity", "0.15");
@@ -669,6 +670,28 @@
 
 
 
+                    
+//        
+//        
+                  
+        
+        $('.dropdown').on("touchstart", function(event) {
+            if (window.innerWidth<760){
+                     $(".dropdown-content").css("display", "block");
+                     console.log("bao");
+                
+            }
+                     });
+      
+        
+        
+//        function pincopallo(){
+//            $(".dropdown-content").css("display", "block")
+//        } 
+        
+        
+            
+            
         }); // fine script
 
     </script>
@@ -842,7 +865,7 @@
                     <line class="st13" x1="140" y1="31.57" x2="140" y2="149.57" />
                     <line class="st32" x1="1.75" y1="44.4" x2="366.75" y2="44.4" />
                     <line class="st13" x1="245" y1="31.57" x2="245" y2="149.57" />
-                    <line id="cursor" class="st33" x1="183.5" y1="25.07" x2="183.5" y2="160.07" />
+                    <line id="cursor" class="st33" x1="1" y1="25.07" x2="1" y2="160.07" />
                     <g>
                         <polyline class="st34" points="363.81,58.5 356.35,58.02 348.89,57.8 341.43,55.51 333.97,56.52 326.51,55.9 319.05,59.84 
 		311.59,57.84 304.13,56.69 296.67,56.15 289.21,55.07 281.76,58.37 274.3,55.96 266.84,54.65 259.38,59.68 251.92,67.24 
@@ -1028,7 +1051,7 @@
 		67.65,75.69 63.52,67.3 59.38,70.58 55.25,75.96 51.11,65.63 46.98,72.72 42.85,77.85 38.71,78.77 34.58,72.65 30.44,74.31 
 		26.31,78.5 22.18,68.06 18.04,75.53 13.91,79.76 9.77,81.6 5.64,71.93 1.51,72.24 	" />
                     </g>
-                    <line id="cursor2" class="st13" x1="183.5" y1="21.57" x2="183.5" y2="171.57" />
+                    <line id="cursor2" class="st13" x1="1" y1="21.57" x2="1" y2="171.57" />
 
                 </svg>
 
@@ -1116,7 +1139,7 @@
                         <line class="st14" x1="354.9" y1="282.2" x2="343.4" y2="279.5" />
                     </g>
 
-                    <line id="cursor3" class="st16" x1="183.5" y1="14" x2="183.5" y2="313" />
+                    <line id="cursor3" class="st16" x1="1" y1="14" x2="1" y2="313" />
                     <g>
                         <text id="main-value-caption3" transform="matrix(1 0 0 1 140 348.5017)" class="date"> voli rispetto 2019 </text>
                     </g>
@@ -1263,7 +1286,7 @@
                     <text transform="matrix(1 0 0 1 2.2817 48.6025)" class="dati">0%</text>
                     <text transform="matrix(1 0 0 1 2.0742 242.2642)" class="dati">-50%</text>
                     <text transform="matrix(1 0 0 1 1.9023 435.5933)" class="dati">-100%</text>
-                    <text id="TAG_selezionato" transform="matrix(1 0 0 1 1042.6531 434.9136)" class="dati_blu">IT</text>
+                    
                     <g>
                         <text transform="matrix(1 0 0 1 -0.3896 509.9868)" class="fonte">Fonte: AirNav</text>
                     </g>
@@ -1320,7 +1343,7 @@
                         <text id="main-value-date4" transform="matrix(1 0 0 1 520 14.821)" class="data">18 mar</text>
                     </g>
                     <text id="main-value-caption4" transform="matrix(1 0 0 1 500 460)" class="date"> rispetto al 2019</text>
-                    <line id="cursor4" class="st15" x1="466.92" y1="25.07" x2="467.6" y2="424.06" />
+                    <line id="cursor4" class="st15" x1="1" y1="25.07" x2="1" y2="424.06" />
                 </svg>
 
                 <div class="columns offset-three-half five">
@@ -1485,7 +1508,7 @@
                             <text transform="matrix(1 0 0 1 0.8521 24.9452)" class="date">12 mar</text>
                         </g>
                         <text transform="matrix(1 0 0 1 2.6713 37.2222)" class="dati">0%</text>
-                        <text id="TAG_selezionato3" transform="matrix(1 0 0 1 340.0427 319.1268)" class="dati_blu">ITA</text>
+                        
 
                         <polyline id="italia2" class="st15 linea" points="358,301.7 350.9,298.8 343.7,301.7 336.5,304.5 329.3,310.2 322.2,310.2 315,301.7 307.8,301.7 
 				300.6,301.7 293.5,301.7 286.3,301.7 279.1,310.2 272,310.2 264.7,304.5 257.6,304.5 250.4,301.7 243.2,304.5 236.1,313 
@@ -1493,7 +1516,7 @@
 				157.2,301.7 150,301.7 142.8,310.2 135.6,304.5 128.5,307.3 121.3,307.3 114.2,301.7 107,301.7 99.8,298.8 92.6,301.7 
 				85.4,301.7 78.3,307.3 71.1,301.7 63.9,293.1 56.8,293.1 49.6,296 42.3,293.1 35.3,290.4 28,296 20.9,293.1 13.7,233.7 
 				6.5,236.5 			" />
-                        <line id="cursor8" class="st16" x1="214.3" y1="18.8" x2="214.3" y2="337.2" />
+                        <line id="cursor8" class="st16" x1="1" y1="18.8" x2="1" y2="337.2" />
                     </svg>
 
 
@@ -1858,8 +1881,8 @@
                     <g>
                         <text transform="matrix(1 0 0 1 1.220703e-04 350.8651)" class="fonte">Fonte: Airnav, Investing.com</text>
                     </g>
-                    <line id="cursor51" class="st18" x1="229.75" y1="22.39" x2="229.75" y2="190.25" />
-                    <line id="cursor52" class="st18" x1="229.42" y1="219.31" x2="229.42" y2="330.78" />
+                    <line id="cursor51" class="st18" x1="1" y1="22.39" x2="1" y2="190.25" />
+                    <line id="cursor52" class="st18" x1="1" y1="219.31" x2="1" y2="330.78" />
                 </svg>
 
 
@@ -2003,7 +2026,7 @@
 
                         </g>
                     </g>
-                    <line id="cursor6" class="st6" x1="246.15" y1="21.76" x2="245.96" y2="324.22" />
+                    <line id="cursor6" class="st6" x1="1" y1="21.76" x2="1" y2="324.22" />
                     <text id="main-value-caption6" transform="matrix(1 0 0 1 150 363.7021)" class="date"> rispetto al gg prec.</text>
                 </svg>
 
@@ -2085,7 +2108,7 @@
 	46.7,111.2 44.3,125.5 41.9,130.9 39.5,104.6 37.1,108.2 34.6,115.4 32.2,118.8 29.8,113.3 27.4,124 24.9,132.6 22.5,107.4 
 	20.1,110 17.7,114.7 15.2,114.8 12.8,108.6 10.4,111.9 8,117.4 5.6,103 3.1,109.5 " />
 
-                    <line id="cursor7" class="st6" x1="262.95" y1="21.75" x2="262.95" y2="339.76" />
+                    <line id="cursor7" class="st6" x1="1" y1="21.75" x2="1" y2="339.76" />
                     <g>
                         <text transform="matrix(1 0 0 1 1.0105 390.1069)" class="fonte">Fonte: AirNav, MIT, NEF</text>
                     </g>

@@ -510,17 +510,11 @@ h6 {
 }
 
 /* Show the dropdown menu on hover */
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-/*
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
-*/
 
 div#tendina-compagnie {
     padding-bottom: 1vh;
@@ -927,7 +921,8 @@ svg#crollo2 {
     }
 
     .telegramma h1 {
-        font-size: 50px;
+        font-size: 40px;
+        max-width: 90%;
     }
 
     /*menu tendina*/
@@ -982,9 +977,11 @@ svg#crollo2 {
         left: 0%;
     }
 
+/*
     .dropdown:onclick .dropdown-content {
         display: block;
     }
+*/
 
 }
 

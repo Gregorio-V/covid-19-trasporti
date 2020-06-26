@@ -1017,7 +1017,8 @@ svg#crollo2 {
 }
     svg#footer-logo {
     position: inherit; 
-    width: 15%;
+    width: 14.5%;
+    align-content: center;
     left: inherit;
     padding-left: 3vw;
 }

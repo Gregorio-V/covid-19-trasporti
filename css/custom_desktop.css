@@ -39,6 +39,13 @@ hr {
     display: block;
 }
 
+/*//------- footer ------//*/
+svg#footer-logo {
+    position: absolute;
+    width: 6%;
+    left: 22%;
+}
+
 /*----- background ------*/
 .sfondo-bianco {
     background-color: #dfdfd7;
@@ -536,8 +543,11 @@ svg#foot {
 #footer p {
     padding-top: 0;
     color: white;
-    width: 90%;
     font-size: 15px;
+}
+
+#footer{
+    padding-bottom: 6vh;
 }
 
 .sfondo-bianco #foot {
@@ -625,8 +635,11 @@ svg#foot {
     .sfondo-nero h2 {
         font-size: 28px;
     }
-
+    
+svg#footer-logo {
+    left: 12%;
 }
+
 
 svg#crollo {
     position: absolute;
@@ -636,7 +649,7 @@ svg#crollo {
 svg#crollo2 {
     visibility: hidden;
 }
-
+}
 /* 
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
@@ -664,6 +677,11 @@ svg#crollo2 {
     .sfondo-nero h2 {
         font-size: 28px;
     }
+    
+    svg#footer-logo {
+    left: 5%;
+    width: 7%;
+}
 
     svg#crollo {
         position: absolute;
@@ -823,6 +841,17 @@ svg#crollo2 {
         padding-bottom: 4vh;
         padding-top: 3vh;
     }
+    
+/*    --- footer ----*/
+    div#footer {
+    float: right;
+    width: 80%;
+}
+    svg#footer-logo {
+    position: inherit; 
+    width: 14%;
+    left: inherit;
+}
 
 }
 
@@ -980,6 +1009,18 @@ svg#crollo2 {
         max-width: 100%;
         left: 0%;
     }
+   
+/*    ----- footer  -------*/
+    div#footer {
+    float: right;
+    width: 80%;
+}
+    svg#footer-logo {
+    position: inherit; 
+    width: 14%;
+    left: inherit;
+    padding-left: 3vw;
+}
 
 /*
     .dropdown:onclick .dropdown-content {

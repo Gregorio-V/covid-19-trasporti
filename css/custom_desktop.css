@@ -991,8 +991,32 @@ svg#crollo2 {
 
 /* fine mobile-mini*/
 
+
+@media (max-width: 375px) and (max-height: 720px) {
+    p{font-size: 16px;}
+    .sfondo-nero h2{font-size: 25px;}
+    .sfondo-nero {padding-top: 8vh;}
+    
+    .camminatori {
+    height: 210px;
+}
+    .video-container, .value-container {
+    height: 210px;
+}
+    h2#no-margin, h2#no-margin2 {
+    font-size: 35px;
+}
+    h4{font-size: 14px;}
+    .video-container, .value-container {
+        width: 160px;
+    }
+    
+}
+
 @media(hover: hover) and (pointer: fine) {
     .dropdown:hover .dropdown-content {
         display: block;
     }
 }
+
+

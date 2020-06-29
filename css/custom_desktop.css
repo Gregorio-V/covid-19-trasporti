@@ -1074,6 +1074,44 @@ svg#foot {
 
 }
 
+/*------ media per TABLE ORIZZONTALE -------*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (max-height: 850px){
+    
+    .camminatori {
+        height: 210px;
+    }
+
+    .video-container,
+    .value-container {
+        height: 210px;
+    }
+    .video-container,
+    .value-container {
+        width: 160px;
+    }
+    
+    .five.columns {
+    width: 48%;
+}
+    .offset-three-half.columns {
+    margin-left: 26%;
+}
+    
+    svg#crollo {
+        position: absolute;
+        visibility: visible;
+    }
+
+    svg#crollo2 {
+        visibility: hidden;
+    }
+
+    
+    
+}
+
+
 @media(hover: hover) and (pointer: fine) {
     .dropdown:hover .dropdown-content {
         display: block;

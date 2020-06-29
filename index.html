@@ -290,7 +290,9 @@
                 .addTo(controller3);
 
             //------grafico pandemia ------//
-            if (screen.width > 1023) {
+            if (window.innerWidth > 1023 || window.innerWidth<1024 && window.innerWidth>768 && window.innerHeight<850) {
+
+                 console.log("crollo 1 visibile");
                 var controller4 = new ScrollMagic.Controller();
                 duration = "600vh";
 
@@ -372,9 +374,10 @@
                 });
 
 
-            } else {
+            } else if (window.innerWidth<1024){
                 // -----grafico pandemia per mobile -----// 
-
+            
+                console.log("crollo 2 visibile");
                 var controller8 = new ScrollMagic.Controller();
                 duration = "600vh";
 
@@ -411,6 +414,7 @@
                     })
 
                     .addTo(controller8);
+            
 
                 $("#pandemia .dropdown-content a").on("click", function(event) {
 

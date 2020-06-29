@@ -35,7 +35,7 @@ hr {
 }
 
 
-.block{
+.block {
     display: block;
 }
 
@@ -546,7 +546,7 @@ svg#foot {
     font-size: 15px;
 }
 
-#footer{
+#footer {
     padding-bottom: 6vh;
 }
 
@@ -635,21 +635,22 @@ svg#foot {
     .sfondo-nero h2 {
         font-size: 28px;
     }
-    
-svg#footer-logo {
-    left: 12%;
-}
+
+    svg#footer-logo {
+        left: 12%;
+    }
 
 
-svg#crollo {
-    position: absolute;
-    visibility: visible;
+    svg#crollo {
+        position: absolute;
+        visibility: visible;
+    }
+
+    svg#crollo2 {
+        visibility: hidden;
+    }
 }
 
-svg#crollo2 {
-    visibility: hidden;
-}
-}
 /* 
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
@@ -677,11 +678,11 @@ svg#crollo2 {
     .sfondo-nero h2 {
         font-size: 28px;
     }
-    
+
     svg#footer-logo {
-    left: 5%;
-    width: 7%;
-}
+        left: 5%;
+        width: 7%;
+    }
 
     svg#crollo {
         position: absolute;
@@ -841,17 +842,18 @@ svg#crollo2 {
         padding-bottom: 4vh;
         padding-top: 3vh;
     }
-    
-/*    --- footer ----*/
+
+    /*    --- footer ----*/
     div#footer {
-    float: right;
-    width: 80%;
-}
+        float: right;
+        width: 80%;
+    }
+
     svg#footer-logo {
-    position: inherit; 
-    width: 14%;
-    left: inherit;
-}
+        position: inherit;
+        width: 14%;
+        left: inherit;
+    }
 
 }
 
@@ -1009,20 +1011,21 @@ svg#crollo2 {
         max-width: 100%;
         left: 0%;
     }
-   
-/*    ----- footer  -------*/
-    div#footer {
-    float: right;
-    width: 80%;
-}
-    svg#footer-logo {
-    position: inherit; 
-    width: 15.5%;
-    left: inherit;
-    padding-left: 3vw;
-}
 
-/*
+    /*    ----- footer  -------*/
+    div#footer {
+        float: right;
+        width: 80%;
+    }
+
+    svg#footer-logo {
+        position: inherit;
+        width: 15.5%;
+        left: inherit;
+        padding-left: 3vw;
+    }
+
+    /*
     .dropdown:onclick .dropdown-content {
         display: block;
     }
@@ -1034,28 +1037,53 @@ svg#crollo2 {
 
 
 @media (max-width: 375px) and (max-height: 720px) {
-    p{font-size: 16px;}
-    .sfondo-nero h2{font-size: 22px;}
-    .sfondo-nero {padding-top: 8vh;}
-    
+    p {
+        font-size: 16px;
+    }
+
+    .sfondo-nero h2 {
+        font-size: 22px;
+    }
+
+    .sfondo-nero {
+        padding-top: 8vh;
+    }
+
     .camminatori {
-    height: 210px;
-}
-    .video-container, .value-container {
-    height: 210px;
-}
-    h2#no-margin, h2#no-margin2 {
-    font-size: 35px;
-}
-    h4{font-size: 14px;}
-    .video-container, .value-container {
+        height: 210px;
+    }
+
+    .video-container,
+    .value-container {
+        height: 210px;
+    }
+
+    h2#no-margin,
+    h2#no-margin2 {
+        font-size: 35px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    .video-container,
+    .value-container {
         width: 160px;
     }
-    
+
 }
 
 @media(hover: hover) and (pointer: fine) {
     .dropdown:hover .dropdown-content {
         display: block;
+    }
+}
+
+@-moz-document url-prefix() {
+
+    #crollo {
+        padding-left: 4vw;
+        display: flex;
     }
 }

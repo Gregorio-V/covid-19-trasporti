@@ -67,13 +67,13 @@ p {
 
 .sfondo-nero p {
     color: #726f76;
-    padding-bottom: 2vh;
+    padding-bottom: 0vh;
 
 }
 
 .sfondo-nero {
     background-color: #000000;
-    padding-top: 6vh;
+    padding-top: 8vh;
 }
 
 
@@ -175,7 +175,7 @@ video {
 }
 
 #aeroporti-italiani {
-    padding-top: 5vh;
+    padding-top: 7vh;
 }
 
 #aeroporti-italiani img {
@@ -290,8 +290,8 @@ svg .fonte {
 }
 
 #crollo {
-    width: 90vw;
-    padding-left: 5vw;
+    width: 82vw;
+    padding-left: 9vw;
     position: absolute;
 }
 
@@ -353,8 +353,8 @@ h2 {
 }
 
 .sfondo-nero h2 {
-    padding-bottom: 2vh;
-    font-size: 45px;
+    padding-bottom: 1vh;
+    font-size: 38px;
 }
 
 h4 {
@@ -528,7 +528,10 @@ h6 {
 
 
 div#tendina-compagnie {
-    padding-bottom: 1vh;
+    
+    padding-bottom: 3vh;
+    padding-top: 3vh;
+
 }
 
 
@@ -717,7 +720,7 @@ svg#foot {
 
 
     .sfondo-nero {
-        padding-top: 11vh;
+        padding-top: 12vh;
     }
 
     .camminatori {
@@ -880,7 +883,7 @@ svg#foot {
 
 
     .sfondo-nero {
-        padding-top: 9vh;
+        padding-top: 11.5vh;
     }
 
     .camminatori {
@@ -900,6 +903,7 @@ svg#foot {
     .sfondo-nero h2 {
         width: 100%;
         font-size: 30px;
+        padding-bottom: 0vh;
     }
 
     h2#no-margin,
@@ -915,6 +919,10 @@ svg#foot {
         font-size: 19px;
         line-height: 1.25;
         max-width: 98%;
+    }
+    
+    .sfondo-nero p{
+        padding-bottom: 0vh;
     }
 
 
@@ -1046,7 +1054,7 @@ svg#foot {
     }
 
     .sfondo-nero {
-        padding-top: 8vh;
+        padding-top: 11.5vh;
     }
 
     .camminatori {

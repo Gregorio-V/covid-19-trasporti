@@ -241,6 +241,10 @@ video {
 
 }
 
+.row.grafici-palla {
+    padding-top: 3vh;
+    }
+
 /*----- svg ------*/
 svg .percentuale {
     font-size: 28px;
@@ -297,6 +301,10 @@ svg .fonte {
 
 #crollo2 {
     visibility: hidden;
+}
+
+div#tendina-nazioni {
+    padding-top: 1.5vh;
 }
 
 /*----- spaziature ------*/
@@ -529,7 +537,7 @@ h6 {
 
 div#tendina-compagnie {
     
-    padding-bottom: 3vh;
+    padding-bottom: 1.5vh;
     padding-top: 3vh;
 
 }
@@ -765,6 +773,7 @@ svg#foot {
         padding-bottom: 5vh;
         margin-bottom: 2vh;
     }
+    
 
     #aeroporti-italiani .grafici-palla h2 {
         font-size: 25px;
@@ -954,7 +963,7 @@ svg#foot {
 
     /*grafico malpensa*/
     #aeroporti-italiani {
-        padding-top: 10vh;
+        padding-top: 12vh;
     }
 
 
@@ -1018,6 +1027,13 @@ svg#foot {
     #intro video {
         max-width: 100%;
         left: 0%;
+    }
+    
+    svg#inquinamento {
+     padding-top: 5vh; 
+    }
+    svg#carburante {
+    padding-top: 3vh;
     }
 
     /*    ----- footer  -------*/

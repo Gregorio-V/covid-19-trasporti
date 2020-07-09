@@ -1131,6 +1131,85 @@ svg#foot {
         visibility: hidden;
     }
 
+}
+
+/*----- media query pc basso -----*/
+
+@media (min-width: 768px) and (max-width: 1280px) and (max-height: 800px){
+    .five.columns {
+    width: 50%;
+}
+    .offset-three-half.columns {
+    margin-left: 25%;
+}
+    
+    svg{
+        width: 70%;
+        padding-left: 15%;
+    }
+    
+    p{
+        font-size: 18px;
+    }
+    h1{
+        font-size:  45px;
+    }
+    h2{
+        font-size: 30px;
+    }
+    .camminatori {
+        height: 160px;
+    }
+    .value-container {
+        height: 160px;
+        width: 135px;
+    }
+    .video-container{
+        height: 160px;
+    }
+    
+    h4{
+        font-size: 13px;
+    }
+    
+    .sfondo-nero h2 {
+    padding-top: 2vh;
+    padding-bottom: 0vh;
+}
+    #aeroporti-italiani .grafici-palla h1 {
+    font-size: 45px;
+}
+    #aeroporti-italiani .grafici-palla h2 {
+    font-size: 30px;
+}
+    #crollo {
+    width: 68vw;
+    padding-left: 16vw;
+    }
+    .dropdown{
+        width: 150px;
+        border-width: 1.5px;
+    }
+    .dropdown-content{
+        width: 154px;
+    }
+    .dropdown-content a {
+    font-size: 16px;
+}
+    
+    div#tendina-compagnie {
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+}
+    
+    #carburante {
+    width: 65%;
+    padding-left: 17.5%;
+}
+    svg#footer-logo {
+    left: 0%;
+}
+    
     
     
 }
